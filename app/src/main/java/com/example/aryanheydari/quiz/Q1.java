@@ -46,7 +46,7 @@ public class Q1 extends SuperClass
         final RadioButton CQ1 = (RadioButton) findViewById(R.id.CQ1);
         final RadioButton DQ1 = (RadioButton) findViewById(R.id.DQ1);
 
-        final TextView ScoreCount = (TextView)findViewById(R.id.Score);
+        final TextView ScoreCount = (TextView) findViewById(R.id.Score);
 
         ScoreCount.setText("Score: " + SuperClass.getScore());
 
@@ -58,31 +58,31 @@ public class Q1 extends SuperClass
             public void onCheckedChanged(RadioGroup Q1RadioGroup, int checkedId) {
 
 
-
-                if(CQ1.isChecked())
-                {
+                if (CQ1.isChecked()) {
                     setQ1Active(false);
                     SuperClass.score++;
 
-                }
-                else
-                {
+                } else {
                     setQ1Active(false);
                 }
 
                 ScoreCount.setText("Score: " + SuperClass.getScore());
 
-            }
-        });
+                for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
+                    Q1RadioGroup.getChildAt(i).setEnabled(false);
+                }
 
-        if(SuperClass.getQ1Active() == false)
-        {
-            for (int i = 0; i < Q1RadioGroup.getChildCount(); i++)
-            {
+            }
+
+
+        });
+        if (SuperClass.getQ1Active() == false) {
+            for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
                 Q1RadioGroup.getChildAt(i).setEnabled(false);
             }
         }
     }
+
 
 
     public void NextQ1 (View view){

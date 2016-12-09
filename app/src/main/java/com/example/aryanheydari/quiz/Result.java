@@ -43,6 +43,7 @@ public class Result extends SuperClass
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
         SuperClass.score = 0;
+        setQ1Active(true);
 
     }
 
