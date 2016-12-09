@@ -58,26 +58,30 @@ public class Q1 extends SuperClass
             public void onCheckedChanged(RadioGroup Q1RadioGroup, int checkedId) {
 
 
+
                 if(CQ1.isChecked())
                 {
+                    setQ1Active(false);
                     SuperClass.score++;
-                    for (int i = 0; i < Q1RadioGroup.getChildCount(); i++)
-                    {
-                        Q1RadioGroup.getChildAt(i).setEnabled(false);
-                    }
+
                 }
                 else
                 {
-                    for (int i = 0; i < Q1RadioGroup.getChildCount(); i++)
-                    {
-                        Q1RadioGroup.getChildAt(i).setEnabled(false);
-                    }
+                    setQ1Active(false);
                 }
 
                 ScoreCount.setText("Score: " + SuperClass.getScore());
 
             }
         });
+
+        if(SuperClass.getQ1Active() == false)
+        {
+            for (int i = 0; i < Q1RadioGroup.getChildCount(); i++)
+            {
+                Q1RadioGroup.getChildAt(i).setEnabled(false);
+            }
+        }
     }
 
 
