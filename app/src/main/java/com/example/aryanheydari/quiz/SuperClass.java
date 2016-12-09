@@ -31,10 +31,42 @@ public class SuperClass extends AppCompatActivity
         this.Q1Active = activity;
     }
 
+    public void setQ2Active(boolean activity)
+    {
+        this.Q2Active = activity;
+    }
+
+    public void setQ3Active(boolean activity)
+    {
+        this.Q3Active = activity;
+    }
+
+    public void setQ4Active(boolean activity)
+    {
+        this.Q4Active = activity;
+    }
+
+
     public static boolean getQ1Active()
     {
         return Q1Active;
     }
+
+    public static boolean getQ2Active()
+    {
+        return Q2Active;
+    }
+
+    public static boolean getQ3Active()
+    {
+        return Q3Active;
+    }
+
+    public static boolean getQ4Active()
+    {
+        return Q4Active;
+    }
+
 
 
     public static int getScore()

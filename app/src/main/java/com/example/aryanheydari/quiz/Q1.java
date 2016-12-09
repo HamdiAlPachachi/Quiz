@@ -24,7 +24,6 @@ import android.widget.RadioGroup.OnCheckedChangeListener;
 public class Q1 extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +40,7 @@ public class Q1 extends SuperClass
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        final RadioGroup Q1RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         final RadioButton AQ1 = (RadioButton) findViewById(R.id.AQ1);
         final RadioButton BQ1 = (RadioButton) findViewById(R.id.BQ1);
         final RadioButton CQ1 = (RadioButton) findViewById(R.id.CQ1);
@@ -50,7 +50,7 @@ public class Q1 extends SuperClass
 
         ScoreCount.setText("Score: " + SuperClass.getScore());
 
-        RadioGroup Q1RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+
 
 
         Q1RadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -83,8 +83,6 @@ public class Q1 extends SuperClass
         }
     }
 
-
-
     public void NextQ1 (View view){
 
         Intent Q2 = new Intent(this, Q2.class);
@@ -99,15 +97,17 @@ public class Q1 extends SuperClass
 
     }
 
-
-
     public void CheatQ1 (View view){
 
         TextView AnswerQ1 = (TextView) findViewById(R.id.AnswerQ1);
         AnswerQ1.setText("The correct answer is: 1826");
+        setQ1Active(false);
 
+        final RadioGroup Q1RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
+            Q1RadioGroup.getChildAt(i).setEnabled(false);
+        }
     }
-
 
     @Override
     public void onBackPressed() {

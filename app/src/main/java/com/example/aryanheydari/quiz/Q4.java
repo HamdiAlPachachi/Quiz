@@ -20,6 +20,7 @@ import android.widget.TextView;
 public class Q4 extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,26 +49,27 @@ public class Q4 extends SuperClass
 
             public void onCheckedChanged(RadioGroup Q4RadioGroup, int checkedId) {
 
-                if(CQ4.isChecked())
-                {
+                if (CQ4.isChecked()) {
+                    setQ4Active(false);
                     SuperClass.score++;
-                    for (int i = 0; i < Q4RadioGroup.getChildCount(); i++)
-                    {
-                        Q4RadioGroup.getChildAt(i).setEnabled(false);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < Q4RadioGroup.getChildCount(); i++)
-                    {
-                        Q4RadioGroup.getChildAt(i).setEnabled(false);
-                    }
+
+                } else {
+                    setQ4Active(false);
                 }
 
                 ScoreCount.setText("Score: " + SuperClass.getScore());
 
+                for (int i = 0; i < Q4RadioGroup.getChildCount(); i++) {
+                    Q4RadioGroup.getChildAt(i).setEnabled(false);
+                }
+
             }
         });
+        if (SuperClass.getQ4Active() == false) {
+            for (int i = 0; i < Q4RadioGroup.getChildCount(); i++) {
+                Q4RadioGroup.getChildAt(i).setEnabled(false);
+            }
+        }
     }
 
     public void NextQ4 (View view){
@@ -90,7 +92,12 @@ public class Q4 extends SuperClass
 
         TextView AnswerQ4 = (TextView) findViewById(R.id.AnswerQ4);
         AnswerQ4.setText("The correct answer is: 1826");
+        setQ4Active(false);
 
+        final RadioGroup Q4RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        for (int i = 0; i < Q4RadioGroup.getChildCount(); i++) {
+            Q4RadioGroup.getChildAt(i).setEnabled(false);
+        }
     }
 
     @Override

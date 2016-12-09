@@ -20,7 +20,6 @@ import android.widget.TextView;
 public class Q2 extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,6 @@ public class Q2 extends SuperClass
 
         final TextView ScoreCount = (TextView)findViewById(R.id.Score);
 
-        final SuperClass score1 = new SuperClass();
         ScoreCount.setText("Score: " + SuperClass.getScore());
 
         RadioGroup Q2RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -49,25 +47,26 @@ public class Q2 extends SuperClass
 
             public void onCheckedChanged(RadioGroup Q2RadioGroup, int checkedId) {
 
-                if(CQ2.isChecked())
-                {
+                if (CQ2.isChecked()) {
+                    setQ2Active(false);
                     SuperClass.score++;
-                    for (int i = 0; i < Q2RadioGroup.getChildCount(); i++)
-                    {
-                        Q2RadioGroup.getChildAt(i).setEnabled(false);
-                    }
-                }
-                else
-                {
-                    for (int i = 0; i < Q2RadioGroup.getChildCount(); i++)
-                    {
-                        Q2RadioGroup.getChildAt(i).setEnabled(false);
-                    }
+
+                } else {
+                    setQ2Active(false);
                 }
 
                 ScoreCount.setText("Score: " + SuperClass.getScore());
+
+                for (int i = 0; i < Q2RadioGroup.getChildCount(); i++) {
+                    Q2RadioGroup.getChildAt(i).setEnabled(false);
+                }
             }
         });
+        if (SuperClass.getQ2Active() == false) {
+            for (int i = 0; i < Q2RadioGroup.getChildCount(); i++) {
+                Q2RadioGroup.getChildAt(i).setEnabled(false);
+            }
+        }
     }
 
 
@@ -88,7 +87,12 @@ public class Q2 extends SuperClass
 
         TextView AnswerQ2 = (TextView) findViewById(R.id.AnswerQ2);
         AnswerQ2.setText("The correct answer is: 1826");
+        setQ2Active(false);
 
+        final RadioGroup Q2RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        for (int i = 0; i < Q2RadioGroup.getChildCount(); i++) {
+            Q2RadioGroup.getChildAt(i).setEnabled(false);
+        }
     }
 
     @Override
