@@ -14,18 +14,6 @@
     tools:showIn="@layout/app_bar_q1">
 
     <TextView
-        android:text="When was UCL founded?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:layout_marginTop="91dp"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="Question 1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -68,38 +56,46 @@
         android:layout_alignBottom="@+id/NextQ1"
         android:layout_centerHorizontal="true" />
 
+    <TextView
+        android:text="When was UCL founded?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Your Answer:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="74dp"
+        android:id="@+id/AnswerQ1"
+        android:textSize="18sp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_toRightOf="@+id/textView7"
+        android:layout_toEndOf="@+id/textView7" />
+
     <Button
         android:text="Next"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/NextQ1"
         android:onClick="NextQ1"
-        android:layout_alignBaseline="@+id/BackQ1"
-        android:layout_alignBottom="@+id/BackQ1"
-        android:layout_alignLeft="@+id/Score"
-        android:layout_alignStart="@+id/Score" />
-
-    <TextView
-        android:text="Your Answer:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:id="@+id/AnswerQ1"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <RadioGroup
         android:layout_width="5000dp"
         android:layout_height="140dp"
         android:id="@+id/radioGroup"
-        android:layout_marginBottom="23dp"
-        android:layout_above="@+id/BackQ1"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp">
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
 
 
         <RadioButton
@@ -113,6 +109,17 @@
             android:layout_toEndOf="@+id/CheatQ1" />
 
         <RadioButton
+            android:text="1866"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DQ1"
+            android:textSize="18sp"
+            android:layout_alignBaseline="@+id/AQ1"
+            android:layout_alignBottom="@+id/AQ1"
+            android:layout_alignRight="@+id/textView7"
+            android:layout_alignEnd="@+id/textView7" />
+
+        <RadioButton
             android:text="1910"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -124,27 +131,16 @@
             android:layout_alignStart="@+id/CQ1" />
 
         <RadioButton
-                android:text="1826"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/CQ1"
-                android:textSize="18sp"
-                android:layout_marginTop="0dp"
-                android:layout_marginLeft="0dp"
-                android:layout_below="@+id/DQ1"
-                android:layout_alignLeft="@+id/DQ1"
-                android:layout_alignStart="@+id/DQ1" />
-
-        <RadioButton
-                android:text="1866"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/DQ1"
-                android:textSize="18sp"
-                android:layout_alignBaseline="@+id/AQ1"
-                android:layout_alignBottom="@+id/AQ1"
-                android:layout_alignRight="@+id/textView7"
-                android:layout_alignEnd="@+id/textView7" />
+            android:text="1826"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CQ1"
+            android:textSize="18sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_below="@+id/DQ1"
+            android:layout_alignLeft="@+id/DQ1"
+            android:layout_alignStart="@+id/DQ1" />
 
     </RadioGroup>
 
