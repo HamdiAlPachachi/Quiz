@@ -19,10 +19,6 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-/**
- * Created by andro on 12/7/2016.
- */
-
 public class SuperClass extends AppCompatActivity
 {
 
@@ -39,20 +35,7 @@ public class SuperClass extends AppCompatActivity
     {
         return Q1Active;
     }
-    /**public SuperClass()
-    {
-        score = 0;
-    }
 
-    public SuperClass(int score)
-    {
-
-    }*/
-
-    /**public static void setScore(int score)
-    {
-        this.score = score;
-    }*/
 
     public static int getScore()
     {

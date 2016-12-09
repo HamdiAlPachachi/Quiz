@@ -36,26 +36,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 
-    <Button
-        android:text="Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/BackQ1"
-        android:onClick="BackQ1"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/AnswerQ1"
-        android:layout_alignEnd="@+id/AnswerQ1" />
-
-    <Button
-        android:text="Cheat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CheatQ1"
-        android:onClick="CheatQ1"
-        android:layout_alignBaseline="@+id/NextQ1"
-        android:layout_alignBottom="@+id/NextQ1"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:text="When was UCL founded?"
         android:layout_width="wrap_content"
@@ -67,17 +47,6 @@
         android:layout_below="@+id/textView7"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Your Answer:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="74dp"
-        android:id="@+id/AnswerQ1"
-        android:textSize="18sp"
-        android:layout_below="@+id/radioGroup"
-        android:layout_toRightOf="@+id/textView7"
-        android:layout_toEndOf="@+id/textView7" />
 
     <Button
         android:text="Next"
@@ -143,5 +112,38 @@
             android:layout_alignStart="@+id/DQ1" />
 
     </RadioGroup>
+
+    <Button
+        android:text="Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BackQ1"
+        android:onClick="BackQ1"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Cheat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CheatQ1"
+        android:onClick="CheatQ1"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Your Answer:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/AnswerQ1"
+        android:textSize="18sp"
+        android:layout_marginTop="57dp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center" />
 
 </RelativeLayout>

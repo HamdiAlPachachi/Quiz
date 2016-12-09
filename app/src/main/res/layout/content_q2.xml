@@ -14,29 +14,6 @@
     tools:showIn="@layout/app_bar_q2">
 
     <TextView
-        android:text="Your Answer:"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="63dp"
-        android:id="@+id/AnswerQ2"
-        android:textSize="18sp"
-        android:layout_below="@+id/CQ2"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="When was UCL found?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:layout_marginTop="91dp"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
         android:text="Question 2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -46,95 +23,6 @@
         android:layout_alignBottom="@+id/Score"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
-
-    <RadioGroup
-        android:layout_width="5000dp"
-        android:layout_height="140dp"
-        android:id="@+id/radioGroup"
-        android:layout_below="@+id/textView3"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="46dp">
-
-
-        <RadioButton
-            android:text="1926"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/AQ2"
-            android:textSize="18sp"
-            android:layout_centerVertical="true"
-            android:layout_toRightOf="@+id/CheatQ1"
-            android:layout_toEndOf="@+id/CheatQ1" />
-
-        <RadioButton
-            android:text="1910"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/BQ2"
-            android:textSize="18sp"
-            android:layout_alignBaseline="@+id/DQ1"
-            android:layout_alignBottom="@+id/DQ1"
-            android:layout_alignLeft="@+id/CQ1"
-            android:layout_alignStart="@+id/CQ1" />
-
-        <RadioButton
-            android:text="1826"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/CQ2"
-            android:textSize="18sp"
-            android:layout_marginTop="0dp"
-            android:layout_marginLeft="0dp"
-            android:layout_below="@+id/DQ1"
-            android:layout_alignLeft="@+id/DQ1"
-            android:layout_alignStart="@+id/DQ1" />
-
-        <RadioButton
-            android:text="1866"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/DQ2"
-            android:textSize="18sp"
-            android:layout_alignBaseline="@+id/AQ1"
-            android:layout_alignBottom="@+id/AQ1"
-            android:layout_alignRight="@+id/textView7"
-            android:layout_alignEnd="@+id/textView7" />
-
-    </RadioGroup>
-
-    <Button
-        android:text="Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/BackQ2"
-        android:onClick="BackQ2"
-        android:layout_weight="1"
-        android:layout_below="@+id/radioGroup"
-        android:layout_alignRight="@+id/AnswerQ4"
-        android:layout_alignEnd="@+id/AnswerQ4" />
-
-    <Button
-        android:text="Next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/NextQ2"
-        android:onClick="NextQ2"
-        android:layout_weight="1"
-        android:layout_alignBaseline="@+id/CheatQ4"
-        android:layout_alignBottom="@+id/CheatQ4"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:text="Cheat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/CheatQ2"
-        android:onClick="CheatQ2"
-        android:layout_weight="1"
-        android:layout_alignBaseline="@+id/BackQ4"
-        android:layout_alignBottom="@+id/BackQ4"
-        android:layout_centerHorizontal="true" />
 
     <TextView
         android:text="Score: "
@@ -147,6 +35,116 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
+
+    <TextView
+        android:text="When was UCL founded?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="50dp"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Next"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NextQ2"
+        android:onClick="NextQ2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <RadioGroup
+        android:layout_width="5000dp"
+        android:layout_height="140dp"
+        android:id="@+id/radioGroup"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true">
+
+
+        <RadioButton
+            android:text="1926"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/AQ2"
+            android:textSize="18sp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/CheatQ2"
+            android:layout_toEndOf="@+id/CheatQ2" />
+
+        <RadioButton
+            android:text="1866"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/DQ2"
+            android:textSize="18sp"
+            android:layout_alignBaseline="@+id/AQ2"
+            android:layout_alignBottom="@+id/AQ2"
+            android:layout_alignRight="@+id/textView7"
+            android:layout_alignEnd="@+id/textView7" />
+
+        <RadioButton
+            android:text="1910"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/BQ2"
+            android:textSize="18sp"
+            android:layout_alignBaseline="@+id/DQ2"
+            android:layout_alignBottom="@+id/DQ2"
+            android:layout_alignLeft="@+id/CQ2"
+            android:layout_alignStart="@+id/CQ2" />
+
+        <RadioButton
+            android:text="1826"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/CQ2"
+            android:textSize="18sp"
+            android:layout_marginTop="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_below="@+id/DQ2"
+            android:layout_alignLeft="@+id/DQ2"
+            android:layout_alignStart="@+id/DQ2" />
+
+    </RadioGroup>
+
+    <Button
+        android:text="Back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/BackQ2"
+        android:onClick="BackQ2"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="Cheat"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/CheatQ2"
+        android:onClick="CheatQ2"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Your Answer:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/AnswerQ2"
+        android:textSize="18sp"
+        android:layout_marginTop="57dp"
+        android:layout_below="@+id/radioGroup"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:textAlignment="center" />
 
 
 </RelativeLayout>
