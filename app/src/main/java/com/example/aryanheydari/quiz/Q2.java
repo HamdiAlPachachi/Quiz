@@ -50,9 +50,13 @@ public class Q2 extends SuperClass
                 if (CQ2.isChecked()) {
                     setQ2Active(false);
                     SuperClass.score++;
+                    TextView AnswerQ2 = (TextView) findViewById(R.id.AnswerQ2);
+                    AnswerQ2.setText("Your answer is correct");
 
                 } else {
                     setQ2Active(false);
+                    TextView AnswerQ2 = (TextView) findViewById(R.id.AnswerQ2);
+                    AnswerQ2.setText("Incorrect, The correct answer is 1826");
                 }
 
                 ScoreCount.setText("Score: " + SuperClass.getScore());

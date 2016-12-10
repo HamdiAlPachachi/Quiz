@@ -61,9 +61,13 @@ public class Q1 extends SuperClass
                 if (CQ1.isChecked()) {
                     setQ1Active(false);
                     SuperClass.score++;
+                    TextView AnswerQ1 = (TextView) findViewById(R.id.AnswerQ1);
+                    AnswerQ1.setText("Your answer is correct");
 
                 } else {
                     setQ1Active(false);
+                    TextView AnswerQ1 = (TextView) findViewById(R.id.AnswerQ1);
+                    AnswerQ1.setText("Incorrect, The correct answer is 1826");
                 }
 
                 ScoreCount.setText("Score: " + SuperClass.getScore());
@@ -71,6 +75,7 @@ public class Q1 extends SuperClass
                 for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
                     Q1RadioGroup.getChildAt(i).setEnabled(false);
                 }
+
 
             }
 
