@@ -14,6 +14,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 public class QuestionList extends SuperClass
@@ -33,8 +34,11 @@ public class QuestionList extends SuperClass
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-    }
 
+        EditText registration = (EditText) findViewById(R.id.Name);
+        TextView Name = registration;
+
+    }
 
 
 

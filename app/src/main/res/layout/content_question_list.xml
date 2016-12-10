@@ -37,8 +37,8 @@
         android:inputType="textEmailAddress"
         android:ems="10"
         android:layout_marginTop="29dp"
-        android:id="@+id/editText5"
-        android:hint="Email Address"
+        android:id="@+id/Name"
+        android:hint="Your Name"
         android:textAlignment="center"
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
@@ -64,8 +64,8 @@
         android:layout_alignParentBottom="true"
         android:layout_alignRight="@+id/ScoreDisplay"
         android:layout_alignEnd="@+id/ScoreDisplay"
-        android:layout_alignLeft="@+id/editText5"
-        android:layout_alignStart="@+id/editText5"
+        android:layout_alignLeft="@+id/Name"
+        android:layout_alignStart="@+id/Name"
         android:onClick="Start" />
 
 </RelativeLayout>

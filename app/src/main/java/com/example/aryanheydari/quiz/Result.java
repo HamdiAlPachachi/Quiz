@@ -1,6 +1,8 @@
 package com.example.aryanheydari.quiz;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -14,6 +16,12 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
 
 public class Result extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -36,12 +44,21 @@ public class Result extends SuperClass
 
         TextView ScoreDisplay = (TextView) findViewById(R.id.ScoreDisplay);
         ScoreDisplay.setText("" + SuperClass.getScore());
+
+
+        SharedPreferences prefs = getSharedPreferences("Player 1", MODE_PRIVATE);
+        String text1= prefs.getString("name", "Player1: ");
+        int text2= prefs.getInt("score", SuperClass.getScore());
+        TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
+        LeaderBoard.setText(text1 + text2);
+
+
     }
 
     public void StartAgain (View view){
 
-        Intent Q1 = new Intent(this, Q1.class);
-        startActivity(Q1);
+        Intent QuestionList = new Intent(this, QuestionList.class);
+        startActivity(QuestionList);
         SuperClass.score = 0;
         setQ1Active(true);
         setQ2Active(true);
@@ -49,6 +66,11 @@ public class Result extends SuperClass
         setQ4Active(true);
 
     }
+
+
+
+
+
 
     @Override
     public void onBackPressed() {

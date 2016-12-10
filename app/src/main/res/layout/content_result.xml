@@ -12,6 +12,21 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.example.aryanheydari.quiz.Result"
     tools:showIn="@layout/app_bar_result">
+
+    <TextView
+        android:text="LeaderBoard:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="43dp"
+        android:id="@+id/textView5"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_below="@+id/StartAgain"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
     <TextView
         android:text="Your Result"
         android:layout_width="wrap_content"
@@ -29,17 +44,6 @@
         android:textColorLink="?attr/actionModeSplitBackground"
         android:textColor="@color/colorPrimary" />
 
-    <TextView
-        android:text="0"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/ScoreDisplay"
-        android:layout_below="@+id/textView"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="55dp"
-        android:textAlignment="center"
-        android:textSize="24sp" />
-
     <Button
         android:text="Start Again"
         android:layout_width="wrap_content"
@@ -47,10 +51,36 @@
         android:id="@+id/StartAgain"
         android:background="?android:attr/colorActivatedHighlight"
         android:onClick="StartAgain"
-        android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/ScoreDisplay"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="34dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="0"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ScoreDisplay"
+        android:layout_marginTop="36dp"
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:layout_below="@+id/textView"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="-"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:id="@+id/LeaderBoard"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_below="@+id/textView5"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
