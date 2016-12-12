@@ -26,6 +26,8 @@ import java.io.InputStreamReader;
 public class Result extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    protected String PREFS = "Score";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,8 @@ public class Result extends SuperClass
         TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
         LeaderBoard.setText(text1 + text2);
 
+        saveScore();
+        loadScore();
 
     }
 
@@ -67,9 +71,21 @@ public class Result extends SuperClass
 
     }
 
+    public void saveScore()
+    {
+        SharedPreferences scoreList = getSharedPreferences(PREFS, MODE_PRIVATE);
+        SharedPreferences.Editor editor = scoreList.edit();
+        editor.putInt("savedScore", score);//can add .putInt("savedPreviousScore", score); for more variables.
+        editor.apply();
+    }
 
-
-
+    public void loadScore()
+    {
+        TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
+        SharedPreferences loadScore = getSharedPreferences(PREFS, 0);
+        score = loadScore.getInt("savedScore", 0);
+        LeaderBoard.setText(String.valueOf(score));
+    }
 
 
     @Override
