@@ -51,8 +51,6 @@ public class Q1 extends SuperClass
         ScoreCount.setText("Score: " + SuperClass.getScore());
 
 
-
-
         Q1RadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             public void onCheckedChanged(RadioGroup Q1RadioGroup, int checkedId) {

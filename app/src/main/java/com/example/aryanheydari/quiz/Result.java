@@ -15,18 +15,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
-
+import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.List;
 
 public class Result extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
     protected String PREFS = "Score";
+
+    ArrayList<String> resultsList = new ArrayList<String>();
+    ListView resultsListView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,12 +63,42 @@ public class Result extends SuperClass
         TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
         LeaderBoard.setText(text1 + text2);
 
-        saveScore();
         loadScore();
+
+        resultsListView = (ListView) findViewById(R.id.resultsListView);
+        //String[] list = {"item1", "item2", "item3", "item4", "item5"};
+        resultsList.add(Integer.toString(score));
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
+        resultsListView.setAdapter(adapter);
+
+        saveScore();
 
     }
 
-    public void StartAgain (View view){
+    public void saveScore()
+    {
+        SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = scoreList.edit();
+
+        Set<String> set = new HashSet<String>();
+        set.addAll(resultsList);
+        editor.putStringSet("savedScore", set);//can add .putInt("savedPreviousScore", score); for more variables.
+        editor.commit();
+    }
+
+    public void loadScore()
+    {
+        SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+
+
+        Set<String> set = new HashSet<String>();
+        set = scoreList.getStringSet("savedScore", null);
+        resultsList.addAll(set);
+    }
+
+
+    public void StartAgain (View view)
+    {
 
         Intent QuestionList = new Intent(this, QuestionList.class);
         startActivity(QuestionList);
@@ -68,23 +107,6 @@ public class Result extends SuperClass
         setQ2Active(true);
         setQ3Active(true);
         setQ4Active(true);
-
-    }
-
-    public void saveScore()
-    {
-        SharedPreferences scoreList = getSharedPreferences(PREFS, MODE_PRIVATE);
-        SharedPreferences.Editor editor = scoreList.edit();
-        editor.putInt("savedScore", score);//can add .putInt("savedPreviousScore", score); for more variables.
-        editor.apply();
-    }
-
-    public void loadScore()
-    {
-        TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
-        SharedPreferences loadScore = getSharedPreferences(PREFS, 0);
-        score = loadScore.getInt("savedScore", 0);
-        LeaderBoard.setText(String.valueOf(score));
     }
 
 
