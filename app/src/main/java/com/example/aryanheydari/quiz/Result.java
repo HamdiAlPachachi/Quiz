@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
@@ -80,8 +83,10 @@ public class Result extends SuperClass
         SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = scoreList.edit();
 
-        Set<String> set = new HashSet<String>();
+        Set<String> set = new HashSet<>();
         set.addAll(resultsList);
+        //for (String s: set)
+          //  Log.e("tag", s);
         editor.putStringSet("savedScore", set);//can add .putInt("savedPreviousScore", score); for more variables.
         editor.commit();
     }
@@ -91,8 +96,8 @@ public class Result extends SuperClass
         SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
 
 
-        Set<String> set = new HashSet<String>();
-        set = scoreList.getStringSet("savedScore", null);
+        Set<String> set = new HashSet<>();
+        set = scoreList.getStringSet("savedScore", null);//issue is that getStringSet is not a method in SharedPreferences library. Must find way of retreiving all values fomr an ArrayList.
         resultsList.addAll(set);
     }
 
