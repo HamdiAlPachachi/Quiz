@@ -20,6 +20,9 @@ import android.widget.TextView;
 public class QuestionList extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    EditText Name = (EditText) findViewById(R.id.Name);
+    String New_user_name;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,22 +38,23 @@ public class QuestionList extends SuperClass
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        EditText registration = (EditText) findViewById(R.id.Name);
-        TextView Name = registration;
+        Button StartAgain = (Button) findViewById(R.id.StartAgain);
+        StartAgain.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                New_user_name = Name.getText().toString(); //Creates String that contains username
+            }
+        });
 
     }
 
 
-
-    public void Start (View view){
-
+    public void Start (View view)
+    {
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
-
     }
-
-
-
 
 
     @Override

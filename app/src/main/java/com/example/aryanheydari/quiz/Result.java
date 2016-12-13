@@ -66,7 +66,7 @@ public class Result extends SuperClass
         TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
         LeaderBoard.setText(text1 + text2);
 
-        loadScore();
+        /*loadScore();
 
         resultsListView = (ListView) findViewById(R.id.resultsListView);
         //String[] list = {"item1", "item2", "item3", "item4", "item5"};
@@ -74,11 +74,11 @@ public class Result extends SuperClass
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
         resultsListView.setAdapter(adapter);
 
-        saveScore();
+        saveScore();*/
 
     }
 
-    public void saveScore()
+    /*public void saveScore()
     {
         SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = scoreList.edit();
@@ -99,7 +99,7 @@ public class Result extends SuperClass
         Set<String> set = new HashSet<>();
         set = scoreList.getStringSet("savedScore", null);//issue is that getStringSet is not a method in SharedPreferences library. Must find way of retreiving all values fomr an ArrayList.
         resultsList.addAll(set);
-    }
+    }*/
 
 
     public void StartAgain (View view)
