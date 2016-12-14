@@ -19,9 +19,9 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final String DATABASE_NAME = "LeaderBord.db";
     public static final String Table_Players = "Players";
     public static final String Table_Scores = "Player";
-    public static final String KEY_ID = "_id";
-    public static final String KEY_PlayerName = "PlayerName";
-    public static final String KEY_PLAYER_SCORE = "PlayerScore";
+    public static final String KEY_ID = "id";
+    public static final String KEY_PLAYERNAME = "PlayerName";
+    public static final String KEY_PLAYERSCORE = "PlayerScore";
 
     public DBHandler(Context context)
     {
@@ -35,12 +35,9 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_SCORE_TABLE = "Create Table" + Table_Scores + "(" +
-                KEY_ID + " Integer Primary Key Autoincrement " +
-                KEY_PlayerName + " text " +
-                ");";
+        String CREATE_SCORE_TABLE = "CREATE TABLE" + Table_Scores + "(" +
+                KEY_ID + "INTEGER PRIMARY KEY" + KEY_PLAYERNAME + "TEXT" + KEY_PLAYERSCORE + "TEXT" + ")";
         db.execSQL(CREATE_SCORE_TABLE);
-
     }
 
     @Override
@@ -53,23 +50,23 @@ public class DBHandler extends SQLiteOpenHelper{
     public void addPlayer (Player player)
     {
 
-        //Player.put(KEY_PlayerName, player.get_PlayerName());
+        //Player.put(KEY_PLAYERNAME, player.getPlayerName());
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_PlayerName, player.getPlayerName());
-        //values.put(KEY_PLAYER_SCORE, player.getScore());
+        values.put(KEY_PLAYERNAME, player.getPlayerName());
+        //values.put(KEY_PLAYERSCORE, player.getScore());
         db.insert(Table_Scores, null, values);
         db.close();
 
     }
 
-    public Player getPlayerId(int id)
+    /*public Player getPlayerId(int id)
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(Table_Scores, new String[] {
                 KEY_ID,
-                KEY_PlayerName, KEY_PLAYER_SCORE}, KEY_ID + "=?",
+                KEY_PLAYERNAME, KEY_PLAYERSCORE}, KEY_ID + "=?",
                 new String[] { String.valueOf(id)}, null, null, null, null);
 
         if(cursor != null)
@@ -79,7 +76,7 @@ public class DBHandler extends SQLiteOpenHelper{
                 cursor.getString(1), Integer.parseInt(cursor.getString(2)));
         return player;
 
-    }
+    }*/
 
     public List<Player> getAllPlayers()
     {
@@ -108,9 +105,9 @@ public class DBHandler extends SQLiteOpenHelper{
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_PlayerName, player.getPlayerName());
-        values.put(KEY_PLAYER_SCORE, player.getScore());
-        return db.update(Table_Players, values, KEY_ID + "=?", new String[]{String.valueOf(player.getid())});
+        values.put(KEY_PLAYERNAME, player.getPlayerName());
+        values.put(KEY_PLAYERSCORE, player.getScore());
+        return db.update(Table_Players, values, KEY_ID + "=?", new String[]{String.valueOf(player.getId())});
     }
 
     /*public String databaseToString(){

@@ -20,9 +20,8 @@ import android.widget.TextView;
 public class QuestionList extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    EditText Name = (EditText) findViewById(R.id.Name);
     String New_user_name;
-
+    EditText Name;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,25 +36,26 @@ public class QuestionList extends SuperClass
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        Name = (EditText) findViewById(R.id.Name);
 
-        Button StartAgain = (Button) findViewById(R.id.StartAgain);
-        StartAgain.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                New_user_name = Name.getText().toString(); //Creates String that contains username
-            }
-        });
+//        Button StartAgain = (Button) findViewById(R.id.StartAgain);
+//        StartAgain.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view)
+//            {
+//                New_user_name = Name.getText().toString();
+//                //Creates String that contains username
+//            }
+//        });
 
     }
-
 
     public void Start (View view)
     {
+        New_user_name = Name.getText().toString();
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
     }
-
 
     @Override
     public void onBackPressed() {
@@ -108,5 +108,9 @@ public class QuestionList extends SuperClass
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    public String getPlayerName(){
+        return New_user_name;
     }
 }

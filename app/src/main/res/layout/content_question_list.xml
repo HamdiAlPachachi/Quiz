@@ -58,14 +58,11 @@
         android:text="Start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="157dp"
         android:id="@+id/StartAgain"
         android:background="?android:attr/colorActivatedHighlight"
-        android:layout_alignParentBottom="true"
-        android:layout_alignRight="@+id/ScoreDisplay"
-        android:layout_alignEnd="@+id/ScoreDisplay"
-        android:layout_alignLeft="@+id/Name"
-        android:layout_alignStart="@+id/Name"
-        android:onClick="Start" />
+        android:onClick="Start"
+        android:layout_below="@+id/Name"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="134dp" />
 
 </RelativeLayout>

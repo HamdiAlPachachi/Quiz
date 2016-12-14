@@ -66,15 +66,24 @@ public class Result extends SuperClass
         TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
         LeaderBoard.setText(text1 + text2);
 
-        /*loadScore();
+        DBHandler db = new DBHandler(this);
+
+        QuestionList player = new QuestionList();
+
+        db.addPlayer(new Player(player.New_user_name, SuperClass.score));
+
+        List<Player> playerList = db.getAllPlayers();
+        //loadScore();
+        resultsList = new ArrayList<>();
+        for (Player p : playerList) {
+            resultsList.add(p.getPlayerName() + "   " + Integer.toString(score));
+        }
 
         resultsListView = (ListView) findViewById(R.id.resultsListView);
-        //String[] list = {"item1", "item2", "item3", "item4", "item5"};
-        resultsList.add(Integer.toString(score));
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
         resultsListView.setAdapter(adapter);
 
-        saveScore();*/
+        //saveScore();*/
 
     }
 
