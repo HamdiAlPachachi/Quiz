@@ -52,7 +52,7 @@ public class QuestionList extends SuperClass
 
     public void Start (View view)
     {
-        New_user_name = Name.getText().toString();
+        SuperClass.UserName = Name.getText().toString();
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
     }
@@ -110,7 +110,7 @@ public class QuestionList extends SuperClass
         return true;
     }
 
-    public String getPlayerName(){
+    /*public String getPlayerName(){
         return New_user_name;
-    }
+    }*/
 }

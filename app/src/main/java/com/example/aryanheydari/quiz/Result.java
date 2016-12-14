@@ -59,24 +59,29 @@ public class Result extends SuperClass
         TextView ScoreDisplay = (TextView) findViewById(R.id.ScoreDisplay);
         ScoreDisplay.setText("" + SuperClass.getScore());
 
+        TextView NameEntry = (TextView) findViewById(R.id.NameEntry);
+        NameEntry.setText("" + SuperClass.getPlayerName());
 
-        SharedPreferences prefs = getSharedPreferences("Player 1", MODE_PRIVATE);
+        /*SharedPreferences prefs = getSharedPreferences("Player 1", MODE_PRIVATE);
         String text1= prefs.getString("name", "Player1: ");
         int text2= prefs.getInt("score", SuperClass.getScore());
         TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
-        LeaderBoard.setText(text1 + text2);
+        LeaderBoard.setText(text1 + text2);*/
+
+        ///Clear ListView//
+
 
         DBHandler db = new DBHandler(this);
 
-        QuestionList player = new QuestionList();
+        Player player = new Player();
 
-        db.addPlayer(new Player(player.New_user_name, SuperClass.score));
+        db.addPlayer(new Player(player.get_PlayerName(), player.get_Score()));
 
         List<Player> playerList = db.getAllPlayers();
         //loadScore();
         resultsList = new ArrayList<>();
         for (Player p : playerList) {
-            resultsList.add(p.getPlayerName() + "   " + Integer.toString(score));
+            resultsList.add(p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
         }
 
         resultsListView = (ListView) findViewById(R.id.resultsListView);
@@ -86,6 +91,16 @@ public class Result extends SuperClass
         //saveScore();*/
 
     }
+
+    /*public void loadScore()
+    {
+        List<Player> ListScore = new List<>();
+
+    }*/
+
+
+
+
 
     /*public void saveScore()
     {

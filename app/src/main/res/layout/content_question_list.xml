@@ -43,17 +43,6 @@
         android:layout_below="@+id/textView"
         android:layout_centerHorizontal="true" />
 
-    <TextView
-        android:text="Press Start to begin the quiz "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="48dp"
-        android:id="@+id/ScoreDisplay"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_above="@+id/StartAgain"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="Start"
         android:layout_width="wrap_content"
@@ -64,5 +53,17 @@
         android:layout_below="@+id/Name"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="134dp" />
+
+    <TextView
+        android:text="Press Start to begin the quiz "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/ScoreDisplay"
+        android:textAlignment="center"
+        android:textSize="18sp"
+        android:layout_below="@+id/Name"
+        android:layout_alignLeft="@+id/Name"
+        android:layout_alignStart="@+id/Name"
+        android:layout_marginTop="69dp" />
 
 </RelativeLayout>

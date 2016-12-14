@@ -24,6 +24,8 @@ public class SuperClass extends AppCompatActivity
 
     public static int score = 0;
 
+    public static String UserName;
+
     private static boolean Q1Active = true, Q2Active = true, Q3Active = true, Q4Active = true;
 
     public void setQ1Active(boolean activity)
@@ -72,5 +74,9 @@ public class SuperClass extends AppCompatActivity
     public static int getScore()
     {
         return score;
+    }
+
+    public static String getPlayerName(){
+        return UserName;
     }
 }

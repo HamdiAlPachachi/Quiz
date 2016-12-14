@@ -14,32 +14,6 @@
     tools:showIn="@layout/app_bar_result">
 
     <TextView
-        android:text="-"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:id="@+id/LeaderBoard"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        android:layout_below="@+id/textView"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <TextView
-        android:text="Your Result"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView"
-        tools:text="Your Result"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textColorLink="?attr/actionModeSplitBackground"
-        android:textColor="@color/colorPrimary"
-        android:layout_alignParentTop="true"
-        android:layout_toRightOf="@+id/LeaderBoard"
-        android:layout_toEndOf="@+id/LeaderBoard" />
-
-    <TextView
         android:text="0"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -57,9 +31,7 @@
         android:id="@+id/StartAgain"
         android:background="?android:attr/colorActivatedHighlight"
         android:onClick="StartAgain"
-        android:layout_below="@+id/LeaderBoard"
-        android:layout_toRightOf="@+id/LeaderBoard"
-        android:layout_toEndOf="@+id/LeaderBoard" />
+        android:layout_below="@+id/ScoreDisplay" />
 
     <ListView
         android:layout_width="match_parent"
@@ -70,6 +42,32 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="26dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NameEntry"
+        android:textSize="24sp"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/textView"
+        android:layout_toEndOf="@+id/textView"
+        android:textColor="@color/colorPrimary"
+        android:textColorLink="?attr/actionModeSplitBackground" />
+
+    <TextView
+        android:text="Your Result, "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView"
+        tools:text="Your Result, "
+        android:textAlignment="center"
+        android:textSize="24sp"
+        android:textColorLink="?attr/actionModeSplitBackground"
+        android:textColor="@color/colorPrimary"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/ScoreDisplay"
+        android:layout_alignEnd="@+id/ScoreDisplay" />
 
 
 </RelativeLayout>

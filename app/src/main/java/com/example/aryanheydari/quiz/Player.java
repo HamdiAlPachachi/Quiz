@@ -4,7 +4,7 @@ package com.example.aryanheydari.quiz;
  * Created by aryanheydari on 10/12/2016.
  */
 
-public class Player {
+public class Player extends SuperClass{
 
     private int id;
     private String PlayerName;
@@ -25,23 +25,31 @@ public class Player {
         this.score = score;
     };
 
-    public void setId(int id) {
+    public void setId(int id)
+    {
         this.id = id;
     }
 
     public void setPlayerName(String PlayerName) {
+
         this.PlayerName = PlayerName;
+    }
+
+    public String get_PlayerName()
+    {
+        return SuperClass.UserName;
+    }
+
+    public void setScore(int score)
+    {
+        this.score = score;
     }
 
     public int getId() {
         return id;
     }
 
-    public String getPlayerName() {
-        return PlayerName;
-    }
-
-    public int getScore()
+    public int get_Score()
     {
         return SuperClass.getScore();
     }

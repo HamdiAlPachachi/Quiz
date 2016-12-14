@@ -16,9 +16,9 @@ import java.util.List;
 public class DBHandler extends SQLiteOpenHelper{
 
     private static final int DATABASE_VERSION = 1;
-    private static final String DATABASE_NAME = "LeaderBord.db";
-    public static final String Table_Players = "Players";
-    public static final String Table_Scores = "Player";
+    private static final String DATABASE_NAME = "Leaderboard";
+    public static final String TABLE_PLAYERS = "Players";
+    //public static final String Table_Scores = "Player";
     public static final String KEY_ID = "id";
     public static final String KEY_PLAYERNAME = "PlayerName";
     public static final String KEY_PLAYERSCORE = "PlayerScore";
@@ -35,15 +35,15 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_SCORE_TABLE = "CREATE TABLE" + Table_Scores + "(" +
-                KEY_ID + "INTEGER PRIMARY KEY" + KEY_PLAYERNAME + "TEXT" + KEY_PLAYERSCORE + "TEXT" + ")";
-        db.execSQL(CREATE_SCORE_TABLE);
+        String CREATE_PLAYER_TABLE = "CREATE TABLE " + TABLE_PLAYERS + "(" +
+                KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT," + KEY_PLAYERSCORE + " TEXT" + ")";
+        db.execSQL(CREATE_PLAYER_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        db.execSQL("DROP TABLE IF EXISTS" + Table_Scores);
+        db.execSQL("DROP TABLE IF EXISTS" + TABLE_PLAYERS);
         onCreate(db);
     }
 
@@ -54,9 +54,9 @@ public class DBHandler extends SQLiteOpenHelper{
 
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_PLAYERNAME, player.getPlayerName());
-        //values.put(KEY_PLAYERSCORE, player.getScore());
-        db.insert(Table_Scores, null, values);
+        values.put(KEY_PLAYERNAME, player.get_PlayerName());
+        values.put(KEY_PLAYERSCORE, player.get_Score());
+        db.insert(TABLE_PLAYERS, null, values);
         db.close();
 
     }
@@ -81,7 +81,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public List<Player> getAllPlayers()
     {
         List<Player> scoreList = new ArrayList<Player>();
-        String selectQuery = "SELECT * FROM" + Table_Scores;
+        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS;
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
@@ -91,7 +91,8 @@ public class DBHandler extends SQLiteOpenHelper{
             {
                 Player player = new Player();
                 player.setId(Integer.parseInt(cursor.getString(0)));
-                player.setPlayerName(cursor.getString(2));
+                player.setPlayerName(cursor.getString(1));
+                player.setScore(Integer.parseInt(cursor.getString(2)));
 
                 scoreList.add(player);
             }
@@ -107,7 +108,7 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         values.put(KEY_PLAYERNAME, player.getPlayerName());
         values.put(KEY_PLAYERSCORE, player.getScore());
-        return db.update(Table_Players, values, KEY_ID + "=?", new String[]{String.valueOf(player.getId())});
+        return db.update(TABLE_PLAYERS, values, KEY_ID + "=?", new String[]{String.valueOf(player.getId())});
     }
 
     /*public String databaseToString(){
