@@ -58,7 +58,7 @@ public class DBHandler extends SQLiteOpenHelper{
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(KEY_PlayerName, player.getPlayerName());
-        values.put(KEY_PLAYER_SCORE, player.getScore());
+        //values.put(KEY_PLAYER_SCORE, player.getScore());
         db.insert(Table_Scores, null, values);
         db.close();
 
