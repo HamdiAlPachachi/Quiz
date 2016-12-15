@@ -52,7 +52,8 @@ public class QuestionList extends SuperClass
 
     public void Start (View view)
     {
-        SuperClass.UserName = Name.getText().toString();
+        SuperClass superClass = new SuperClass();
+        superClass.UserName = Name.getText().toString();
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
     }

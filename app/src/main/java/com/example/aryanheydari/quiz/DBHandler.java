@@ -9,9 +9,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Created by aryanheydari on 10/12/2016.
- */
 
 public class DBHandler extends SQLiteOpenHelper{
 
@@ -36,14 +33,14 @@ public class DBHandler extends SQLiteOpenHelper{
     public void onCreate(SQLiteDatabase db) {
 
         String CREATE_PLAYER_TABLE = "CREATE TABLE " + TABLE_PLAYERS + "(" +
-                KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT," + KEY_PLAYERSCORE + " TEXT" + ")";
+                KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT, " + KEY_PLAYERSCORE + " TEXT, " + ")";
         db.execSQL(CREATE_PLAYER_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-        db.execSQL("DROP TABLE IF EXISTS" + TABLE_PLAYERS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYERS);
         onCreate(db);
     }
 
@@ -53,6 +50,7 @@ public class DBHandler extends SQLiteOpenHelper{
         //Player.put(KEY_PLAYERNAME, player.getPlayerName());
 
         SQLiteDatabase db = this.getWritableDatabase();
+        //db.execSQL("DELETE FROM " + TABLE_PLAYERS); --------- activate this code to delete all SQL data entries.
         ContentValues values = new ContentValues();
         values.put(KEY_PLAYERNAME, player.get_PlayerName());
         values.put(KEY_PLAYERSCORE, player.get_Score());

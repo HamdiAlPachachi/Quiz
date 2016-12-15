@@ -76,7 +76,7 @@ public class SuperClass extends AppCompatActivity
         return score;
     }
 
-    public static String getPlayerName(){
-        return UserName;
-    }
+//    public static String getPlayerName(){
+//        return UserName;
+//    }
 }

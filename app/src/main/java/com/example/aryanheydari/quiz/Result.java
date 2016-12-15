@@ -81,7 +81,9 @@ public class Result extends SuperClass
         //loadScore();
         resultsList = new ArrayList<>();
         for (Player p : playerList) {
-            resultsList.add(p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
+            //String log = "Id: " + p.getId() + " ,Name: " + p.get_PlayerName() +" ,Score: " +p.get_Score();
+            //Log.d("Name: ", log);
+            resultsList.add(p.getId() + "       " + p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
         }
 
         resultsListView = (ListView) findViewById(R.id.resultsListView);

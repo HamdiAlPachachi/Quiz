@@ -1,8 +1,5 @@
 package com.example.aryanheydari.quiz;
 
-/**
- * Created by aryanheydari on 10/12/2016.
- */
 
 public class Player extends SuperClass{
 
@@ -45,7 +42,8 @@ public class Player extends SuperClass{
         this.score = score;
     }
 
-    public int getId() {
+    public int getId()
+    {
         return id;
     }
 
