@@ -34,7 +34,7 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_PLAYER_TABLE = "CREATE TABLE " + TABLE_PLAYERS + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT, " + KEY_PLAYERSCORE + " TEXT, " + ")";
+        String CREATE_PLAYER_TABLE = "CREATE TABLE " + TABLE_PLAYERS + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT, " + KEY_PLAYERSCORE + " TEXT" + ")";
         db.execSQL(CREATE_PLAYER_TABLE);
     }
 
@@ -47,8 +47,6 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public void addPlayer (Player player)
     {
-
-        //Player.put(KEY_PLAYERNAME, player.getPlayerName());
 
         SQLiteDatabase db = this.getWritableDatabase();
         //db.execSQL("DELETE FROM " + TABLE_PLAYERS); --------- activate this code to delete all SQL data entries.
