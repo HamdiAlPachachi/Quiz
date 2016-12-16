@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +24,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public DBHandler(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
     public DBHandler(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -32,8 +34,7 @@ public class DBHandler extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        String CREATE_PLAYER_TABLE = "CREATE TABLE " + TABLE_PLAYERS + "(" +
-                KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT, " + KEY_PLAYERSCORE + " TEXT, " + ")";
+        String CREATE_PLAYER_TABLE = "CREATE TABLE " + TABLE_PLAYERS + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT, " + KEY_PLAYERSCORE + " TEXT, " + ")";
         db.execSQL(CREATE_PLAYER_TABLE);
     }
 
@@ -58,6 +59,79 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
 
     }
+
+    public int getNumberofEntries() {
+
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// Define a projection that specifies which columns from the database
+// you will actually use after this query.
+        String[] projection = {
+                KEY_ID,
+                KEY_PLAYERNAME,
+                KEY_PLAYERSCORE
+        };
+
+// Filter results WHERE "title" = 'My Title'
+        String selection = KEY_ID + " = ?";
+        String[] selectionArgs = { "*" };
+
+// How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                KEY_PLAYERSCORE + " DESC";
+
+        Cursor c = db.query(
+                TABLE_PLAYERS,                     // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                sortOrder                                 // The sort order
+        );
+
+        return c.getCount();
+
+    }
+
+    public String getNextPlayer(int pos) {
+
+        SQLiteDatabase db = this.getReadableDatabase();
+
+// Define a projection that specifies which columns from the database
+// you will actually use after this query.
+        String[] projection = {
+                KEY_ID,
+                KEY_PLAYERNAME,
+                KEY_PLAYERSCORE
+        };
+
+// Filter results WHERE "title" = 'My Title'
+        String selection = KEY_ID + " = ?";
+        String[] selectionArgs = { "*" };
+
+// How you want the results sorted in the resulting Cursor
+        String sortOrder =
+                KEY_PLAYERSCORE + " DESC";
+
+        Cursor c = db.query(
+                TABLE_PLAYERS,                     // The table to query
+                projection,                               // The columns to return
+                selection,                                // The columns for the WHERE clause
+                selectionArgs,                            // The values for the WHERE clause
+                null,                                     // don't group the rows
+                null,                                     // don't filter by row groups
+                sortOrder                                 // The sort order
+        );
+
+        c.moveToPosition(pos);
+        long dbPlayerID = c.getLong(c.getColumnIndexOrThrow(KEY_ID));
+        String dbPlayerName = c.getString(c.getColumnIndexOrThrow(KEY_PLAYERNAME));
+        long dbPlayerScore= c.getLong(c.getColumnIndexOrThrow(KEY_PLAYERSCORE));
+        return (dbPlayerID+ "       " + dbPlayerName + "       " + dbPlayerScore);
+    }
+
 
     /*public Player getPlayerId(int id)
     {
@@ -97,17 +171,21 @@ public class DBHandler extends SQLiteOpenHelper{
 
             while (cursor.moveToNext());
         }
+//        for (Player p : scoreList) {
+//            String log = "Id: " + p.getId() + " ,Name: " + p.get_PlayerName() +" ,Score: " +p.get_Score(); //according to this for loop (using Log),
+//            Log.d("Name: ", log);                                                                            the Log command does not return individual names.
+//        }
         return scoreList;
     }
 
-    public int updateScore(Player player)
-    {
-        SQLiteDatabase db = this.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(KEY_PLAYERNAME, player.getPlayerName());
-        values.put(KEY_PLAYERSCORE, player.getScore());
-        return db.update(TABLE_PLAYERS, values, KEY_ID + "=?", new String[]{String.valueOf(player.getId())});
-    }
+//    public int updateScore(Player player)
+//    {
+//        SQLiteDatabase db = this.getWritableDatabase();
+//        ContentValues values = new ContentValues();
+//        values.put(KEY_PLAYERNAME, player.get_PlayerName());
+//        values.put(KEY_PLAYERSCORE, player.getScore());
+//        return db.update(TABLE_PLAYERS, values, KEY_ID + "=?", new String[]{String.valueOf(player.getId())});
+//    }
 
     /*public String databaseToString(){
 

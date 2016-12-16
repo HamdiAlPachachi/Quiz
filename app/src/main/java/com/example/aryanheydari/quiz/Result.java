@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
+import android.database.sqlite.SQLiteDatabase;
+
 
 public class Result extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -48,8 +50,7 @@ public class Result extends SuperClass
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -70,25 +71,35 @@ public class Result extends SuperClass
 
         ///Clear ListView//
 
-
         DBHandler db = new DBHandler(this);
 
         Player player = new Player();
 
         db.addPlayer(new Player(player.get_PlayerName(), player.get_Score()));
 
-        List<Player> playerList = db.getAllPlayers();
+
+        //List<Player> playerList = db.getAllPlayers();
         //loadScore();
         resultsList = new ArrayList<>();
-        for (Player p : playerList) {
+       //for (Player p : playerList)
+        //{
             //String log = "Id: " + p.getId() + " ,Name: " + p.get_PlayerName() +" ,Score: " +p.get_Score();
             //Log.d("Name: ", log);
-            resultsList.add(p.getId() + "       " + p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
+            //resultsList.add(p.getId() + "       " + p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
+        //}
+
+
+        for (int i=0; i < db.getNumberofEntries(); i++) {
+            resultsList.add(db.getNextPlayer(i));
+            String log = db.getNextPlayer(i);
+            Log.d("Name: ", log);
         }
 
-        resultsListView = (ListView) findViewById(R.id.resultsListView);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
-        resultsListView.setAdapter(adapter);
+//        String log = "Id: " + db.getId() + " ,Name: " + p.get_PlayerName() +" ,Score: " +p.get_Score();
+//        Log.d("Name: ", log);
+//        resultsListView = (ListView) findViewById(R.id.resultsListView);
+//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
+//        resultsListView.setAdapter(adapter);
 
         //saveScore();*/
 
