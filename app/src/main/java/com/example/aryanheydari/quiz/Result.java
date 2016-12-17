@@ -22,6 +22,9 @@ import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,13 +37,15 @@ import java.util.List;
 import android.database.sqlite.SQLiteDatabase;
 
 
-public class Result extends SuperClass
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class Result extends SuperClass implements NavigationView.OnNavigationItemSelectedListener {
 
     protected String PREFS = "Score";
+    public static final String TABLE_PLAYERS = "Players";
 
     ArrayList<String> resultsList = new ArrayList<String>();
     ListView resultsListView;
+
+    DBHandler db;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +55,7 @@ public class Result extends SuperClass
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle( this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
@@ -61,82 +66,26 @@ public class Result extends SuperClass
         ScoreDisplay.setText("" + SuperClass.getScore());
 
         TextView NameEntry = (TextView) findViewById(R.id.NameEntry);
-        NameEntry.setText("" + SuperClass.getPlayerName());
-
-        /*SharedPreferences prefs = getSharedPreferences("Player 1", MODE_PRIVATE);
-        String text1= prefs.getString("name", "Player1: ");
-        int text2= prefs.getInt("score", SuperClass.getScore());
-        TextView LeaderBoard = (TextView) findViewById(R.id.LeaderBoard);
-        LeaderBoard.setText(text1 + text2);*/
-
-        ///Clear ListView//
-
-        DBHandler db = new DBHandler(this);
+        NameEntry.setText("" + Player.getPlayerName());
 
         Player player = new Player();
 
-        db.addPlayer(new Player(player.get_PlayerName(), player.get_Score()));
+        final String TAG = "COMP211P";
+        db = new DBHandler(this);
 
 
-        //List<Player> playerList = db.getAllPlayers();
-        //loadScore();
-        resultsList = new ArrayList<>();
-       //for (Player p : playerList)
-        //{
-            //String log = "Id: " + p.getId() + " ,Name: " + p.get_PlayerName() +" ,Score: " +p.get_Score();
-            //Log.d("Name: ", log);
-            //resultsList.add(p.getId() + "       " + p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
-        //}
+        db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore()));
 
+        Log.d(TAG, "Reading all users...");
+        ArrayList<Player> players = db.getAllPlayers();
 
-        for (int i=0; i < db.getNumberofEntries(); i++) {
-            resultsList.add(db.getNextPlayer(i));
-            String log = db.getNextPlayer(i);
-            Log.d("Name: ", log);
-        }
-
-//        String log = "Id: " + db.getId() + " ,Name: " + p.get_PlayerName() +" ,Score: " +p.get_Score();
-//        Log.d("Name: ", log);
-//        resultsListView = (ListView) findViewById(R.id.resultsListView);
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
-//        resultsListView.setAdapter(adapter);
-
-        //saveScore();*/
+            for (Player play : players) {
+                String log = "Name: " + play.get_PlayerName() + " , Score: " + play.get_Score();
+                // Writing users to log
+                Log.d(TAG, log);
+            }
 
     }
-
-    /*public void loadScore()
-    {
-        List<Player> ListScore = new List<>();
-
-    }*/
-
-
-
-
-
-    /*public void saveScore()
-    {
-        SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = scoreList.edit();
-
-        Set<String> set = new HashSet<>();
-        set.addAll(resultsList);
-        //for (String s: set)
-          //  Log.e("tag", s);
-        editor.putStringSet("savedScore", set);//can add .putInt("savedPreviousScore", score); for more variables.
-        editor.commit();
-    }
-
-    public void loadScore()
-    {
-        SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-
-
-        Set<String> set = new HashSet<>();
-        set = scoreList.getStringSet("savedScore", null);//issue is that getStringSet is not a method in SharedPreferences library. Must find way of retreiving all values fomr an ArrayList.
-        resultsList.addAll(set);
-    }*/
 
 
     public void StartAgain (View view)
@@ -205,3 +154,32 @@ public class Result extends SuperClass
         return true;
     }
 }
+    /*public void loadScore()
+    {
+        List<Player> ListScore = new List<>();
+
+    }*/
+
+
+    /*public void saveScore()
+    {
+        SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = scoreList.edit();
+
+        Set<String> set = new HashSet<>();
+        set.addAll(resultsList);
+        //for (String s: set)
+          //  Log.e("tag", s);
+        editor.putStringSet("savedScore", set);//can add .putInt("savedPreviousScore", score); for more variables.
+        editor.commit();
+    }
+
+    public void loadScore()
+    {
+        SharedPreferences scoreList = getSharedPreferences(PREFS, Context.MODE_PRIVATE);
+
+
+        Set<String> set = new HashSet<>();
+        set = scoreList.getStringSet("savedScore", null);//issue is that getStringSet is not a method in SharedPreferences library. Must find way of retreiving all values fomr an ArrayList.
+        resultsList.addAll(set);
+    }*/

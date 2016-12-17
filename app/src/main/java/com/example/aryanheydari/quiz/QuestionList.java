@@ -38,22 +38,13 @@ public class QuestionList extends SuperClass
         navigationView.setNavigationItemSelectedListener(this);
         Name = (EditText) findViewById(R.id.Name);
 
-//        Button StartAgain = (Button) findViewById(R.id.StartAgain);
-//        StartAgain.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view)
-//            {
-//                New_user_name = Name.getText().toString();
-//                //Creates String that contains username
-//            }
-//        });
-
     }
 
     public void Start (View view)
     {
         SuperClass superClass = new SuperClass();
-        superClass.UserName = Name.getText().toString();
+        String UserName = Name.getText().toString();
+        superClass.UserName = UserName;
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
     }

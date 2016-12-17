@@ -34,7 +34,7 @@ public class Player extends SuperClass{
 
     public String get_PlayerName()
     {
-        return SuperClass.UserName;
+        return this.PlayerName;
     }
 
     public void setScore(int score)
@@ -49,6 +49,6 @@ public class Player extends SuperClass{
 
     public int get_Score()
     {
-        return SuperClass.getScore();
+        return this.score;
     }
 }
