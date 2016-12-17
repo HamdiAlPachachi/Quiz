@@ -73,7 +73,6 @@ public class Result extends SuperClass implements NavigationView.OnNavigationIte
         final String TAG = "COMP211P";
         db = new DBHandler(this);
 
-
         db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore()));
 
         Log.d(TAG, "Reading all users...");
@@ -83,10 +82,19 @@ public class Result extends SuperClass implements NavigationView.OnNavigationIte
                 String log = "Name: " + play.get_PlayerName() + " , Score: " + play.get_Score();
                 // Writing users to log
                 Log.d(TAG, log);
+
             }
 
-    }
+        resultsList = new ArrayList<>();
+        for(Player p : players)
+        {
+            resultsList.add(p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
+            resultsListView = (ListView) findViewById(R.id.resultsListView);
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
+            resultsListView.setAdapter(adapter);
+        }
 
+    }
 
     public void StartAgain (View view)
     {
