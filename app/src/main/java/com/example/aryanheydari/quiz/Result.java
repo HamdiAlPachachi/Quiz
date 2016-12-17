@@ -22,6 +22,9 @@ import android.widget.TextView;
 
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Collections;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -75,7 +78,7 @@ public class Result extends SuperClass implements NavigationView.OnNavigationIte
 
         db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore()));
 
-        Log.d(TAG, "Reading all users...");
+        //Log.d(TAG, "Reading all users...");
         ArrayList<Player> players = db.getAllPlayers();
 
             for (Player play : players) {
@@ -90,11 +93,24 @@ public class Result extends SuperClass implements NavigationView.OnNavigationIte
         {
             resultsList.add(p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
             resultsListView = (ListView) findViewById(R.id.resultsListView);
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
-            resultsListView.setAdapter(adapter);
-        }
 
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
+        resultsListView.setAdapter(adapter);
     }
+
+//    private static void order(ArrayList<String> resultsList) {
+//
+//        Collections.sort(resultsList, new Comparator() {
+//
+//            public int compare(Object o1, Object o2) {
+//
+//                String x1 = ((Player) o1).get_Score();
+//                String x2 = ((Player) o2).get_Score();
+//                int sComp = x1.compareTo(x2);
+//            }
+//        });
+//    }
 
     public void StartAgain (View view)
     {
