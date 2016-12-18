@@ -36,18 +36,6 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"/>
 
-    <TextView
-        android:text="When was UCL founded?"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView3"
-        android:textColor="@android:color/black"
-        android:textSize="24sp"
-        android:layout_marginTop="50dp"
-        android:layout_below="@+id/textView7"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
     <Button
         android:text="Next"
         android:layout_width="wrap_content"
@@ -59,7 +47,7 @@
         android:layout_alignParentEnd="true" />
 
     <RadioGroup
-        android:layout_width="5000dp"
+        android:layout_width="wrap_content"
         android:layout_height="140dp"
         android:id="@+id/radioGroup"
         android:layout_centerVertical="true"
@@ -145,5 +133,30 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textAlignment="center" />
+
+    <TextView
+        android:text="When was UCL founded?"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView3"
+        android:textColor="@android:color/black"
+        android:textSize="24sp"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.example.aryanheydari.quiz.FragmentQ1"
+        android:id="@+id/fragment2"
+        tools:layout="@layout/fragment_1"
+        android:layout_marginRight="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
 
 </RelativeLayout>

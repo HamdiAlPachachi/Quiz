@@ -1,0 +1,37 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.aryanheydari.quiz.FragmentQ1"
+    android:weightSum="1"
+    android:orientation="vertical">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <ImageSwitcher
+        android:id="@+id/ImageSwitcherQ1"
+        android:layout_weight="0.47"
+        android:layout_width="175dp"
+        android:layout_height="175dp" />
+
+    <Button
+        android:text="Previous Picture"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ImageSwitcherQ1"
+        android:id="@+id/Previous"
+        android:layout_alignBottom="@+id/Next"
+        android:layout_width="87.5dp"
+        android:textSize="12sp" />
+
+    <Button
+        android:text="Next Picture"
+        android:layout_height="wrap_content"
+        android:id="@+id/Next"
+        android:layout_below="@+id/ImageSwitcherQ1"
+        android:layout_alignRight="@+id/ImageSwitcherQ1"
+        android:layout_alignEnd="@+id/ImageSwitcherQ1"
+        android:layout_width="87.5dp"
+        android:textSize="12sp" />
+
+
+</RelativeLayout>
