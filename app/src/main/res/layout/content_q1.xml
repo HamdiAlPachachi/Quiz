@@ -152,11 +152,11 @@
         android:name="com.example.aryanheydari.quiz.FragmentQ1"
         android:id="@+id/fragment2"
         tools:layout="@layout/fragment_1"
-        android:layout_marginRight="12dp"
-        android:layout_marginEnd="12dp"
         android:layout_centerVertical="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignLeft="@+id/CheatQ1"
+        android:layout_alignStart="@+id/CheatQ1"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 
 
 </RelativeLayout>

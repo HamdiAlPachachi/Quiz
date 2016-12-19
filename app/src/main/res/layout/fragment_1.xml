@@ -2,11 +2,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.example.aryanheydari.quiz.FragmentQ1"
     android:weightSum="1"
     android:orientation="vertical">
-
-    <!-- TODO: Update blank fragment layout -->
+    <!--tools:context="com.example.aryanheydari.quiz.FragmentQ1"-->
 
     <ImageSwitcher
         android:id="@+id/ImageSwitcherQ1"
