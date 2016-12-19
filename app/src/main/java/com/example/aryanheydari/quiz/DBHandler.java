@@ -43,6 +43,12 @@ public class DBHandler extends SQLiteOpenHelper{
         onCreate(db);
     }
 
+    public void clearDataBase()
+    {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.execSQL("DELETE FROM " + TABLE_PLAYERS);
+    }
+
     public void addPlayer (Player player)
     {
 
