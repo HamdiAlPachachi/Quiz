@@ -24,7 +24,7 @@ public class FragmentQ2 extends Fragment {
     Button nextButton;
     Button previousButton;
 
-    int[] imageIds = {R.drawable.cars_in_quad, R.drawable.ucl, R.drawable.unversity_college_london};//change
+    int[] imageIds = {R.drawable.collaboration, R.drawable.happiness, R.drawable.relaxing};
     int count = imageIds.length;
     int currentIndex = 0;
 

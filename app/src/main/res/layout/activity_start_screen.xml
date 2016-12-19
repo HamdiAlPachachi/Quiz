@@ -54,7 +54,6 @@
         android:layout_toLeftOf="@+id/Continue"
         android:layout_toStartOf="@+id/Continue"
         android:gravity="center"
-        android:layout_marginEnd="15dp"
         android:textColor="#FFFFFF"
         android:textStyle="normal|bold" />
 
@@ -79,7 +78,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/WelcomeText"
-        android:textSize="40sp"
+        android:textSize="36sp"
         android:textStyle="normal|bold"
         android:gravity="center"
         android:layout_marginTop="34dp"
@@ -92,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Slogan"
-        android:textSize="20sp"
+        android:textSize="18sp"
         android:textStyle="normal|bold|italic"
         android:textColor="#FFFFFF"
         android:layout_marginTop="12dp"

@@ -124,6 +124,12 @@ public class Result extends SuperClass implements NavigationView.OnNavigationIte
         setQ4Active(true);
     }
 
+    public void WelcomeScreen(View view)
+    {
+        Intent WelcomeScreen = new Intent(this, StartScreen.class);
+        startActivity(WelcomeScreen);
+    }
+
 
     @Override
     public void onBackPressed() {
