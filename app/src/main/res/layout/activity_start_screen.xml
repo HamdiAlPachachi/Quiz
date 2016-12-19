@@ -9,30 +9,93 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@drawable/ucl_background_image1"
     app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/NewGame"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="68dp"
-        android:layout_marginEnd="68dp"
-        android:id="@+id/Continue"
-        android:onClick="Continue"
-        android:text="Continue" />
-
-    <Button
         android:text="New Game"
+        android:textSize="18sp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="108dp"
+        android:layout_marginBottom="106dp"
         android:id="@+id/NewGame"
+        android:onClick="NewGame"
         android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/NewGameInstructions"
+        android:layout_alignStart="@+id/NewGameInstructions"
+        android:layout_marginLeft="35dp"
+        android:layout_marginStart="35dp" />
+
+    <TextView
+        android:text="Tap to use existing scoreboard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ContiueInstructions"
+        android:layout_below="@+id/Continue"
+        android:layout_centerInParent="true"
+
+        android:layout_alignLeft="@+id/Continue"
+        android:layout_toRightOf="@+id/NewGame"
+        android:gravity="center"
+        android:layout_alignStart="@+id/Continue"
+        android:layout_marginRight="15dp"
+        android:layout_marginStart="-33dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal|bold" />
+
+    <TextView
+        android:text="Tap to create blank scoreboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NewGameInstructions"
+        android:layout_below="@+id/NewGame"
+        android:layout_alignBaseline="@+id/ContiueInstructions"
+        android:layout_alignBottom="@+id/ContiueInstructions"
         android:layout_toLeftOf="@+id/Continue"
         android:layout_toStartOf="@+id/Continue"
-        android:layout_marginRight="39dp"
-        android:onClick="NewGame"
-        android:layout_marginEnd="39dp" />
+        android:gravity="center"
+        android:layout_marginEnd="15dp"
+        android:textColor="#FFFFFF"
+        android:textStyle="normal|bold" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="24dp"
+        android:layout_marginEnd="24dp"
+        android:id="@+id/Continue"
+        android:onClick="Continue"
+        android:text="Continue"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/NewGame"
+        android:layout_alignBottom="@+id/NewGame"
+        android:layout_alignRight="@+id/Slogan"
+        android:layout_alignEnd="@+id/Slogan" />
+
+    <TextView
+        android:text="Welcome to QUCL!"
+        android:textColor="#FFFFFF"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/WelcomeText"
+        android:textSize="40sp"
+        android:textStyle="normal|bold"
+        android:gravity="center"
+        android:layout_marginTop="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Created by Tube users, for Tube users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Slogan"
+        android:textSize="20sp"
+        android:textStyle="normal|bold|italic"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/WelcomeText"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
