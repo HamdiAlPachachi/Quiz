@@ -18,7 +18,7 @@ import android.util.Log;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentQ1 extends Fragment {
+public class FragmentQ3 extends Fragment {
 
     private ImageSwitcher ImageSwitcher;
     Button nextButton;
@@ -28,7 +28,7 @@ public class FragmentQ1 extends Fragment {
     int count = imageIds.length;
     int currentIndex = 0;
 
-    public FragmentQ1() {
+    public FragmentQ3() {
         // Required empty public constructor
     }
 

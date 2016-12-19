@@ -37,7 +37,7 @@
         android:layout_alignParentEnd="true"/>
 
     <TextView
-        android:text="When was UCL founded?"
+        android:text="Who is UCL's Provost?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"
@@ -68,7 +68,7 @@
 
 
         <RadioButton
-            android:text="1926"
+            android:text="Prince William"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/AQ2"
@@ -78,7 +78,7 @@
             android:layout_toEndOf="@+id/CheatQ2" />
 
         <RadioButton
-            android:text="1866"
+            android:text="Michael Arthur"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/DQ2"
@@ -89,7 +89,6 @@
             android:layout_alignEnd="@+id/textView7" />
 
         <RadioButton
-            android:text="1910"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/BQ2"
@@ -97,10 +96,10 @@
             android:layout_alignBaseline="@+id/DQ2"
             android:layout_alignBottom="@+id/DQ2"
             android:layout_alignLeft="@+id/CQ2"
-            android:layout_alignStart="@+id/CQ2" />
+            android:layout_alignStart="@+id/CQ2"
+            android:text="Mark Carney" />
 
         <RadioButton
-            android:text="1826"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/CQ2"
@@ -109,7 +108,8 @@
             android:layout_marginLeft="0dp"
             android:layout_below="@+id/DQ2"
             android:layout_alignLeft="@+id/DQ2"
-            android:layout_alignStart="@+id/DQ2" />
+            android:layout_alignStart="@+id/DQ2"
+            android:text="Robin Mansell" />
 
     </RadioGroup>
 
@@ -145,6 +145,18 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textAlignment="center" />
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.example.aryanheydari.quiz.FragmentQ2"
+        android:id="@+id/fragment2"
+        tools:layout="@layout/fragment_1"
+        android:layout_centerVertical="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" />
 
 
 </RelativeLayout>

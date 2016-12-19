@@ -18,17 +18,17 @@ import android.util.Log;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FragmentQ1 extends Fragment {
+public class FragmentQ2 extends Fragment {
 
     private ImageSwitcher ImageSwitcher;
     Button nextButton;
     Button previousButton;
 
-    int[] imageIds = {R.drawable.cars_in_quad, R.drawable.ucl, R.drawable.unversity_college_london};
+    int[] imageIds = {R.drawable.cars_in_quad, R.drawable.ucl, R.drawable.unversity_college_london};//change
     int count = imageIds.length;
     int currentIndex = 0;
 
-    public FragmentQ1() {
+    public FragmentQ2() {
         // Required empty public constructor
     }
 

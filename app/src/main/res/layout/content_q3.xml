@@ -59,7 +59,7 @@
         android:layout_alignParentEnd="true" />
 
     <RadioGroup
-        android:layout_width="5000dp"
+        android:layout_width="wrap_content"
         android:layout_height="140dp"
         android:id="@+id/radioGroup"
         android:layout_centerVertical="true"
@@ -145,4 +145,17 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:textAlignment="center" />
+
+    <fragment
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:name="com.example.aryanheydari.quiz.FragmentQ3"
+        android:id="@+id/fragment2"
+        tools:layout="@layout/fragment_1"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/CheatQ3"
+        android:layout_alignStart="@+id/CheatQ3"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
+
 </RelativeLayout>
