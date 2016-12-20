@@ -16,6 +16,7 @@ import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Q3 extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -44,24 +45,21 @@ public class Q3 extends SuperClass
 
         RadioGroup Q3RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
-        final RadioButton CQ3 = (RadioButton) findViewById(R.id.CQ3);
+        final RadioButton DQ3 = (RadioButton) findViewById(R.id.DQ3);
 
         Q3RadioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
 
             public void onCheckedChanged(RadioGroup Q3RadioGroup, int checkedId) {
 
-                if (CQ3.isChecked()) {
-                    setQ3Active(false);
+                if (DQ3.isChecked()) {
                     SuperClass.score++;
-                    TextView AnswerQ3 = (TextView) findViewById(R.id.AnswerQ3);
-                    AnswerQ3.setText("Your answer is correct");
+                    Toast.makeText(Q3.this, "Well done, 2 is the correct answer!", Toast.LENGTH_SHORT).show();
 
                 } else {
-                    setQ3Active(false);
-                    TextView AnswerQ3 = (TextView) findViewById(R.id.AnswerQ3);
-                    AnswerQ3.setText("Incorrect, The correct answer is 1826");
+                    Toast.makeText(Q3.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
                 }
 
+                setQ3Active(false);
                 ScoreCount.setText("Score: " + SuperClass.getScore());
 
                 for (int i = 0; i < Q3RadioGroup.getChildCount(); i++) {

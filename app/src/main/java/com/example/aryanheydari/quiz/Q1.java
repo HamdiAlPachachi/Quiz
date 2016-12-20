@@ -2,23 +2,18 @@ package com.example.aryanheydari.quiz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.app.Activity;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.RadioGroup.OnCheckedChangeListener;
-
+import android.widget.Toast;
 
 
 public class Q1 extends SuperClass
@@ -40,9 +35,6 @@ public class Q1 extends SuperClass
         navigationView.setNavigationItemSelectedListener(this);
 
         final RadioGroup Q1RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        final RadioButton AQ1 = (RadioButton) findViewById(R.id.AQ1);
-        final RadioButton BQ1 = (RadioButton) findViewById(R.id.BQ1);
-        final RadioButton CQ1 = (RadioButton) findViewById(R.id.CQ1);
         final RadioButton DQ1 = (RadioButton) findViewById(R.id.DQ1);
 
         final TextView ScoreCount = (TextView) findViewById(R.id.Score);
@@ -55,18 +47,17 @@ public class Q1 extends SuperClass
             public void onCheckedChanged(RadioGroup Q1RadioGroup, int checkedId) {
 
 
-                if (CQ1.isChecked()) {
-                    setQ1Active(false);
+                if (DQ1.isChecked())
+                {
                     SuperClass.score++;
-                    TextView AnswerQ1 = (TextView) findViewById(R.id.AnswerQ1);
-                    AnswerQ1.setText("Your answer is correct");
+                    Toast.makeText(Q1.this, "Well done, 1826 is the correct answer!", Toast.LENGTH_SHORT).show();
 
-                } else {
-                    setQ1Active(false);
-                    TextView AnswerQ1 = (TextView) findViewById(R.id.AnswerQ1);
-                    AnswerQ1.setText("Incorrect, The correct answer is 1826");
+                } else
+                {
+                    Toast.makeText(Q1.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
                 }
 
+                setQ1Active(false);
                 ScoreCount.setText("Score: " + SuperClass.getScore());
 
                 for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {

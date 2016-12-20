@@ -69,7 +69,7 @@
             android:text="84%"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/DQ2"
+            android:id="@+id/BQ2"
             android:textSize="18sp"
             android:layout_alignBaseline="@+id/AQ2"
             android:layout_alignBottom="@+id/AQ2"
@@ -79,7 +79,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/BQ2"
+            android:id="@+id/CQ2"
             android:textSize="18sp"
             android:layout_alignBaseline="@+id/DQ2"
             android:layout_alignBottom="@+id/DQ2"
@@ -90,7 +90,7 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/CQ2"
+            android:id="@+id/DQ2"
             android:textSize="18sp"
             android:layout_marginTop="0dp"
             android:layout_marginLeft="0dp"

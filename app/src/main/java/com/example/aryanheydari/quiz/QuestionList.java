@@ -22,6 +22,11 @@ public class QuestionList extends SuperClass {
         SuperClass superClass = new SuperClass();
         String UserName = Name.getText().toString();
         superClass.UserName = UserName;
+        SuperClass.score = 0;
+        setQ1Active(true);
+        setQ2Active(true);
+        setQ3Active(true);
+        setQ4Active(true);
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
     }

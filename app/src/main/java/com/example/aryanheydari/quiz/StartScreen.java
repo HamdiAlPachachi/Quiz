@@ -11,7 +11,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.EditText;
 
-public class StartScreen extends AppCompatActivity {
+public class StartScreen extends SuperClass {
     String New_user_name;
     EditText Name;
 

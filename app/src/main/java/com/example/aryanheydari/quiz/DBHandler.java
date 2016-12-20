@@ -66,7 +66,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> playerList = new ArrayList<>();
         // Select All Query
-        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY "+KEY_PLAYERSCORE+" DESC";   //        Orders player scores.
+        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY "+ KEY_PLAYERSCORE+" DESC";   //        Orders player scores.
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -85,14 +85,5 @@ public class DBHandler extends SQLiteOpenHelper{
         cursor.close();
         return playerList;
     }
-
-//    public int updateScore(Player player)
-//    {
-//        SQLiteDatabase db = this.getWritableDatabase();
-//        ContentValues values = new ContentValues();
-//        values.put(KEY_PLAYERNAME, player.get_PlayerName());
-//        values.put(KEY_PLAYERSCORE, player.getScore());
-//        return db.update(TABLE_PLAYERS, values, KEY_ID + "=?", new String[]{String.valueOf(player.getId())});
-//    }
 
 }
