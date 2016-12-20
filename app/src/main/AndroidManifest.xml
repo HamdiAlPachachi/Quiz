@@ -5,12 +5,12 @@
     <application
         android:allowBackup="true"
         android:icon="@drawable/app_cover_picture"
-        android:label="@string/app_name"
+        android:label="Quiz"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
             android:name=".QuestionList"
-            android:label="@string/app_name"
+            android:label="Quiz"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".Q1"
@@ -34,8 +34,7 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".StartScreen"
-            android:label="UCL Trivia"
-            android:theme="@style/AppTheme.NoActionBar">
+            android:label="UCL Trivia">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

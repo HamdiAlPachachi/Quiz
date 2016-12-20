@@ -96,8 +96,7 @@ public class Q4 extends SuperClass
 
     public void CheatQ4 (View view){
 
-        TextView AnswerQ4 = (TextView) findViewById(R.id.AnswerQ4);
-        AnswerQ4.setText("The correct answer is: 1826");
+        Toast.makeText(Q4.this, "7 is the correct answer", Toast.LENGTH_SHORT).show();
         setQ4Active(false);
 
         final RadioGroup Q4RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
@@ -114,28 +113,6 @@ public class Q4 extends SuperClass
         } else {
             super.onBackPressed();
         }
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.q4, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
     }
 
     @SuppressWarnings("StatementWithEmptyBody")
