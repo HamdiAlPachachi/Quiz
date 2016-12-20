@@ -13,32 +13,6 @@
     tools:context="com.example.aryanheydari.quiz.Result"
     tools:showIn="@layout/app_bar_result">
 
-    <Button
-        android:text="Start Again"
-        android:layout_marginTop="10dip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:background="?android:attr/colorActivatedHighlight"
-        android:onClick="StartAgain"
-        android:layout_below="@+id/ScoreDisplay"
-        android:layout_toLeftOf="@+id/ScoreDisplay"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
-
-    <Button
-        android:text="welcome screen"
-        android:layout_marginTop="10dip"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/WelcomeScreen"
-        android:background="?android:attr/colorActivatedHighlight"
-        android:onClick="WelcomeScreen"
-        android:layout_below="@+id/ScoreDisplay"
-        android:layout_toRightOf="@+id/ScoreDisplay"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="0"
         android:layout_width="wrap_content"
@@ -85,5 +59,63 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/ScoreDisplay"
         android:layout_alignEnd="@+id/ScoreDisplay" />
+
+    <Button
+        android:text="Welcome Screen"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WelcomeScreen"
+        android:background="?android:attr/colorActivatedHighlight"
+        android:layout_below="@+id/ScoreDisplay"
+        android:onClick="WelcomeScreen"
+        android:textSize="12sp"
+        android:layout_alignBaseline="@+id/NextPlayer"
+        android:layout_alignBottom="@+id/NextPlayer"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="false"
+        android:layout_alignParentTop="false" />
+
+    <Button
+        android:text="Next Player"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/NextPlayer"
+        android:background="?android:attr/colorActivatedHighlight"
+        android:onClick="NextPlayer"
+        android:textSize="12sp"
+        android:elevation="0dp"
+        android:visibility="visible"
+        android:layout_alignBaseline="@+id/StartAgain"
+        android:layout_alignBottom="@+id/StartAgain"
+        android:layout_toRightOf="@+id/StartAgain"
+        android:layout_toLeftOf="@+id/WelcomeScreen"
+        android:layout_toStartOf="@+id/WelcomeScreen" />
+
+    <Button
+        android:text="Start Again"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_marginTop="27dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/StartAgain"
+        android:background="?android:attr/colorActivatedHighlight"
+        android:onClick="StartAgain"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:textSize="12sp"
+        android:layout_below="@+id/ScoreDisplay"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

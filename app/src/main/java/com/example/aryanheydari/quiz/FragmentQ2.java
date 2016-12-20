@@ -11,13 +11,8 @@ import android.widget.ImageSwitcher;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ViewSwitcher;
-
 import android.util.Log;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class FragmentQ2 extends Fragment {
 
     private ImageSwitcher ImageSwitcher;

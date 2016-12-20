@@ -51,7 +51,6 @@
         android:layout_below="@+id/NewGame"
         android:layout_alignBaseline="@+id/ContiueInstructions"
         android:layout_alignBottom="@+id/ContiueInstructions"
-        android:layout_toLeftOf="@+id/Continue"
         android:layout_toStartOf="@+id/Continue"
         android:gravity="center"
         android:textColor="#FFFFFF"
@@ -97,4 +96,17 @@
         android:layout_marginTop="12dp"
         android:layout_below="@+id/WelcomeText"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Instructions: Each player must attempt the quiz in one sitting, as many times as desired. Subsequent players must register and play in the same manner."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Instructions"
+        android:textColor="@android:color/black"
+        android:textStyle="normal|bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="21dp"
+        android:layout_above="@+id/NewGame"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

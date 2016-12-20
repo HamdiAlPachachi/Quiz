@@ -100,8 +100,8 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
     public void StartAgain(View view) {
 
-        Intent QuestionList = new Intent(this, QuestionList.class);
-        startActivity(QuestionList);
+        Intent Q1 = new Intent(this, Q1.class);
+        startActivity(Q1);
         SuperClass.score = 0;
         setQ1Active(true);
         setQ2Active(true);
@@ -112,6 +112,12 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
     public void WelcomeScreen(View view) {
         Intent WelcomeScreen = new Intent(this, StartScreen.class);
         startActivity(WelcomeScreen);
+    }
+
+    public void NextPlayer(View view)
+    {
+        Intent QuestionList = new Intent(this, QuestionList.class);
+        startActivity(QuestionList);
     }
 
 
