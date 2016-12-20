@@ -66,7 +66,7 @@ public class DBHandler extends SQLiteOpenHelper{
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> playerList = new ArrayList<>();
         // Select All Query
-        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS;
+        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY "+KEY_PLAYERSCORE+" DESC";   //        Orders player scores.
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);

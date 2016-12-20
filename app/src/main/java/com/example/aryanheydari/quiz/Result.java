@@ -69,7 +69,7 @@ public class Result extends SuperClass implements NavigationView.OnNavigationIte
         ScoreDisplay.setText("" + SuperClass.getScore());
 
         TextView NameEntry = (TextView) findViewById(R.id.NameEntry);
-        NameEntry.setText("" + Player.getPlayerName());
+        NameEntry.setText(Player.getPlayerName() + ": ");
 
         Player player = new Player();
 

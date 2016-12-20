@@ -15,6 +15,7 @@
 
     <Button
         android:text="Start Again"
+        android:layout_marginTop="10dip"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/button2"
@@ -24,6 +25,19 @@
         android:layout_toLeftOf="@+id/ScoreDisplay"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <Button
+        android:text="welcome screen"
+        android:layout_marginTop="10dip"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WelcomeScreen"
+        android:background="?android:attr/colorActivatedHighlight"
+        android:onClick="WelcomeScreen"
+        android:layout_below="@+id/ScoreDisplay"
+        android:layout_toRightOf="@+id/ScoreDisplay"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <TextView
         android:text="0"
@@ -71,18 +85,5 @@
         android:layout_alignParentTop="true"
         android:layout_alignRight="@+id/ScoreDisplay"
         android:layout_alignEnd="@+id/ScoreDisplay" />
-
-    <Button
-        android:text="welcome screen"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/WelcomeScreen"
-        android:background="?android:attr/colorActivatedHighlight"
-        android:onClick="WelcomeScreen"
-        android:layout_below="@+id/ScoreDisplay"
-        android:layout_toRightOf="@+id/ScoreDisplay"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
 
 </RelativeLayout>
