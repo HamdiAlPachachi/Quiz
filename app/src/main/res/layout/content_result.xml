@@ -49,21 +49,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <Button
-        android:text="Welcome page"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/WelcomeScreen"
-        android:background="?android:attr/colorActivatedHighlight"
-        android:onClick="WelcomeScreen"
-        android:textSize="12sp"
-        android:layout_alignBaseline="@+id/NextPlayer"
-        android:layout_alignBottom="@+id/NextPlayer"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
     <TextView
         android:text="Your Result, "
         android:layout_width="wrap_content"
@@ -89,6 +74,21 @@
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView"
         android:layout_toEndOf="@+id/textView" />
+
+    <Button
+        android:text="Welcome Page"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/WelcomeScreen"
+        android:background="?android:attr/colorActivatedHighlight"
+        android:onClick="WelcomeScreen"
+        android:textSize="12sp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignBottom="@+id/NextPlayer"
+        android:layout_alignTop="@+id/NextPlayer" />
 
     <Button
         android:text="Next Player"
