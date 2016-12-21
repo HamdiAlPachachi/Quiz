@@ -21,54 +21,8 @@
         android:id="@+id/NewGame"
         android:onClick="NewGame"
         android:layout_alignParentBottom="true"
-        android:layout_alignLeft="@+id/NewGameInstructions"
-        android:layout_alignStart="@+id/NewGameInstructions"
         android:layout_marginLeft="35dp"
         android:layout_marginStart="35dp" />
-
-    <TextView
-        android:text="Tap to use existing scoreboard"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/ContiueInstructions"
-        android:layout_below="@+id/Continue"
-        android:layout_centerInParent="true"
-
-        android:layout_alignLeft="@+id/Continue"
-        android:layout_toRightOf="@+id/NewGame"
-        android:gravity="center"
-        android:layout_alignStart="@+id/Continue"
-        android:layout_marginRight="15dp"
-        android:layout_marginStart="-33dp"
-        android:textColor="#FFFFFF"
-        android:textStyle="normal|bold" />
-
-    <TextView
-        android:text="Tap to create blank scoreboard"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/NewGameInstructions"
-        android:layout_below="@+id/NewGame"
-        android:layout_alignBaseline="@+id/ContiueInstructions"
-        android:layout_alignBottom="@+id/ContiueInstructions"
-        android:layout_toStartOf="@+id/Continue"
-        android:gravity="center"
-        android:textColor="#FFFFFF"
-        android:textStyle="normal|bold" />
-
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="24dp"
-        android:layout_marginEnd="24dp"
-        android:id="@+id/Continue"
-        android:onClick="Continue"
-        android:text="Continue"
-        android:textSize="18sp"
-        android:layout_alignBaseline="@+id/NewGame"
-        android:layout_alignBottom="@+id/NewGame"
-        android:layout_alignRight="@+id/Slogan"
-        android:layout_alignEnd="@+id/Slogan" />
 
     <TextView
         android:text="Welcome to QUCL!"
@@ -98,6 +52,47 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:text="Tap to create blank scoreboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Continue"
+        android:layout_alignLeft="@+id/NewGame"
+        android:layout_alignStart="@+id/NewGame"
+        android:layout_marginTop="19dp"
+        android:id="@+id/textView2"
+        android:textColorLink="@android:color/white"
+        android:layout_alignRight="@+id/NewGame"
+        android:layout_alignEnd="@+id/NewGame"
+        android:textSize="14sp"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light" />
+
+    <TextView
+        android:text="Tap to use existing scoreboard"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView9"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignLeft="@+id/Continue"
+        android:layout_alignStart="@+id/Continue"
+        android:textAlignment="center"
+        android:textColor="@android:color/background_light"
+        android:layout_alignRight="@+id/Continue"
+        android:layout_alignEnd="@+id/Continue" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Continue"
+        android:onClick="Continue"
+        android:text="Continue"
+        android:textSize="18sp"
+        android:layout_below="@+id/Instructions"
+        android:layout_alignRight="@+id/Slogan"
+        android:layout_alignEnd="@+id/Slogan" />
+
+    <TextView
         android:text="Instructions: Each player must attempt the quiz in one sitting, as many times as desired. Subsequent players must register and play in the same manner."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -108,4 +103,5 @@
         android:layout_above="@+id/NewGame"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
 </RelativeLayout>
