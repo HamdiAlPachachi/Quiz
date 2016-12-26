@@ -63,12 +63,10 @@ public class Q1 extends SuperClass
                 for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
                     Q1RadioGroup.getChildAt(i).setEnabled(false);
                 }
-
-
             }
 
-
         });
+
         if (SuperClass.getQ1Active() == false) {
             for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
                 Q1RadioGroup.getChildAt(i).setEnabled(false);
@@ -83,31 +81,15 @@ public class Q1 extends SuperClass
 
     }
 
-    public void BackQ1 (View view){
-
-        Intent QuestionList = new Intent(this, QuestionList.class);
-        startActivity(QuestionList);
-
-    }
-
     public void CheatQ1 (View view){
 
         Toast.makeText(Q1.this, "1826 is the correct answer", Toast.LENGTH_SHORT).show();
         setQ1Active(false);
 
         final RadioGroup Q1RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
-        for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
+        for (int i = 0; i < Q1RadioGroup.getChildCount(); i++)
+        {
             Q1RadioGroup.getChildAt(i).setEnabled(false);
-        }
-    }
-
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
         }
     }
 
