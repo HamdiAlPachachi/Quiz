@@ -23,7 +23,7 @@ public class QuestionList extends SuperClass {
         SuperClass superClass = new SuperClass();
         String UserName = Name.getText().toString();
 
-        if (UserName.length() < 3 ) //This conditional statement is an input validation of the username entry.
+        if (UserName.length() > 0 && UserName.length() <3) //This conditional statement is an input validation of the username entry.
         {
             if(UserName.matches(".*\\d+.*"))
             {
@@ -36,7 +36,7 @@ public class QuestionList extends SuperClass {
 
         }
 
-        else
+        else if(UserName.length() >= 3)
         {
             if(UserName.matches(".*\\d+.*"))
             {
@@ -51,13 +51,16 @@ public class QuestionList extends SuperClass {
                 startActivity(Q1);
             }
         }
+
+        else
+        {
+            Toast.makeText(QuestionList.this, "Please enter a name as per the below stated requirements.", Toast.LENGTH_LONG).show();
+        }
         setQ1Active(true);
         setQ2Active(true);
         setQ3Active(true);
         setQ4Active(true);
         SuperClass.score = 0;
-//UserName.matches("[a-zA-Z]+")
-
     }
 
 }

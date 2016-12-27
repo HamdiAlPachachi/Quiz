@@ -19,6 +19,8 @@ import android.widget.Toast;
 public class Q1 extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    RadioGroup Q1RadioGroup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,13 +30,12 @@ public class Q1 extends SuperClass
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        //drawer.setDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        final RadioGroup Q1RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
+        RadioGroup Q1RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
         final RadioButton DQ1 = (RadioButton) findViewById(R.id.DQ1);
 
         final TextView ScoreCount = (TextView) findViewById(R.id.Score);
@@ -67,11 +68,13 @@ public class Q1 extends SuperClass
 
         });
 
-        if (SuperClass.getQ1Active() == false) {
+        if (SuperClass.getQ1Active() == false)
+        {
             for (int i = 0; i < Q1RadioGroup.getChildCount(); i++) {
                 Q1RadioGroup.getChildAt(i).setEnabled(false);
             }
         }
+
     }
 
     public void NextQ1 (View view){
@@ -127,5 +130,10 @@ public class Q1 extends SuperClass
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    @Override
+    public void onBackPressed(){
+        Toast.makeText(Q1.this, "The back button for Question 1 is inactive to prevent cheating.", Toast.LENGTH_LONG).show();
     }
 }
