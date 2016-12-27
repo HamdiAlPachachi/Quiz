@@ -67,7 +67,7 @@
         android:layout_marginBottom="86dp" />
 
     <TextView
-        android:text="Your name cannot contain numbers, and must be longer than 3 letters."
+        android:text="Your name cannot contain numbers, and must be at least 3 letters characters long."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="46dp"
