@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.view.View;
@@ -23,6 +24,7 @@ import android.widget.Toast;
 public class Q4 extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
+    boolean doubleBackToExitPressedOnce = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class Q4 extends SuperClass
         final TextView ScoreCount = (TextView)findViewById(R.id.Score);
 
         ScoreCount.setText("Score: " + SuperClass.getScore());
+
 
         RadioGroup Q4RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
@@ -80,8 +83,27 @@ public class Q4 extends SuperClass
 
     public void NextQ4 (View view){
 
-        Intent Result = new Intent(this, Result.class);
-        startActivity(Result);
+
+        if (doubleBackToExitPressedOnce)//This if statement ensures that the client understands that he/she will be unable to amend answer after progressing to the results page.
+        {
+            Intent Result = new Intent(this, Result.class);
+            startActivity(Result);
+        }
+
+        doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Clicking Next will not enable you to return to amend your responses. Please click again to proceed.", Toast.LENGTH_LONG).show();
+
+        new Handler().postDelayed(new Runnable()
+        {
+
+            @Override
+            public void run()
+            {
+                doubleBackToExitPressedOnce = false;
+            }
+
+        }, 2000);
+
 
     }
 

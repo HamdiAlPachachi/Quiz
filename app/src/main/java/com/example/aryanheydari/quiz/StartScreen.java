@@ -27,8 +27,8 @@ public class StartScreen extends SuperClass {
 
     public void Continue (View view)
     {
-        Intent QuestionList = new Intent(this, QuestionList.class);
-        startActivity(QuestionList);
+        Intent Result = new Intent(this, Result.class);
+        startActivity(Result);
     }
 
     public void NewGame(View view)

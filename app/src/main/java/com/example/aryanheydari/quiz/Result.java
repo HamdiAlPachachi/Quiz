@@ -95,9 +95,13 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
         resultsListView.setAdapter(adapter);
 
-        if(SuperClass.multiPlayer == true) //Hides Next Player button if in multiplayer mode.
+        if(SuperClass.multiPlayer == true) //This if-else statement hides Next Player button if in multiplayer mode.
         {
             NextPlayerButton.setVisibility(View.VISIBLE);
+        }
+        else
+        {
+            NextPlayerButton.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -155,12 +159,8 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        Toast.makeText(Result.this, "The back button is inactive to prevent amendments.", Toast.LENGTH_LONG).show();
+
     }
 
 }
