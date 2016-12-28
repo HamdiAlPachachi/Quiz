@@ -45,7 +45,7 @@ public class QuestionList extends SuperClass {
 
             else
             {
-                superClass.UserName = UserName;//it return a toast asking the user to re-enter his/her name, should the name entered contain a number.
+                superClass.UserName = UserName;
 
                 Intent Q1 = new Intent(this, Q1.class);
                 startActivity(Q1);

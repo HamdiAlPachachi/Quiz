@@ -33,9 +33,11 @@ public class StartScreen extends SuperClass {
 
     public void NewGame(View view)
     {
-        Intent QuestionList = new Intent(this, QuestionList.class);
+        Intent MultiPlayerActivity = new Intent(this, MultiPlayerActivity.class);
         db = new DBHandler(this);
         db.clearDataBase();
-        startActivity(QuestionList);
+        playerTurns = 0; //This counter measuring the number of turns performed resets to 0 once a new game is started.
+        individualTurnCounter = 0;//Resest counter for number of times a player has played.
+        startActivity(MultiPlayerActivity);
     }
 }

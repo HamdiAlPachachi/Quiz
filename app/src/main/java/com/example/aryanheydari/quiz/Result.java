@@ -17,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -38,6 +39,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.List;
 import android.database.sqlite.SQLiteDatabase;
+import android.widget.Toast;
 
 
 public class Result extends SuperClass { //implements NavigationView.OnNavigationItemSelectedListener {
@@ -50,6 +52,10 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
     DBHandler db;
 
+    int limit = 6;
+
+    //public static int individualTurnCounter = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -57,19 +63,13 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-//        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-//        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-//        drawer.setDrawerListener(toggle);
-//        toggle.syncState();
-
-//        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-//        navigationView.setNavigationItemSelectedListener(this);
-
         TextView ScoreDisplay = (TextView) findViewById(R.id.ScoreDisplay);
         ScoreDisplay.setText("" + SuperClass.getScore());
 
         TextView NameEntry = (TextView) findViewById(R.id.NameEntry);
         NameEntry.setText(Player.getPlayerName() + ": ");
+
+        Button NextPlayerButton = (Button) findViewById(R.id.NextPlayer);
 
         Player player = new Player();
 
@@ -78,14 +78,12 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
         db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore()));
 
-        //Log.d(TAG, "Reading all users...");
         ArrayList<Player> players = db.getAllPlayers();
 
-        for (Player play : players) {
-            String log = "Name: " + play.get_PlayerName() + " , Score: " + play.get_Score();
-            // Writing users to log
-            Log.d(TAG, log);
-
+        for (Player play : players)
+        {
+//            String log = "Name: " + play.get_PlayerName() + " , Score: " + play.get_Score();// Ckecing database entries when testing
+//            Log.d(TAG, log);
         }
 
         resultsList = new ArrayList<>();
@@ -96,17 +94,39 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
         resultsListView.setAdapter(adapter);
+
+        if(SuperClass.multiPlayer == true) //Hides Next Player button if in multiplayer mode.
+        {
+            NextPlayerButton.setVisibility(View.VISIBLE);
+        }
     }
 
-    public void StartAgain(View view) {
+    public void StartAgain(View view)
+    {
+        playerTurns++;
+        individualTurnCounter++;
+        if(SuperClass.playerTurns <= limit/2 && individualTurnCounter >= 3 && SuperClass.multiPlayer == true)//include playerTurn parameter to account for scenario where player quits before having 3 turns. Not to print statement in case where second player has finished, as New Game statement must be printed in this case.
+        {
+            Toast.makeText(Result.this, "You have reached your maximum limit of 3 allowed turns per game. Please pass it to the next player.", Toast.LENGTH_LONG).show();
+        }
+        else if(SuperClass.playerTurns > limit/2 && individualTurnCounter >= 3 && SuperClass.multiPlayer == true)//This assumes that the first player will play at least one round.
+        {
+            Toast.makeText(Result.this, "You have reached your maximum limit of 2 players per game. Please press Welcome Screen and hit New Game to begin a new round.", Toast.LENGTH_LONG).show();
+        }
+        else
+        {
+            Intent Q1 = new Intent(this, Q1.class);
+            startActivity(Q1);
+            SuperClass.score = 0;
+            setQ1Active(true);
+            setQ2Active(true);
+            setQ3Active(true);
+            setQ4Active(true);
+        }
 
-        Intent Q1 = new Intent(this, Q1.class);
-        startActivity(Q1);
-        SuperClass.score = 0;
-        setQ1Active(true);
-        setQ2Active(true);
-        setQ3Active(true);
-        setQ4Active(true);
+            String log = "Name: " + SuperClass.getPlayerTurns();// Ckecing database entries when testing
+            Log.d("Table", log);
+
     }
 
     public void WelcomeScreen(View view) {
@@ -116,8 +136,20 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
     public void NextPlayer(View view)
     {
-        Intent QuestionList = new Intent(this, QuestionList.class);
-        startActivity(QuestionList);
+
+        if(playerTurns >= 6)
+        {
+            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_LONG).show();
+        }
+
+        else
+        {
+            Intent QuestionList = new Intent(this, QuestionList.class);
+            startActivity(QuestionList);
+            //SuperClass.userCount++; //adds one per player. This value is called in the DBHandler class
+            SuperClass.playerTurns++; //resets the counter for the number of turns.
+            individualTurnCounter = 0;
+        }
     }
 
 

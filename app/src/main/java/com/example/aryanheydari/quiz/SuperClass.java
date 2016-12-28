@@ -24,7 +24,13 @@ public class SuperClass extends AppCompatActivity
 
     public static int score = 0;
 
+    public static int playerTurns = 0;
+
+    public static int individualTurnCounter = 0;
+
     public static String UserName;
+
+    public static boolean multiPlayer;
 
     private static boolean Q1Active = true, Q2Active = true, Q3Active = true, Q4Active = true;
 
@@ -69,7 +75,10 @@ public class SuperClass extends AppCompatActivity
         return Q4Active;
     }
 
-
+    public static int getPlayerTurns()
+    {
+        return playerTurns;
+    }
 
     public static int getScore()
     {

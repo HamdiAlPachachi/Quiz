@@ -20,6 +20,8 @@ public class DBHandler extends SQLiteOpenHelper{
     public static final String KEY_PLAYERNAME = "PlayerName";
     public static final String KEY_PLAYERSCORE = "PlayerScore";
 
+    //public static int lineNumber = (1 + SuperClass.userCount)*2; //get top 2 scores per player.
+
     public DBHandler(Context context)
     {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -65,8 +67,8 @@ public class DBHandler extends SQLiteOpenHelper{
 
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> playerList = new ArrayList<>();
-        // Select All Query
-        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY "+ KEY_PLAYERSCORE+" DESC";   //        Orders player scores.
+
+        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY "+ KEY_PLAYERSCORE+ " DESC LIMIT 6";   //Orders player scores
 
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
@@ -76,8 +78,7 @@ public class DBHandler extends SQLiteOpenHelper{
             do {
                 Player player = new Player();
                 player.setPlayerName(cursor.getString(1));
-                player.setScore(cursor.getInt(2));
-                // Adding contact to list
+                player.setScore(cursor.getInt(2));                  // Adding player to list
                 playerList.add(player);
             } while (cursor.moveToNext());
         }
