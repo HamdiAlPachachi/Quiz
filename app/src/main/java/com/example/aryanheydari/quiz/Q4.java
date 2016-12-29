@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -83,6 +84,8 @@ public class Q4 extends SuperClass
 
     public void NextQ4 (View view){
 
+        String log = "Name: " + playerCounter;// Checking database entries when testing
+        Log.d("Counter", log);
 
         if (doubleBackToExitPressedOnce)//This if statement ensures that the client understands that he/she will be unable to amend answer after progressing to the results page.
         {
@@ -91,7 +94,7 @@ public class Q4 extends SuperClass
         }
 
         doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Clicking Next will not enable you to return to amend your responses. Please click again to proceed.", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "Clicking Next will not enable you to return to amend your responses. Please click again to proceed.", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable()
         {

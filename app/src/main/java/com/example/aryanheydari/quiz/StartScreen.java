@@ -38,6 +38,7 @@ public class StartScreen extends SuperClass {
         db.clearDataBase();
         playerTurns = 0; //This counter measuring the number of turns performed resets to 0 once a new game is started.
         individualTurnCounter = 0;//Resest counter for number of times a player has played.
+        playerCounter = 1;
         startActivity(MultiPlayerActivity);
     }
 }

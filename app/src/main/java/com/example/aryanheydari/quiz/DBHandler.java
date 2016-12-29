@@ -8,7 +8,6 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.List;
 
 
 public class DBHandler extends SQLiteOpenHelper{
@@ -51,11 +50,27 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("DELETE FROM " + TABLE_PLAYERS);
     }
 
+    public boolean CheckIsDataAlreadyInDBorNot(String TableName, String fieldName, String enteredName)//Use this method in QuestionList class
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String Query = "SELECT * FROM " + TableName + " WHERE " + fieldName + " ='" + enteredName + "'";
+        Cursor cursor = db.rawQuery(Query, null);
+        if(cursor.getCount() <= 0)
+        {
+            cursor.close();
+            return false;
+        }
+        else
+        {
+            cursor.close();
+            return true;
+        }
+    }
+
     public void addPlayer (Player player)
     {
 
         SQLiteDatabase db = this.getWritableDatabase();
-        //db.execSQL("DELETE FROM " + TABLE_PLAYERS); //--------- activate this code to delete all SQL data entries.
         ContentValues values = new ContentValues();
         values.put(KEY_PLAYERNAME, player.get_PlayerName());
         values.put(KEY_PLAYERSCORE, player.get_Score());
@@ -68,19 +83,23 @@ public class DBHandler extends SQLiteOpenHelper{
     public ArrayList<Player> getAllPlayers() {
         ArrayList<Player> playerList = new ArrayList<>();
 
-        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY "+ KEY_PLAYERSCORE+ " DESC LIMIT 6";   //Orders player scores
-
+        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY "+ KEY_PLAYERSCORE+ " DESC LIMIT 6";   //Orders player scores> Single player mode, the attempts displayed are limited to 6.
+                                                                                                                  // In Multiplayer mode (with 2 players), a maximum of 3 attempts per player can be displayed.
         SQLiteDatabase db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        // looping through all rows and adding to list
-        if (cursor.moveToFirst()) {
-            do {
+
+        if (cursor.moveToFirst()) // looping through all rows and adding to list
+        {
+            do
+            {
                 Player player = new Player();
                 player.setPlayerName(cursor.getString(1));
-                player.setScore(cursor.getInt(2));                  // Adding player to list
+                player.setScore(cursor.getInt(2));// Adding player to list
                 playerList.add(player);
-            } while (cursor.moveToNext());
+            }
+            
+            while (cursor.moveToNext());
         }
 
         cursor.close();

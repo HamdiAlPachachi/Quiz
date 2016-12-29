@@ -24,9 +24,9 @@ public class SuperClass extends AppCompatActivity
 
     public static int score = 0;
 
-    public static int playerTurns = 0;
-
-    public static int individualTurnCounter = 0;
+    public static int playerTurns = 0;//This counter measures the TOTAL numbers of quizzes attempted by (both) player(s).
+    public static int individualTurnCounter = 0;//This counter measures the number of quizzes attempted by EACH player.
+    public static int playerCounter = 1;//This counter measures the number of players.
 
     public static String UserName;
 

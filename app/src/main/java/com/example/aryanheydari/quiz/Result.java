@@ -54,7 +54,7 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
     int limit = 6;
 
-    //public static int individualTurnCounter = 0;
+    public static int individualTurnCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,11 +80,11 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
         ArrayList<Player> players = db.getAllPlayers();
 
-        for (Player play : players)
-        {
+//        for (Player play : players)
+//        {
 //            String log = "Name: " + play.get_PlayerName() + " , Score: " + play.get_Score();// Ckecing database entries when testing
 //            Log.d(TAG, log);
-        }
+//        }
 
         resultsList = new ArrayList<>();
         for (Player p : players) {
@@ -128,37 +128,40 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
             setQ4Active(true);
         }
 
-            String log = "Name: " + SuperClass.getPlayerTurns();// Ckecing database entries when testing
-            Log.d("Table", log);
-
     }
 
-    public void WelcomeScreen(View view) {
-        Intent WelcomeScreen = new Intent(this, StartScreen.class);
-        startActivity(WelcomeScreen);
+    public void WelcomeScreen(View view)
+    {
+        Intent StartScreen = new Intent(this, StartScreen.class);
+        startActivity(StartScreen);
     }
 
     public void NextPlayer(View view)
     {
+        playerCounter++;
 
-        if(playerTurns >= 6)
+        if(playerCounter >= 3)
         {
-            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_LONG).show();
+            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_SHORT).show();
         }
 
         else
         {
             Intent QuestionList = new Intent(this, QuestionList.class);
             startActivity(QuestionList);
-            //SuperClass.userCount++; //adds one per player. This value is called in the DBHandler class
             SuperClass.playerTurns++; //resets the counter for the number of turns.
             individualTurnCounter = 0;
         }
+
+        String log = "Name: " + playerCounter;// Checking database entries when testing
+        Log.d("Counter", log);
+
     }
 
 
     @Override
-    public void onBackPressed() {
+    public void onBackPressed()
+    {
         Toast.makeText(Result.this, "The back button is inactive to prevent amendments.", Toast.LENGTH_LONG).show();
 
     }
