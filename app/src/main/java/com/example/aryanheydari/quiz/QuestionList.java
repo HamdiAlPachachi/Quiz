@@ -41,7 +41,7 @@ public class QuestionList extends SuperClass {
         {
             DBHandler db = new DBHandler(this);
 
-            if(db.CheckIsDataAlreadyInDBorNot(TABLE_PLAYERS, KEY_PLAYERNAME, UserName) == true)//cursorSearch doesn't work.
+            if(db.checkStoredName(TABLE_PLAYERS, KEY_PLAYERNAME, UserName) == true)
             {
                 Toast.makeText(QuestionList.this, "Username is already taken.", Toast.LENGTH_SHORT).show();
             }

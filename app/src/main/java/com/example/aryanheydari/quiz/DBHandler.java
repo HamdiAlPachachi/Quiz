@@ -50,7 +50,7 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("DELETE FROM " + TABLE_PLAYERS);
     }
 
-    public boolean CheckIsDataAlreadyInDBorNot(String TableName, String fieldName, String enteredName)//Use this method in QuestionList class
+    public boolean checkStoredName(String TableName, String fieldName, String enteredName)//Use this method in QuestionList class
     {
         SQLiteDatabase db = this.getReadableDatabase();
         String Query = "SELECT * FROM " + TableName + " WHERE " + fieldName + " ='" + enteredName + "'";
@@ -58,7 +58,7 @@ public class DBHandler extends SQLiteOpenHelper{
         if(cursor.getCount() <= 0)
         {
             cursor.close();
-            return false;
+            return false;//returns false if entered name (UserName) exists in the database.
         }
         else
         {
