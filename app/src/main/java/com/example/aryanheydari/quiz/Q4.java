@@ -94,7 +94,7 @@ public class Q4 extends SuperClass
         }
 
         doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Clicking Next will not enable you to return to amend your responses. Please click again to proceed.", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "You will be unable to amend your responses. Please click again to proceed.", Toast.LENGTH_SHORT).show();
 
         new Handler().postDelayed(new Runnable()
         {
