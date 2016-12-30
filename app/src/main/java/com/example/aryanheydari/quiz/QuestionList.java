@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.util.Log;
 import android.database.Cursor;
@@ -26,89 +27,39 @@ public class QuestionList extends SuperClass {
 
         Name = (EditText) findViewById(R.id.Name);
 
+        TextView RegistrationCommand = (TextView) findViewById(R.id.RegistrationCommand);
+
+        if(multiPlayer = true)
+        {
+            RegistrationCommand.setText("Player 1, Please Enter your Name");
+        }
+
     }
 
 
-    public void Start (View view)
-    {
+    public void Start (View view) {
         //SuperClass superClass = new SuperClass();
         SuperClass superClass = new SuperClass();
         String UserName = Name.getText().toString();
 
 //        inputRequirements();
 
-        if(multiPlayer == true)
-        {
+        if (multiPlayer == true) {
             DBHandler db = new DBHandler(this);
 
-            if(db.checkStoredName(TABLE_PLAYERS, KEY_PLAYERNAME, UserName) == true)
-            {
+            if (db.checkStoredName(TABLE_PLAYERS, KEY_PLAYERNAME, UserName) == true) {
                 Toast.makeText(QuestionList.this, "Username is already taken.", Toast.LENGTH_SHORT).show();
-            }
-            else
-            {
+            } else {
                 inputRequirements();
             }
-        }
-
-        else
-        {
+        } else {
             inputRequirements();
         }
 
         String log = "SuperClass Name: " + SuperClass.getPlayerName() + " , Username: " + UserName;// Ckecing database entries when testing
         Log.d("Counter", log);
-
-
-
-//        if (UserName.length() > 0 && UserName.length() <3) //This conditional statement is an input validation of the username entry.
-//        {
-//            if(UserName.matches(".*\\d+.*"))
-//            {
-//                Toast.makeText(QuestionList.this, "The name contains numbers and less than 3 characters.", Toast.LENGTH_LONG).show();
-//            }
-//            else
-//            {
-//                Toast.makeText(QuestionList.this, "The name correctly excludes numbers, but contains less than 3 characters.", Toast.LENGTH_LONG).show();
-//            }
-//        }
-//
-//        else if(UserName.length() >= 3)
-//        {
-//            if(UserName.matches(".*\\d+.*"))
-//            {
-//                Toast.makeText(QuestionList.this, "The name is correctly at least 3 characters long, but it contains numbers.", Toast.LENGTH_LONG).show();
-//            }
-//
-//            else
-//            {
-//                superClass.UserName = UserName;
-//
-//                Intent Q1 = new Intent(this, Q1.class);
-//                startActivity(Q1);
-//            }
-//        }
-//
-//        else
-//        {
-//            Toast.makeText(QuestionList.this, "Please enter a name as per the below stated requirements.", Toast.LENGTH_LONG).show();
-//        }
-//        setQ1Active(true);
-//        setQ2Active(true);
-//        setQ3Active(true);
-//        setQ4Active(true);
-//        SuperClass.score = 0;
     }
 
-//    public String cursorSearch()
-//    {
-//        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + KEY_PLAYERNAME + " = +UserName+";
-//        DBHandler db = new DBHandler(getApplicationContext());
-//        SQLiteDatabase sqLiteDatabase = db.getReadableDatabase(); //issue may be with using db....'this' is used in DBHandler.
-//        Cursor cursor = sqLiteDatabase.rawQuery(selectQuery, null);
-//
-//
-//    }
 
     public void inputRequirements()
     {

@@ -25,7 +25,7 @@ import android.widget.Toast;
 public class Q4 extends SuperClass
         implements NavigationView.OnNavigationItemSelectedListener {
 
-    boolean doubleBackToExitPressedOnce = false;
+    boolean doubleBackPressed = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,29 +84,28 @@ public class Q4 extends SuperClass
 
     public void NextQ4 (View view){
 
-        String log = "Name: " + playerCounter;// Checking database entries when testing
+        String log = "Name: " + doubleBackPressed;// Checking database entries when testing
         Log.d("Counter", log);
 
-        if (doubleBackToExitPressedOnce)//This if statement ensures that the client understands that he/she will be unable to amend answer after progressing to the results page.
+        if (doubleBackPressed)//This if statement ensures that the client understands that he/she will be unable to amend answer after progressing to the results page.
         {
             Intent Result = new Intent(this, Result.class);
             startActivity(Result);
         }
 
-        doubleBackToExitPressedOnce = true;
+        doubleBackPressed = true;
         Toast.makeText(this, "You will be unable to amend your responses. Please click again to proceed.", Toast.LENGTH_SHORT).show();
 
-        new Handler().postDelayed(new Runnable()
+        new Handler().postDelayed(new Runnable() //This resets the value of boolean doubleBackPressed to false after 2 seconds.
         {
 
             @Override
             public void run()
             {
-                doubleBackToExitPressedOnce = false;
+                doubleBackPressed = false;
             }
 
         }, 2000);
-
 
     }
 

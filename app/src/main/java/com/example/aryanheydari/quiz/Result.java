@@ -151,6 +151,12 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
             startActivity(QuestionList);
             SuperClass.playerTurns++; //resets the counter for the number of turns.
             individualTurnCounter = 0;
+
+            if(playerCounter == 2)//This changes the registration instructions to ask individual players to register. This is only triggered in multiplayer mode.
+            {
+                TextView RegistrationCommand = (TextView) findViewById(R.id.RegistrationCommand);
+                RegistrationCommand.setText("Player 2, Please Enter your Name");
+            }
         }
 
         String log = "Name: " + playerCounter;// Checking database entries when testing

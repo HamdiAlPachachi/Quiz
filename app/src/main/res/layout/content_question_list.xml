@@ -15,21 +15,18 @@
     tools:context="com.example.aryanheydari.quiz.QuestionList">
 
     <TextView
-        android:text="Please Register"
+        android:text="Please Enter your Name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_marginTop="40dp"
-        android:id="@+id/textView"
+        android:id="@+id/RegistrationCommand"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        tools:text="Please Register "
-        android:textAlignment="center"
-        android:textSize="24sp"
         android:textColorLink="?attr/actionModeSplitBackground"
-        android:textColor="@color/colorPrimary" />
+        tools:text="Please Enter your Name" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -40,7 +37,7 @@
         android:id="@+id/Name"
         android:hint="Your Name"
         android:textAlignment="center"
-        android:layout_below="@+id/textView"
+        android:layout_below="@+id/RegistrationCommand"
         android:layout_centerHorizontal="true" />
 
     <Button
