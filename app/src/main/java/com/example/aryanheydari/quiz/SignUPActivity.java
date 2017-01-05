@@ -10,6 +10,15 @@ import android.widget.Toast;
 
 public class SignUPActivity extends Activity
 {
+    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = "Leaderboard4";
+    public static final String TABLE_PLAYERS = "Players";
+    public static final String TABLE_MULTIPLAYERS = "Multiplayers";
+    public static final String KEY_ID = "id";
+    public static final String KEY_PLAYERNAME = "PlayerName";
+    public static final String KEY_PLAYERSCORE = "PlayerScore";
+    public static final String KEY_PLAYERPASSWORD = "Password";
+
     EditText editTextUserName,editTextPassword,editTextConfirmPassword;
     Button btnCreateAccount;
 
@@ -39,23 +48,30 @@ public class SignUPActivity extends Activity
                 String password=editTextPassword.getText().toString();
                 String confirmPassword=editTextConfirmPassword.getText().toString();
 
-                // check if any of the fields are vaccant
+                boolean checkUserExists = db.checkStoredName(TABLE_PLAYERS, KEY_PLAYERNAME, userName);
+
+                // checks if any of the fields are empty
+
+
                 if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_LONG).show();
                     return;
                 }
+
                 // check if both password matches
-                if(!password.equals(confirmPassword))
-                {
-                    Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
-                    return;
+                if(checkUserExists == false) {
+                    if (!password.equals(confirmPassword)) {
+                        Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
+                        return;
+                    } else {
+                        // Save the Data in Database
+                        db.insertEntry(userName, password);
+                        Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                    }
                 }
-                else
-                {
-                    // Save the Data in Database
-                    db.insertEntry(userName, password);
-                    Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+                else {
+                    Toast.makeText(getApplicationContext(), "Account already exists", Toast.LENGTH_LONG).show();
                 }
             }
         });

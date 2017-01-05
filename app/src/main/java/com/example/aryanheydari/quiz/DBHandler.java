@@ -79,16 +79,17 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL("DELETE FROM " + TABLE_MULTIPLAYERS);
     }
 
-    public boolean checkStoredName(String enteredName)//Use this method in class
+    public boolean checkStoredName(String TableName, String fieldName, String enteredName)//Use this method in class
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + TABLE_MULTIPLAYERS + " WHERE " + KEY_PLAYERNAME + " ='" + enteredName + "'";
+        String selectQuery = "SELECT * FROM " + TableName + " WHERE " + fieldName + " ='" + enteredName + "'";
         Cursor cursor = db.rawQuery(selectQuery, null);
         cursor.moveToFirst();
+        int i = cursor.getCount();
         if(cursor.getCount() <= 0)
         {
             cursor.close();
-            return false;//returns true if enteredName (ie. UserName) exists in the database.
+            return false;//returns false if enteredName (ie. UserName) does not exist in the database.
         }
         else
         {

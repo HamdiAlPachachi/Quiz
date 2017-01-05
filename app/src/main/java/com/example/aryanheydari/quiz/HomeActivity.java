@@ -73,13 +73,13 @@ public class HomeActivity extends SuperClass
 
                 // fetch the Password form database for respective user name
                 String storedPassword = db.getSingleEntry(userName);
-                boolean entryExists = db.checkStoredName(userName);//Scanning multiplayer table for identical username.
+                boolean entryExists = db.checkStoredName(TABLE_MULTIPLAYERS, KEY_PLAYERNAME, userName);//Scanning multiplayer table for identical username.
                 // check if the Stored password matches with  Password entered by user
 
 
 
                     if (password.equals(storedPassword) && entryExists == false) {
-                            Toast.makeText(HomeActivity.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
+                            Toast.makeText(HomeActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                             dialog.dismiss();
 
                             SuperClass superClass = new SuperClass();
