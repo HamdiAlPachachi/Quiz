@@ -53,7 +53,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Simply hit Sign In if you're an exisiting user. Otherwise, register with us under Sign Up."
+        android:text="Simply click Sign In if you're an exisiting user. Otherwise, register with us under Sign Up."
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/Instructions"
