@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class HomeActivity extends SuperClass
@@ -36,6 +37,16 @@ public class HomeActivity extends SuperClass
         // create a instance of SQLite Database
         db = new DBHandler(this);
         db.open();
+
+        TextView WelcomeText = (TextView) findViewById(R.id.WelcomeText);
+        TextView Slogan = (TextView) findViewById(R.id.Slogan);
+
+        if(multiPlayer == true && playerCounter > 1)
+        {
+            WelcomeText.setText("Player 2");
+            Slogan.setVisibility(View.INVISIBLE);
+        }
+
 
         // Get The Refference Of Buttons
         btnSignIn = (Button)findViewById(R.id.buttonSignIN);
