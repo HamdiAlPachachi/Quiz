@@ -10,14 +10,8 @@ import android.widget.Toast;
 
 public class SignUPActivity extends Activity
 {
-    private static final int DATABASE_VERSION = 4;
-    private static final String DATABASE_NAME = "Leaderboard4";
     public static final String TABLE_PLAYERS = "Players";
-    public static final String TABLE_MULTIPLAYERS = "Multiplayers";
-    public static final String KEY_ID = "id";
     public static final String KEY_PLAYERNAME = "PlayerName";
-    public static final String KEY_PLAYERSCORE = "PlayerScore";
-    public static final String KEY_PLAYERPASSWORD = "Password";
 
     EditText editTextUserName,editTextPassword,editTextConfirmPassword;
     Button btnCreateAccount;
@@ -30,56 +24,58 @@ public class SignUPActivity extends Activity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        // get Instance  of Database Adapter
         db = new DBHandler(this);
         db = db.open();
 
-        // Get References of Views
-        editTextUserName=(EditText)findViewById(R.id.editTextUserName);
-        editTextPassword=(EditText)findViewById(R.id.editTextPassword);
-        editTextConfirmPassword=(EditText)findViewById(R.id.editTextConfirmPassword);
+        editTextUserName = (EditText)findViewById(R.id.editTextUserName);
+        editTextPassword = (EditText)findViewById(R.id.editTextPassword);
+        editTextConfirmPassword = (EditText)findViewById(R.id.editTextConfirmPassword);
 
         btnCreateAccount=(Button)findViewById(R.id.buttonCreateAccount);
-        btnCreateAccount.setOnClickListener(new View.OnClickListener() {
-
-            public void onClick(View v) {
-
-                String userName=editTextUserName.getText().toString();
-                String password=editTextPassword.getText().toString();
-                String confirmPassword=editTextConfirmPassword.getText().toString();
+        btnCreateAccount.setOnClickListener(new View.OnClickListener()
+        {
+            public void onClick(View v)
+            {
+                String userName = editTextUserName.getText().toString();
+                String password = editTextPassword.getText().toString();
+                String confirmPassword = editTextConfirmPassword.getText().toString();
 
                 boolean checkUserExists = db.checkStoredName(TABLE_PLAYERS, KEY_PLAYERNAME, userName);
 
-                // checks if any of the fields are empty
-
-
+                // checks if any of the fields are empty - INPUT VALIDATION
                 if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
                 {
                     Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_LONG).show();
                     return;
                 }
 
-                // check if both password matches
-                if(checkUserExists == false) {
-                    if (!password.equals(confirmPassword)) {
+                // check if both passwords match - INPUT VALIDATION
+                if(checkUserExists == false)
+                {
+                    if (!password.equals(confirmPassword))
+                    {
                         Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
                         return;
-                    } else {
+                    }
+                    else
+                    {
                         // Save the Data in Database
                         db.insertEntry(userName, password);
                         Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
                     }
                 }
-                else {
+                else
+                {
                     Toast.makeText(getApplicationContext(), "Account already exists", Toast.LENGTH_LONG).show();
                 }
             }
         });
     }
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
 
+    @Override
+    protected void onDestroy()
+    {
+        super.onDestroy();
         db.close();
     }
 

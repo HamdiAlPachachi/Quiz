@@ -1,11 +1,16 @@
 package com.example.aryanheydari.quiz;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 
-public class MultiPlayerActivity extends SuperClass {
+public class MultiPlayerActivity extends SuperClass
+{
+    //This activity prompts the user as to whether they would like to enter single or multiplayer mode. In the former case, the results would be
+    // displayed in Result activity, while in the latter case, the results would appear in the MultiResultPage activity.
+    //Other layout changes also occur based on the choice of mode.
+
+    //The choice of mode alters the boolean mutliPlayer variable, which is declared and stored in SuperClass.
 
     DBHandler db;
 
@@ -23,10 +28,10 @@ public class MultiPlayerActivity extends SuperClass {
     {
         SuperClass.multiPlayer =  true;
 
-        db.deleteTable(TABLE_MULTIPLAYERS);
+        db.deleteTable(TABLE_MULTIPLAYERS); //This deletes the table from the previous muliplayer session.
 
-        playerCounter = 1;
-        individualTurnCounter = 0;
+        playerCounter = 1; //Clicking yes does the following: 1. it resets the playerCounter to 1, which implies that the first player (in multiplayer mode) is currently playing.
+        individualTurnCounter = 0; //And 2. It resets individualTurnCounter to 0, implying that no attempts have yet been made in the current session.
 
         Intent ResultsOrPlay = new Intent(this, ResultsOrPlay.class);
         startActivity(ResultsOrPlay);
