@@ -9,10 +9,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".QuestionList"
-            android:label="Quiz"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name=".Q1"
             android:label="@string/title_activity_q1"
             android:theme="@style/AppTheme.NoActionBar" />
@@ -35,13 +31,19 @@
         <activity
             android:name=".StartScreen"
             android:label="UCL Trivia">
+
+        </activity>
+        <activity android:name=".MultiPlayerActivity" />
+        <activity android:name=".SignUPActivity" />
+        <activity android:name=".HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MultiPlayerActivity"></activity>
+        <activity android:name=".ResultsOrPlay" />
+        <activity android:name=".MultiResultsPage"></activity>
     </application>
 
 </manifest>

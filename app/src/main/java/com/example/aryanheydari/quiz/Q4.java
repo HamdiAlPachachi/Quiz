@@ -44,9 +44,7 @@ public class Q4 extends SuperClass
         navigationView.setNavigationItemSelectedListener(this);
 
         final TextView ScoreCount = (TextView)findViewById(R.id.Score);
-
         ScoreCount.setText("Score: " + SuperClass.getScore());
-
 
         RadioGroup Q4RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
@@ -78,8 +76,6 @@ public class Q4 extends SuperClass
                 Q4RadioGroup.getChildAt(i).setEnabled(false);
             }
         }
-
-
     }
 
     public void NextQ4 (View view){
@@ -89,8 +85,16 @@ public class Q4 extends SuperClass
 
         if (doubleBackPressed)//This if statement ensures that the client understands that he/she will be unable to amend answer after progressing to the results page.
         {
-            Intent Result = new Intent(this, Result.class);
-            startActivity(Result);
+            if(multiPlayer == false)
+            {
+                Intent Result = new Intent(this, Result.class);
+                startActivity(Result);
+            }
+            else
+            {
+                Intent multiResult = new Intent(this, MultiResultsPage.class);
+                startActivity(multiResult);
+            }
         }
 
         doubleBackPressed = true;

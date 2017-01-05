@@ -46,15 +46,23 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
     protected String PREFS = "Score";
     public static final String TABLE_PLAYERS = "Players";
+    public static final String TABLE_MULTIPLAYERS = "Multiplayers";
+    public static final String KEY_PLAYERNAME = "PlayerName";
+    public static final String KEY_PLAYERSCORE = "PlayerScore";
+    public static final String KEY_PLAYERPASSWORD = "Password";
+
 
     ArrayList<String> resultsList = new ArrayList<String>();
+    ArrayList<String> multiPlayerResultsList = new ArrayList<String>();
     ListView resultsListView;
+    ListView multiPlayerResultsListView;
 
     DBHandler db;
 
     int limit = 6;
 
     public static int individualTurnCounter = 0;
+    Player player = new Player();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,11 +75,14 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
         ScoreDisplay.setText("" + SuperClass.getScore());
 
         TextView NameEntry = (TextView) findViewById(R.id.NameEntry);
-        NameEntry.setText(Player.getPlayerName() + ": ");
-
-        Button NextPlayerButton = (Button) findViewById(R.id.NextPlayer);
 
         Player player = new Player();
+        NameEntry.setText(player.getPlayerName() + ": ");
+
+//        String log = "Strange: " + player.get_PlayerName();// Checking database entries when testing
+//        Log.d("Counter", log);
+
+        Button NextPlayerButton = (Button) findViewById(R.id.NextPlayer);
 
         final String TAG = "COMP211P";
         db = new DBHandler(this);
@@ -79,34 +90,42 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
         db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore()));
 
         ArrayList<Player> players = db.getAllPlayers();
+        ArrayList<Player> singlePlayer = db.getSpecificPlayer();
+        ArrayList<Player> multiPlayer = db.getAllMultiplayers();
 
-//        for (Player play : players)
-//        {
-//            String log = "Name: " + play.get_PlayerName() + " , Score: " + play.get_Score();// Ckecing database entries when testing
-//            Log.d(TAG, log);
-//        }
 
-        resultsList = new ArrayList<>();
-        for (Player p : players) {
-            resultsList.add(p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
-            resultsListView = (ListView) findViewById(R.id.resultsListView);
+        NextPlayerButton.setVisibility(View.INVISIBLE);
 
+//            resultsList = new ArrayList<>();
+//
+//            for (Player p : players) {
+//                resultsList.add(p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
+//                resultsListView = (ListView) findViewById(R.id.resultsListView);
+//
+//            }
+
+            for(Player p : singlePlayer)
+            {
+                resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
+                resultsListView = (ListView) findViewById(R.id.resultsListView);
+            }
+
+//            String log1 = "List in results: " + resultsList;// Checking database entries when testing
+//            Log.d("List", log1);
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
+            ArrayAdapter<String> adapterMulti = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, multiPlayerResultsList);
+
+            resultsListView.setAdapter(adapter);
         }
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
-        resultsListView.setAdapter(adapter);
 
-        if(SuperClass.multiPlayer == true) //This if-else statement hides Next Player button if in multiplayer mode.
-        {
-            NextPlayerButton.setVisibility(View.VISIBLE);
-        }
-        else
-        {
-            NextPlayerButton.setVisibility(View.INVISIBLE);
-        }
-    }
+
 
     public void StartAgain(View view)
     {
+        Player player = new Player();
+        player.setPlayerName(player.get_PlayerName());
+
         playerTurns++;
         individualTurnCounter++;
         if(SuperClass.playerTurns <= limit/2 && individualTurnCounter >= 3 && SuperClass.multiPlayer == true)//include playerTurn parameter to account for scenario where player quits before having 3 turns. Not to print statement in case where second player has finished, as New Game statement must be printed in this case.
@@ -132,34 +151,34 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
     public void WelcomeScreen(View view)
     {
-        Intent StartScreen = new Intent(this, StartScreen.class);
-        startActivity(StartScreen);
+        Intent HomeActivity = new Intent(this, HomeActivity.class);
+        startActivity(HomeActivity);
     }
 
     public void NextPlayer(View view)
     {
-        playerCounter++;
+        //playerCounter++;
 
-        if(playerCounter >= 3)
-        {
-            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_SHORT).show();
-        }
+//        if(playerCounter >= 3)
+//        {
+//            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_SHORT).show();
+//        }
 
-        else
-        {
-            Intent QuestionList = new Intent(this, QuestionList.class);
-            startActivity(QuestionList);
-            SuperClass.playerTurns++; //resets the counter for the number of turns.
-            individualTurnCounter = 0;
+//        else
+//        {
+//            Intent SecondSignIN = new Intent(this, SecondSignINScreen.class);
+//            startActivity(SecondSignIN);
+//            SuperClass.playerTurns++; //resets the counter for the number of turns.
+//            individualTurnCounter = 0;
 
-            if(playerCounter == 2)//This changes the registration instructions to ask individual players to register. This is only triggered in multiplayer mode.
-            {
-                TextView RegistrationCommand = (TextView) findViewById(R.id.RegistrationCommand);
-                RegistrationCommand.setText("Player 2, Please Enter your Name");
-            }
-        }
+//            if(playerCounter == 2)//This changes the registration instructions to ask individual players to register. This is only triggered in multiplayer mode.
+//            {
+//                TextView RegistrationCommand = (TextView) findViewById(R.id.RegistrationCommand);
+//                RegistrationCommand.setText("Player 2, Please Enter your Name");
+//            }
+//      }
 
-        String log = "Name: " + playerCounter;// Checking database entries when testing
+        String log = "Name1: " + playerCounter;// Checking database entries when testing
         Log.d("Counter", log);
 
     }

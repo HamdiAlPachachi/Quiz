@@ -27,8 +27,11 @@ public class StartScreen extends SuperClass {
 
     public void Continue (View view)
     {
-        Intent Result = new Intent(this, Result.class);
-        startActivity(Result);
+//        Intent Result = new Intent(this, Result.class);
+//        startActivity(Result);
+
+        Intent HomeActivity = new Intent(this, HomeActivity.class);
+        startActivity(HomeActivity);
     }
 
     public void NewGame(View view)
@@ -36,9 +39,9 @@ public class StartScreen extends SuperClass {
         Intent MultiPlayerActivity = new Intent(this, MultiPlayerActivity.class);
         db = new DBHandler(this);
         db.clearDataBase();
-        playerTurns = 0; //This counter measuring the number of turns performed resets to 0 once a new game is started.
-        individualTurnCounter = 0;//Resest counter for number of times a player has played.
-        playerCounter = 1;
+        //playerTurns = 0; //This counter measuring the number of turns performed resets to 0 once a new game is started.
+        //individualTurnCounter = 0;//Resest counter for number of times a player has played.
+        //playerCounter = 1;
         startActivity(MultiPlayerActivity);
     }
 }

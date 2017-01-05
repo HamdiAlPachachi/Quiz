@@ -4,7 +4,7 @@ package com.example.aryanheydari.quiz;
 public class Player extends SuperClass{
 
     private int id;
-    private String PlayerName;
+    public String PlayerName;
     private int score;
 
     public Player()
