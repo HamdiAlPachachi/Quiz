@@ -3,6 +3,7 @@ package com.example.aryanheydari.quiz;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -35,7 +36,6 @@ public class HomeActivity extends SuperClass
         btnSignUp.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
 
-                /// Create Intent for SignUpActivity  abd Start The Activity
                 Intent intentSignUP = new Intent(getApplicationContext(),SignUPActivity.class);
                 startActivity(intentSignUP);
             }
@@ -73,12 +73,11 @@ public class HomeActivity extends SuperClass
                         Toast.makeText(HomeActivity.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
 
-                        //get rid of null
-                        Player player = new Player();
-//                    player.setPlayerName(userName);
                         SuperClass superClass = new SuperClass();
                         superClass.UserName = userName;
-//                    Easing login process in multiplayer mode.
+//                      Easing login process in multiplayer mode.
+
+
                         if(playerCounter <= 1) {
                             Intent MultiPlayer = new Intent(getApplicationContext(), MultiPlayerActivity.class);//Start Q1
                             startActivity(MultiPlayer);

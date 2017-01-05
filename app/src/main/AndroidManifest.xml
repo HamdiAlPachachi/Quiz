@@ -28,11 +28,6 @@
             android:name=".Result"
             android:label="@string/title_activity_result"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".StartScreen"
-            android:label="UCL Trivia">
-
-        </activity>
         <activity android:name=".MultiPlayerActivity" />
         <activity android:name=".SignUPActivity" />
         <activity android:name=".HomeActivity">

@@ -1,22 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/ucl_background_image1">
+
+    <TextView
+        android:text="Welcome to QUCL!"
+        android:textColor="#FFFFFF"
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/WelcomeText"
+        android:textSize="36sp"
+        android:textStyle="normal|bold"
+        android:gravity="center"
+        android:layout_marginTop="34dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="Created by Tube users, for Tube users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Slogan"
+        android:textSize="18sp"
+        android:textStyle="normal|bold|italic"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="12dp"
+        android:layout_below="@+id/WelcomeText"
+        android:layout_centerHorizontal="true" />
 
     <Button
         android:id="@+id/buttonSignIN"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Sign In"
-        android:onClick="signIn"/>
+        android:onClick="signIn"
+        android:layout_above="@+id/buttonSignUP"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="13dp" />
 
     <Button
         android:id="@+id/buttonSignUP"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="Sign Up"
-        android:layout_below="@+id/buttonSignIN"
+        android:layout_marginBottom="78dp"
+        android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Simply hit Sign In if you're an exisiting user. Otherwise, register with us under Sign Up."
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/Instructions"
+        android:textColor="@android:color/black"
+        android:textStyle="normal|bold"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginStart="16dp" />
 
 </RelativeLayout>
