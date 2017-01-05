@@ -44,25 +44,14 @@ public class DBHandler extends SQLiteOpenHelper{
         db.execSQL(DATABASE_CREATE);//Create table for single player.
         db.execSQL(DATABASE_CREATE_MULTI);//Create table for multiplayer
 
-//        String CREATE_PLAYER_TABLE = "CREATE TABLE " + TABLE_PLAYERS + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT, " + KEY_PLAYERSCORE + " TEXT" + ")";
-//        db.execSQL(CREATE_PLAYER_TABLE);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
     {
-//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PLAYERS);
-//        onCreate(db);
 
-        // Log the version upgrade.
         Log.w("TaskDBAdapter", "Upgrading from version " + oldVersion + " to " + newVersion + ", which will destroy all old data");
-
-        // Upgrade the existing database to conform to the new version. Multiple
-        // previous versions can be handled by comparing _oldVersion and _newVersion
-        // values.
-        // The simplest case is to drop the old table and create a new one.
         db.execSQL("DROP TABLE IF EXISTS " + "TEMPLATE");
-        // Create a new one.
         onCreate(db);
     }
 
@@ -71,7 +60,6 @@ public class DBHandler extends SQLiteOpenHelper{
         db = this.getWritableDatabase();
         return this;
     }
-
 
     public void clearMultiDataBase()
     {
@@ -99,11 +87,11 @@ public class DBHandler extends SQLiteOpenHelper{
 
     }
 
-    public String getSingleEntry(String userName)
+    public String getSingleEntry(String userName)//Used to read certain username.
     {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_PLAYERS, null, KEY_PLAYERNAME + "=?", new String[]{userName}, null, null, null);
-        if(cursor.getCount() < 1) // UserName Not Exist
+        if(cursor.getCount() < 1)
         {
             cursor.close();
             return "Does not exist";
@@ -123,7 +111,6 @@ public class DBHandler extends SQLiteOpenHelper{
 
         // Insert the row into your table
         db.insert(TABLE_PLAYERS, null, newValues);
-        ///Toast.makeText(context, "Reminder Is Successfully Saved", Toast.LENGTH_LONG).show();
     }
 
     public void addPlayer (Player player)

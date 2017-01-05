@@ -79,9 +79,6 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
         Player player = new Player();
         NameEntry.setText(player.getPlayerName() + ": ");
 
-//        String log = "Strange: " + player.get_PlayerName();// Checking database entries when testing
-//        Log.d("Counter", log);
-
         Button NextPlayerButton = (Button) findViewById(R.id.NextPlayer);
 
         final String TAG = "COMP211P";
@@ -96,29 +93,17 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
 
         NextPlayerButton.setVisibility(View.INVISIBLE);
 
-//            resultsList = new ArrayList<>();
-//
-//            for (Player p : players) {
-//                resultsList.add(p.get_PlayerName() + "       " + Integer.toString(p.get_Score()));
-//                resultsListView = (ListView) findViewById(R.id.resultsListView);
-//
-//            }
-
             for(Player p : singlePlayer)
             {
                 resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
                 resultsListView = (ListView) findViewById(R.id.resultsListView);
             }
 
-//            String log1 = "List in results: " + resultsList;// Checking database entries when testing
-//            Log.d("List", log1);
-
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
             ArrayAdapter<String> adapterMulti = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, multiPlayerResultsList);
 
             resultsListView.setAdapter(adapter);
         }
-
 
 
     public void StartAgain(View view)
@@ -155,33 +140,33 @@ public class Result extends SuperClass { //implements NavigationView.OnNavigatio
         startActivity(HomeActivity);
     }
 
-    public void NextPlayer(View view)
-    {
-        //playerCounter++;
-
-//        if(playerCounter >= 3)
-//        {
-//            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_SHORT).show();
-//        }
-
-//        else
-//        {
-//            Intent SecondSignIN = new Intent(this, SecondSignINScreen.class);
-//            startActivity(SecondSignIN);
-//            SuperClass.playerTurns++; //resets the counter for the number of turns.
-//            individualTurnCounter = 0;
-
-//            if(playerCounter == 2)//This changes the registration instructions to ask individual players to register. This is only triggered in multiplayer mode.
-//            {
-//                TextView RegistrationCommand = (TextView) findViewById(R.id.RegistrationCommand);
-//                RegistrationCommand.setText("Player 2, Please Enter your Name");
-//            }
-//      }
-
-        String log = "Name1: " + playerCounter;// Checking database entries when testing
-        Log.d("Counter", log);
-
-    }
+//  public void NextPlayer(View view)
+//    {
+//        //playerCounter++;
+//
+////        if(playerCounter >= 3)
+////        {
+////            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_SHORT).show();
+////        }
+//
+////        else
+////        {
+////            Intent SecondSignIN = new Intent(this, SecondSignINScreen.class);
+////            startActivity(SecondSignIN);
+////            SuperClass.playerTurns++; //resets the counter for the number of turns.
+////            individualTurnCounter = 0;
+//
+////            if(playerCounter == 2)//This changes the registration instructions to ask individual players to register. This is only triggered in multiplayer mode.
+////            {
+////                TextView RegistrationCommand = (TextView) findViewById(R.id.RegistrationCommand);
+////                RegistrationCommand.setText("Player 2, Please Enter your Name");
+////            }
+////      }
+//
+//        String log = "Name1: " + playerCounter;// Checking database entries when testing
+//        Log.d("Counter", log);
+//
+//    }
 
 
     @Override

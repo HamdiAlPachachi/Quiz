@@ -54,20 +54,20 @@ public class Q4 extends SuperClass
 
             public void onCheckedChanged(RadioGroup Q4RadioGroup, int checkedId) {
 
-                if (CQ4.isChecked()) {
-                    SuperClass.score++;
-                    Toast.makeText(Q4.this, "Well done, 7 is the correct answer!", Toast.LENGTH_SHORT).show();
+            if (CQ4.isChecked()) {
+                SuperClass.score++;
+                Toast.makeText(Q4.this, "Well done, 7 is the correct answer!", Toast.LENGTH_SHORT).show();
 
-                } else
-                {
-                    Toast.makeText(Q4.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
-                }
-                setQ4Active(false);
-                ScoreCount.setText("Score: " + SuperClass.getScore());
+            } else
+            {
+                Toast.makeText(Q4.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
+            }
+            setQ4Active(false);
+            ScoreCount.setText("Score: " + SuperClass.getScore());
 
-                for (int i = 0; i < Q4RadioGroup.getChildCount(); i++) {
-                    Q4RadioGroup.getChildAt(i).setEnabled(false);
-                }
+            for (int i = 0; i < Q4RadioGroup.getChildCount(); i++) {
+                Q4RadioGroup.getChildAt(i).setEnabled(false);
+            }
 
             }
         });
@@ -119,8 +119,6 @@ public class Q4 extends SuperClass
         startActivity(Q3);
 
     }
-
-
 
     public void CheatQ4 (View view){
 

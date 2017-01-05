@@ -60,7 +60,7 @@ public class HomeActivity extends SuperClass
         saveLogin = loginPreferences.getBoolean("saveLogin", false);
 
 
-        // Get The Refference Of Buttons
+        // Get The Reference Of Buttons
         btnSignIn = (Button)findViewById(R.id.buttonSignIN);
         btnSignUp = (Button)findViewById(R.id.buttonSignUP);
 

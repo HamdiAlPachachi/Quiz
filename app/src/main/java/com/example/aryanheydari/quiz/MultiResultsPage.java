@@ -31,8 +31,6 @@ public class MultiResultsPage extends SuperClass {
     @Override
     protected void onCreate(Bundle savedInstanceState) {super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
-//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-//        setSupportActionBar(toolbar);
 
         TextView ScoreDisplay = (TextView) findViewById(R.id.ScoreDisplay);
         ScoreDisplay.setText("" + SuperClass.getScore());
@@ -42,12 +40,8 @@ public class MultiResultsPage extends SuperClass {
         Player player = new Player();
         NameEntry.setText(player.getPlayerName() + ": ");
 
-//        String log = "Strange: " + player.get_PlayerName();// Checking database entries when testing
-//        Log.d("Counter", log);
-
         Button NextPlayerButton = (Button) findViewById(R.id.NextPlayer);
 
-        final String TAG = "COMP211P";
         db = new DBHandler(this);
 
         db.addMultiplayer(new Player(SuperClass.getPlayerName(), SuperClass.getScore()));
@@ -66,23 +60,13 @@ public class MultiResultsPage extends SuperClass {
 
         NextPlayerButton.setVisibility(View.VISIBLE);
 
-
-//            String log = "List in results: " + multiPlayer;// Ckecking database entries when testing
-//            Log.d("List", log);
-
-//            for(Player p : players)
-//            {
-//                String log = "Name: " + players;// Ckecking database entries when testing
-//                Log.d("List", log);
-//            }
-
         resultsList = new ArrayList<>();
         for (Player p : multiPlayer) {
             multiPlayerResultsList.add(p.get_PlayerName() + "           " + Integer.toString(p.get_Score()));
             resultsListView = (ListView) findViewById(R.id.resultsListView);
         }
-//
-        String log = "Name: " + multiPlayer;// Ckecking database entries when testing
+
+        String log = "Name: " + multiPlayer;// Checking database entries when testing
         Log.d("List", log);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, multiPlayerResultsList);
         resultsListView.setAdapter(adapter);
@@ -95,22 +79,13 @@ public class MultiResultsPage extends SuperClass {
 
         playerTurns++;
 
-//        individualTurnCounter++;
-
-//        if(playerCounter >= 3 && SuperClass.multiPlayer == true)//This assumes that the first player will play at least one round.
-//        {
-//            Toast.makeText(MultiResultsPage.this, "You have reached your maximum limit of 2 players per game. Please press Welcome Screen and hit New Game to begin a new round.", Toast.LENGTH_LONG).show();
-//        }
-//        else
-//        {
-            Intent Q1 = new Intent(this, Q1.class);
-            startActivity(Q1);
-            SuperClass.score = 0;
-            setQ1Active(true);
-            setQ2Active(true);
-            setQ3Active(true);
-            setQ4Active(true);
-        //}
+        Intent Q1 = new Intent(this, Q1.class);
+        startActivity(Q1);
+        SuperClass.score = 0;
+        setQ1Active(true);
+        setQ2Active(true);
+        setQ3Active(true);
+        setQ4Active(true);
 
     }
 
@@ -127,8 +102,6 @@ public class MultiResultsPage extends SuperClass {
     public void NextPlayer(View view) {
 
         playerCounter++;
-//        individualTurnCounter = 0;
-
 
         if (playerCounter >= 3)
         {
@@ -140,16 +113,13 @@ public class MultiResultsPage extends SuperClass {
             startActivity(SecondSignIN);
             SuperClass.playerTurns++; //resets the counter for the number of turns.
             individualTurnCounter = 0;
-
         }
-
     }
 
         @Override
         public void onBackPressed ()
         {
             Toast.makeText(MultiResultsPage.this, "The back button is inactive to prevent amendments.", Toast.LENGTH_LONG).show();
-
         }
 
 }
