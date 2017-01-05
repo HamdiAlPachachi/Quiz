@@ -118,6 +118,8 @@ public class MultiResultsPage extends SuperClass {
     {
         playerCounter = 1;
 
+        db.clearMultiDataBase();
+
         Intent HomeActivity = new Intent(this, HomeActivity.class);
         startActivity(HomeActivity);
     }
@@ -128,23 +130,16 @@ public class MultiResultsPage extends SuperClass {
 //        individualTurnCounter = 0;
 
 
-        if (playerCounter >= 3) {
+        if (playerCounter >= 3)
+        {
             Toast.makeText(MultiResultsPage.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_SHORT).show();
-        } else {
+        }
+        else
+        {
             Intent SecondSignIN = new Intent(this, HomeActivity.class);
             startActivity(SecondSignIN);
             SuperClass.playerTurns++; //resets the counter for the number of turns.
             individualTurnCounter = 0;
-
-//            if(playerCounter == 2)//This changes the registration instructions to ask individual players to register. This is only triggered in multiplayer mode.
-//            {
-//                TextView RegistrationCommand = (TextView) findViewById(R.id.RegistrationCommand);
-//                RegistrationCommand.setText("Player 2, Please Enter your Name");
-//            }
-            //}
-
-//        String log = "Name: " + playerCounter;// Checking database entries when testing
-//        Log.d("Counter", log);
 
         }
 

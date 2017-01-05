@@ -18,6 +18,15 @@ public class HomeActivity extends SuperClass
 
     int limit = 6;
 
+    private static final int DATABASE_VERSION = 4;
+    private static final String DATABASE_NAME = "Leaderboard4";
+    public static final String TABLE_PLAYERS = "Players";
+    public static final String TABLE_MULTIPLAYERS = "Multiplayers";
+    public static final String KEY_ID = "id";
+    public static final String KEY_PLAYERNAME = "PlayerName";
+    public static final String KEY_PLAYERSCORE = "PlayerScore";
+    public static final String KEY_PLAYERPASSWORD = "Password";
+
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -64,32 +73,35 @@ public class HomeActivity extends SuperClass
 
                 // fetch the Password form database for respective user name
                 String storedPassword = db.getSingleEntry(userName);
-
+                boolean entryExists = db.checkStoredName(userName);//Scanning multiplayer table for identical username.
                 // check if the Stored password matches with  Password entered by user
 
 
 
-                    if (password.equals(storedPassword)) {
-                        Toast.makeText(HomeActivity.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
-                        dialog.dismiss();
+                    if (password.equals(storedPassword) && entryExists == false) {
+                            Toast.makeText(HomeActivity.this, "Congrats: Login Successful", Toast.LENGTH_LONG).show();
+                            dialog.dismiss();
 
-                        SuperClass superClass = new SuperClass();
-                        superClass.UserName = userName;
-//                      Easing login process in multiplayer mode.
-
-
-                        if(playerCounter <= 1) {
-                            Intent MultiPlayer = new Intent(getApplicationContext(), MultiPlayerActivity.class);//Start Q1
-                            startActivity(MultiPlayer);
-                        }
-                        else {
-                            Intent Q1 = new Intent(getApplicationContext(), Q1.class);//Start Q1
-                            startActivity(Q1);
-                        }
+                            SuperClass superClass = new SuperClass();
+                            superClass.UserName = userName;
 
 
-//                    Intent ResultsOrPlay = new Intent(getApplicationContext(), ResultsOrPlay.class);//Start Q1
-//                    startActivity(ResultsOrPlay);
+                            //This if-else statement ensures that the second player in multiplayer mode is directed straight to Q1 after entering details.
+                            if(playerCounter <= 1)
+                            {
+                                Intent MultiPlayer = new Intent(getApplicationContext(), MultiPlayerActivity.class);//Start Q1
+                                startActivity(MultiPlayer);
+                            }
+                            else
+                            {
+                                Intent Q1 = new Intent(getApplicationContext(), Q1.class);//Start Q1
+                                startActivity(Q1);
+                            }
+
+                    }
+                    else if(password.equals(storedPassword) && entryExists == true)
+                    {
+                        Toast.makeText(HomeActivity.this, "You have already played. Please pass it to the next player.", Toast.LENGTH_LONG).show();
                     }
                     else
                     {

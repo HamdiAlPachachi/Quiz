@@ -73,37 +73,39 @@ public class DBHandler extends SQLiteOpenHelper{
     }
 
 
-    public void clearDataBase()
+    public void clearMultiDataBase()
     {
         db = this.getWritableDatabase();
-        db.execSQL("DELETE FROM " + TABLE_PLAYERS);
+        db.execSQL("DELETE FROM " + TABLE_MULTIPLAYERS);
     }
 
-//    public boolean checkStoredName(String TableName, String fieldName, String enteredName)//Use this method in class
-//    {
-//        SQLiteDatabase db = this.getReadableDatabase();
-//        String Query = "SELECT * FROM " + TableName + " WHERE " + fieldName + " ='" + enteredName + "'";
-//        Cursor cursor = db.rawQuery(Query, null);
-//        if(cursor.getCount() <= 0)
-//        {
-//            cursor.close();
-//            return false;//returns false if entered name (UserName) exists in the database.
-//        }
-//        else
-//        {
-//            cursor.close();
-//            return true;
-//        }
-//    }
+    public boolean checkStoredName(String enteredName)//Use this method in class
+    {
+        SQLiteDatabase db = this.getReadableDatabase();
+        String selectQuery = "SELECT * FROM " + TABLE_MULTIPLAYERS + " WHERE " + KEY_PLAYERNAME + " ='" + enteredName + "'";
+        Cursor cursor = db.rawQuery(selectQuery, null);
+        cursor.moveToFirst();
+        if(cursor.getCount() <= 0)
+        {
+            cursor.close();
+            return false;//returns true if enteredName (ie. UserName) exists in the database.
+        }
+        else
+        {
+            cursor.close();
+            return true;
+        }
+
+    }
 
     public String getSingleEntry(String userName)
     {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_PLAYERS, null, KEY_PLAYERNAME+"=?", new String[]{userName}, null, null, null);
-        if(cursor.getCount()<1) // UserName Not Exist
+        Cursor cursor = db.query(TABLE_PLAYERS, null, KEY_PLAYERNAME + "=?", new String[]{userName}, null, null, null);
+        if(cursor.getCount() < 1) // UserName Not Exist
         {
             cursor.close();
-            return "NOT EXIST";
+            return "Does not exist";
         }
         cursor.moveToFirst();
         String password= cursor.getString(cursor.getColumnIndex(KEY_PLAYERPASSWORD));
@@ -264,12 +266,10 @@ public class DBHandler extends SQLiteOpenHelper{
             {
                 relevantPlayerCounter++;
             }
-
             while (cursor.moveToNext());
         }
 
         cursor.close();
-
         return relevantPlayerCounter;
     }
 
