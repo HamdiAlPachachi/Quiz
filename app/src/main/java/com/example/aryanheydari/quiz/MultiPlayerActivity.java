@@ -9,7 +9,9 @@ public class MultiPlayerActivity extends SuperClass
 {
     //This activity prompts the user as to whether they would like to enter single or multiplayer mode. In the former case, the results would be
     // displayed in Result activity, while in the latter case, the results would appear in the MultiResultPage activity.
-    //Other layout changes also occur based on the choice of mode.
+    //Also, in multiplayer mode (ie. when multiPlayer == true), the results are displayed in a different table called Multiplayers. This enables the app to delete
+    //all entries in this table when a new multiplayer game is started. This prevents the single player table ("Players") from being cleared upon starting
+    //a new multiplayer session. This enables a given player, in single player mode, to see their previous results from previous sessions in single player mode.
 
     //The choice of mode alters the boolean mutliPlayer variable, which is declared and stored in SuperClass.
 

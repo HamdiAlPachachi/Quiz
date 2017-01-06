@@ -16,7 +16,6 @@ public class Result extends SuperClass
 {
 
     ArrayList<String> resultsList = new ArrayList<String>();
-    ArrayList<String> multiPlayerResultsList = new ArrayList<String>();
     ListView resultsListView;
 
     DBHandler db;
