@@ -15,16 +15,19 @@ import android.widget.Toast;
 public class Result extends SuperClass
 {
 
+    public static final String TABLE_PLAYERS = "Players";
+
     ArrayList<String> resultsList = new ArrayList<String>();
     ListView resultsListView;
 
     DBHandler db;
 
+
     public static int individualTurnCounter = 0;
-    Player player = new Player();
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -42,8 +45,15 @@ public class Result extends SuperClass
         db = new DBHandler(this);
         db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore())); //Adds the current username and score combination to the single player table.
 
-        ArrayList<Player> singlePlayer = db.getSpecificPlayer();
 
+        int maxScore = db.selectMaxScore(TABLE_PLAYERS); //The maximum score achieved in a session, of type int.
+        int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
+        if(score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
+        {
+            Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
+        }
+
+        ArrayList<Player> singlePlayer = db.getSpecificPlayer();
         NextPlayerButton.setVisibility(View.INVISIBLE);
 
             for(Player p : singlePlayer)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.

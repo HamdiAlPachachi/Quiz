@@ -16,14 +16,8 @@ public class HomeActivity extends SuperClass
     Button btnSignIn,btnSignUp;
     DBHandler db;
 
-    private static final int DATABASE_VERSION = 4;
-    private static final String DATABASE_NAME = "Leaderboard4";
-    public static final String TABLE_PLAYERS = "Players";
     public static final String TABLE_MULTIPLAYERS = "Multiplayers";
-    public static final String KEY_ID = "id";
     public static final String KEY_PLAYERNAME = "PlayerName";
-    public static final String KEY_PLAYERSCORE = "PlayerScore";
-    public static final String KEY_PLAYERPASSWORD = "Password";
 
     private SharedPreferences loginPreferences;
     private SharedPreferences.Editor loginPrefsEditor;

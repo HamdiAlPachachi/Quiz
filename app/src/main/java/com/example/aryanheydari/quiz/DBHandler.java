@@ -28,7 +28,6 @@ public class DBHandler extends SQLiteOpenHelper
     static final String DATABASE_CREATE_MULTI = "CREATE TABLE " + TABLE_MULTIPLAYERS + "(" + KEY_ID + " INTEGER PRIMARY KEY, " + KEY_PLAYERNAME + " TEXT, " + KEY_PLAYERSCORE + " TEXT, " + KEY_PLAYERPASSWORD + " TEXT" +")";
 
     public  SQLiteDatabase db;
-    private DBHandler dbHelper;
 
     public DBHandler(Context context)
     {
@@ -162,34 +161,6 @@ public class DBHandler extends SQLiteOpenHelper
         return playerList;
     }
 
-    //This method returns an arraylist containing all the past attempts made by all players in single player mode.
-    public ArrayList<Player> getAllPlayers()
-    {
-        ArrayList<Player> playerListSingle = new ArrayList<>();
-
-        String selectQuery = "SELECT * FROM " + TABLE_PLAYERS + " ORDER BY " + KEY_PLAYERSCORE+ " DESC LIMIT 6";   //Orders player scores> Single player mode, the attempts displayed are limited to 6.
-                                                                                                                  // In Multiplayer mode (with 2 players), a maximum of 3 attempts per player can be displayed.
-        db = this.getWritableDatabase();
-        Cursor cursor = db.rawQuery(selectQuery, null);
-
-
-        if (cursor.moveToFirst()) // looping through all rows and adding to list
-        {
-            do
-            {
-                Player player = new Player();
-                player.setPlayerName(cursor.getString(1));
-                player.setScore(cursor.getInt(2));// Adding player to list
-                playerListSingle.add(player);
-            }
-            
-            while (cursor.moveToNext());
-        }
-
-        cursor.close();
-        return playerListSingle;
-    }
-
     //This method returns an arraylist containing all the past attempts made by both players in multiplayer session.
     public ArrayList<Player> getAllMultiplayers()
     {
@@ -200,13 +171,13 @@ public class DBHandler extends SQLiteOpenHelper
         db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
 
-        if (cursor.moveToFirst()) // looping through all rows and adding to list
+        if (cursor.moveToFirst())                            // looping through all rows and adding to list
         {
             do
             {
                 Player player = new Player();
                 player.setPlayerName(cursor.getString(1));
-                player.setScore(cursor.getInt(2));// Adding player to list
+                player.setScore(cursor.getInt(2));          // Adding player to list
                 playerListMulti.add(player);
             }
 
@@ -219,12 +190,13 @@ public class DBHandler extends SQLiteOpenHelper
     }
 
     //This method returns the highest achieved score in a multiplayer session.
-    public int selectMaxScore()
+    public int selectMaxScore(String TableName)
     {
         int highestScore;
+        Player p = new Player();
 
         db = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + TABLE_MULTIPLAYERS + " ORDER BY " + KEY_PLAYERSCORE+ " DESC LIMIT 1";
+        String selectQuery = "SELECT * FROM " + TableName + " WHERE " + KEY_PLAYERNAME + " ='" + p.getPlayerName() + "'" + " ORDER BY " + KEY_PLAYERSCORE+ " DESC LIMIT 1";
         Cursor cursor = db.rawQuery(selectQuery, null);
         cursor.moveToFirst(); // looping through all rows and adding to list
         highestScore = cursor.getInt(2);

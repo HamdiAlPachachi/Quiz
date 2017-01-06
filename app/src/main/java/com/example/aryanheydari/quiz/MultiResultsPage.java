@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 public class MultiResultsPage extends SuperClass
 {
+    public static final String TABLE_MULTIPLAYERS = "Multiplayers";
 
     ArrayList<String> multiPlayerResultsList = new ArrayList<String>();
     ListView resultsListView;
@@ -40,7 +41,7 @@ public class MultiResultsPage extends SuperClass
 
         //The following 3 methods call the following from DBHandler, which interacts with the database:
         ArrayList<Player> multiPlayer = db.getAllMultiplayers(); //1. An ArrayList of type Player containing the username and score data of each attempt by all players in multiplayer mode.
-        int maxScore = db.selectMaxScore(); //2. The maziximum score achieved in a session, of type int.
+        int maxScore = db.selectMaxScore(TABLE_MULTIPLAYERS); //2. The maziximum score achieved in a session, of type int.
         int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
 
         if(score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
