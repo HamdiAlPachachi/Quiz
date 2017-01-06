@@ -3,6 +3,7 @@ package com.example.aryanheydari.quiz;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 public class MultiPlayerActivity extends SuperClass
 {
@@ -42,6 +43,12 @@ public class MultiPlayerActivity extends SuperClass
         SuperClass.multiPlayer = false;
         Intent ResultsOrPlay = new Intent(this, ResultsOrPlay.class);
         startActivity(ResultsOrPlay);
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Toast.makeText(MultiPlayerActivity.this, "The back button is inactive to prevent amendments.", Toast.LENGTH_LONG).show();
     }
 
 }
