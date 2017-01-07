@@ -16,18 +16,18 @@ public class Result extends SuperClass
 {
 
     public static final String TABLE_PLAYERS = "Players";
+    public static final String TABLE_MULTIPLAYERS = "Multiplayers";
 
+    ArrayList<String> multiPlayerResultsList = new ArrayList<String>();
     ArrayList<String> resultsList = new ArrayList<String>();
     ListView resultsListView;
 
     DBHandler db;
 
-
     public static int individualTurnCounter = 0;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_result);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -41,22 +41,24 @@ public class Result extends SuperClass
         NameEntry.setText(player.getPlayerName() + ": "); //Displays current username at the top of the page.
 
         Button NextPlayerButton = (Button) findViewById(R.id.NextPlayer);
+        if(multiPlayer == false)
+            NextPlayerButton.setVisibility(View.INVISIBLE);
 
         db = new DBHandler(this);
-        db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore())); //Adds the current username and score combination to the single player table.
 
+        if (multiPlayer == false) {
+            db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore())); //Adds the current username and score combination to the single player table.
 
-        int maxScore = db.selectMaxScore(TABLE_PLAYERS); //The maximum score achieved in a session, of type int.
-        int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
-        if(score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
-        {
-            Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
-        }
+            int maxScore = db.selectMaxScore(TABLE_PLAYERS); //The maximum score achieved in a session, of type int.
+            int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
+            if (score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
+            {
+                Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
+            }
 
-        ArrayList<Player> singlePlayer = db.getSpecificPlayer();
-        NextPlayerButton.setVisibility(View.INVISIBLE);
+            ArrayList<Player> singlePlayer = db.getSpecificPlayer();
 
-            for(Player p : singlePlayer)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
+            for (Player p : singlePlayer)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
             {
                 resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
                 resultsListView = (ListView) findViewById(R.id.resultsListView);
@@ -65,7 +67,29 @@ public class Result extends SuperClass
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
             resultsListView.setAdapter(adapter);
         }
+        else
+        {
+            db.addMultiplayer(new Player(SuperClass.getPlayerName(), SuperClass.getScore()));
 
+            //The following 3 methods call the following from DBHandler, which interacts with the database:
+            ArrayList<Player> multiPlayer = db.getAllMultiplayers(); //1. An ArrayList of type Player containing the username and score data of each attempt by all players in multiplayer mode.
+            int maxScore = db.selectMaxScore(TABLE_MULTIPLAYERS); //2. The maziximum score achieved in a session, of type int.
+            int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
+
+            if(score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
+            {
+                Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
+            }
+
+            for (Player p : multiPlayer)// This for loop transforms the multiPlayer ArrayList into an ArrayList of type String, from type Player.
+            {
+                multiPlayerResultsList.add(p.get_PlayerName() + "           " + Integer.toString(p.get_Score()));
+                resultsListView = (ListView) findViewById(R.id.resultsListView);
+            }
+
+            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, multiPlayerResultsList);
+            resultsListView.setAdapter(adapter);        }
+    }
 
     public void StartAgain(View view)
     {
@@ -84,8 +108,30 @@ public class Result extends SuperClass
         setQ4Active(true);
     }
 
+    public void NextPlayer(View view)
+    {
+
+        playerCounter++;
+
+        if (playerCounter >= 3)//INPUT VALIDATION
+        {
+            Toast.makeText(Result.this, "The maximum limit of 2 players has been reached. Please click Welcome Screen to begin a new game.", Toast.LENGTH_SHORT).show();
+        }
+        else
+        {
+            Intent SecondSignIN = new Intent(this, HomeActivity.class);
+            startActivity(SecondSignIN);
+            SuperClass.playerTurns++; //resets the counter for the number of turns.
+            individualTurnCounter = 0;
+        }
+    }
+
     public void WelcomeScreen(View view)
     {
+        playerCounter = 1;
+
+        db.clearMultiDataBase();
+
         Intent HomeActivity = new Intent(this, HomeActivity.class);
         startActivity(HomeActivity);
     }

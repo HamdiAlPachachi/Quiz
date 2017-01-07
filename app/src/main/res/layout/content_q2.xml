@@ -133,7 +133,7 @@
         android:layout_marginEnd="15dp" />
 
     <TextView
-        android:text="What is UCL satisfaction rating?"
+        android:text="What is UCL's satisfaction rating?"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView3"

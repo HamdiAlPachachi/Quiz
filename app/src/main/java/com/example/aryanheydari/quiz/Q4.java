@@ -81,16 +81,16 @@ public class Q4 extends SuperClass implements NavigationView.OnNavigationItemSel
     {
         if (doubleBackPressed)//This if statement ensures that the client understands that he/she will be unable to amend answer after progressing to the results page.
         {
-            if(multiPlayer == false)
-            {
+//            if(multiPlayer == false)
+//            {
                 Intent Result = new Intent(this, Result.class);
                 startActivity(Result);
-            }
-            else
-            {
-                Intent multiResult = new Intent(this, MultiResultsPage.class);
-                startActivity(multiResult);
-            }
+//            }
+//            else
+//            {
+//                Intent multiResult = new Intent(this, MultiResultsPage.class);
+//                startActivity(multiResult);
+//            }
         }
 
         doubleBackPressed = true;

@@ -28,6 +28,11 @@ public class ResultsOrPlay extends SuperClass
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
         playerTurns = 0;
+
+        setQ1Active(true);
+        setQ2Active(true);
+        setQ3Active(true);
+        setQ4Active(true);
     }
 
     public void viewPreviousResultsButton(View view)
