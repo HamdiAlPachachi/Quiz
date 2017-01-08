@@ -24,7 +24,7 @@ public class Result extends SuperClass
 
     DBHandler db;
 
-    public static int individualTurnCounter = 0;
+    public static int indivTurnCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,8 @@ public class Result extends SuperClass
 
         db = new DBHandler(this);
 
-        if (multiPlayer == false) {
+        if (multiPlayer == false)
+        {
             db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore())); //Adds the current username and score combination to the single player table.
 
             int maxScore = db.selectMaxScore(TABLE_PLAYERS); //The maximum score achieved in a session, of type int.
@@ -88,7 +89,8 @@ public class Result extends SuperClass
             }
 
             ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, multiPlayerResultsList);
-            resultsListView.setAdapter(adapter);        }
+            resultsListView.setAdapter(adapter);
+        }
     }
 
     public void StartAgain(View view)
@@ -97,7 +99,7 @@ public class Result extends SuperClass
         player.setPlayerName(player.get_PlayerName());
 
         playerTurns++;
-        individualTurnCounter++;
+        indivTurnCounter++;
 
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
@@ -122,7 +124,7 @@ public class Result extends SuperClass
             Intent SecondSignIN = new Intent(this, HomeActivity.class);
             startActivity(SecondSignIN);
             SuperClass.playerTurns++; //resets the counter for the number of turns.
-            individualTurnCounter = 0;
+            indivTurnCounter = 0;
         }
     }
 
@@ -131,6 +133,7 @@ public class Result extends SuperClass
         playerCounter = 1;
 
         db.clearMultiDataBase();
+        //db.clearMultiDataBase(TABLE_PLAYERS);
 
         Intent HomeActivity = new Intent(this, HomeActivity.class);
         startActivity(HomeActivity);

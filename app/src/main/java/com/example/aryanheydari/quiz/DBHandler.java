@@ -80,7 +80,6 @@ public class DBHandler extends SQLiteOpenHelper
             cursor.close();
             return true;
         }
-
     }
 
     //This method enables the programme to cross-check an entered password (for a given username) with the correct password in the database.

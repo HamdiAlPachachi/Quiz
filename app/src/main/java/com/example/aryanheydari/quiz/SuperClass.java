@@ -18,6 +18,11 @@ public class SuperClass extends AppCompatActivity
 
     private static boolean Q1Active = true, Q2Active = true, Q3Active = true, Q4Active = true;
 
+    public void setMultiPlayer(boolean mode)
+    {
+        multiPlayer = mode;
+    }
+
     //SetQActive() methods are used as indicators of whether of radio buttons in each question are activated or deactivated.
     public void setQ1Active(boolean activity)
     {

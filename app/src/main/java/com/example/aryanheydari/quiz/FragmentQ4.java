@@ -21,13 +21,13 @@ import android.util.Log;
 public class FragmentQ4 extends Fragment
 {
 
-    private ImageSwitcher ImageSwitcher;
+    private ImageSwitcher is;
     Button nextButton;
     Button previousButton;
 
-    int[] imageIds = {R.drawable.ucl_flag, R.drawable.qs_info, R.drawable.qs_logo};
-    int count = imageIds.length;
-    int currentIndex = 0;
+    private int[] imageIds = {R.drawable.ucl_flag, R.drawable.qs_info, R.drawable.qs_logo};
+    private int count = imageIds.length;
+    private int currentIndex = 0;
 
     public FragmentQ4()
     {
@@ -42,11 +42,11 @@ public class FragmentQ4 extends Fragment
         View view = inflater.inflate(R.layout.fragment_1, container, false);
         nextButton = (Button) view.findViewById(R.id.Next);
         previousButton = (Button) view.findViewById(R.id.Previous);
-        ImageSwitcher = (ImageSwitcher) view.findViewById(R.id.ImageSwitcher);
+        is = (ImageSwitcher) view.findViewById(R.id.ImageSwitcher);
 
         //return view;
 
-        ImageSwitcher.setFactory(new ViewSwitcher.ViewFactory()
+        is.setFactory(new ViewSwitcher.ViewFactory()
         {
 
             public View makeView()
@@ -58,7 +58,7 @@ public class FragmentQ4 extends Fragment
             }
         });
 
-        ImageSwitcher.setImageResource((imageIds[0])); //to begin with first picture.
+        is.setImageResource((imageIds[0])); //to begin with first picture.
 
         nextButton.setOnClickListener(new View.OnClickListener()
         {
@@ -67,12 +67,12 @@ public class FragmentQ4 extends Fragment
             {
                 currentIndex++;                //currentIndex is the counter used to switch between pictures in the fragment.
                 if (currentIndex == count)     //When "Next Picture" is clicked, currentIndex rises by 1, thereby raising the
-                {                              //index in the imageIds array, which changes the image displayed by ImageSwitcher.
+                {                              //index in the imageIds array, which changes the image displayed by is.
                     currentIndex = 0;
                 }
                 String log = Integer.toString(currentIndex);
                 Log.d("Current currentIndex: ", log);
-                ImageSwitcher.setImageResource(imageIds[currentIndex]);
+                is.setImageResource(imageIds[currentIndex]);
             }
 
         });
@@ -86,7 +86,7 @@ public class FragmentQ4 extends Fragment
                 {
                     currentIndex = count - 1;
                 }
-                ImageSwitcher.setImageResource(imageIds[currentIndex]);
+                is.setImageResource(imageIds[currentIndex]);
             }
         });
 

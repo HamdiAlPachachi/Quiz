@@ -19,9 +19,9 @@ public class HomeActivity extends SuperClass
     public static final String TABLE_MULTIPLAYERS = "Multiplayers";
     public static final String KEY_PLAYERNAME = "PlayerName";
 
-    private SharedPreferences loginPreferences;
-    private SharedPreferences.Editor loginPrefsEditor;
-    private Boolean saveLogin;
+    private SharedPreferences logPr;
+    private SharedPreferences.Editor logPrEd;
+    private boolean saveLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -38,8 +38,8 @@ public class HomeActivity extends SuperClass
         btnSignIn = (Button)findViewById(R.id.buttonSignIN);
         btnSignUp = (Button)findViewById(R.id.buttonSignUP);
 
-        loginPreferences = getSharedPreferences("loginPrefs", MODE_PRIVATE);
-        loginPrefsEditor = loginPreferences.edit();
+        logPr = getSharedPreferences("loginPrefs", MODE_PRIVATE);
+        logPrEd = logPr.edit();
 
         if(multiPlayer == true && playerCounter > 1)//This if-else statement changes the display of the Sign In screen when the second player signs in in multiplayer mode.
         {
@@ -47,7 +47,7 @@ public class HomeActivity extends SuperClass
             Slogan.setVisibility(View.INVISIBLE);
         }
 
-        saveLogin = loginPreferences.getBoolean("saveLogin", false);
+        saveLogin = logPr.getBoolean("saveLogin", false);
 
         // Set OnClick Listener on SignUp button
         btnSignUp.setOnClickListener(new View.OnClickListener()
@@ -84,8 +84,8 @@ public class HomeActivity extends SuperClass
         //This method populates the registration fields with the respective username and password.
         if (saveLogin == true && playerCounter == 1)
         {
-            editTextUserName.setText(loginPreferences.getString("username", ""));
-            editTextPassword.setText(loginPreferences.getString("password", ""));
+            editTextUserName.setText(logPr.getString("username", ""));
+            editTextPassword.setText(logPr.getString("password", ""));
             saveLoginCheckBox.setChecked(true);
         }
 
@@ -105,15 +105,15 @@ public class HomeActivity extends SuperClass
 
                 if (saveLoginCheckBox.isChecked())//saving details upon clicking "Remember Me" button.
                 {
-                    loginPrefsEditor.putBoolean("saveLogin", true);
-                    loginPrefsEditor.putString("username", userName);
-                    loginPrefsEditor.putString("password", password);
-                    loginPrefsEditor.commit();
+                    logPrEd.putBoolean("saveLogin", true);
+                    logPrEd.putString("username", userName);
+                    logPrEd.putString("password", password);
+                    logPrEd.commit();
                 }
                 else
                 {
-                    loginPrefsEditor.clear();
-                    loginPrefsEditor.commit();
+                    logPrEd.clear();
+                    logPrEd.commit();
                 }
 
                 if (password.equals(storedPassword) && entryExists == false)
@@ -124,8 +124,13 @@ public class HomeActivity extends SuperClass
                         SuperClass superClass = new SuperClass();
                         superClass.UserName = userName;
 
+                        score = 0;
+                        setQ1Active(true);
+                        setQ2Active(true);
+                        setQ3Active(true);
+                        setQ4Active(true);
 
-                        //This if-else statement ensures that the second player in multiplayer mode is directed straight to Q1 after entering details.
+                    //This if-else statement ensures that the second player in multiplayer mode is directed straight to Q1 after entering details.
                         if(playerCounter <= 1)
                         {
                             Intent MultiPlayer = new Intent(getApplicationContext(), MultiPlayerActivity.class);//Start Q1
