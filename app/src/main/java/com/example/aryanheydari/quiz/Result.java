@@ -50,46 +50,20 @@ public class Result extends SuperClass
         {
             db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore())); //Adds the current username and score combination to the single player table.
 
-            int maxScore = db.selectMaxScore(TABLE_PLAYERS); //The maximum score achieved in a session, of type int.
-            int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
-            if (score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
-            {
-                Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
-            }
+            highScoreChecker(TABLE_PLAYERS);
 
             ArrayList<Player> singlePlayer = db.getSpecificPlayer();
-
-            for (Player p : singlePlayer)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
-            {
-                resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
-                resultsListView = (ListView) findViewById(R.id.resultsListView);
-            }
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
-            resultsListView.setAdapter(adapter);
+            playerToStringArrayListConverter(singlePlayer);
         }
         else
         {
             db.addMultiplayer(new Player(SuperClass.getPlayerName(), SuperClass.getScore()));
 
             //The following 3 methods call the following from DBHandler, which interacts with the database:
+            highScoreChecker(TABLE_MULTIPLAYERS);
+
             ArrayList<Player> multiPlayer = db.getAllMultiplayers(); //1. An ArrayList of type Player containing the username and score data of each attempt by all players in multiplayer mode.
-            int maxScore = db.selectMaxScore(TABLE_MULTIPLAYERS); //2. The maziximum score achieved in a session, of type int.
-            int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
-
-            if(score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
-            {
-                Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
-            }
-
-            for (Player p : multiPlayer)// This for loop transforms the multiPlayer ArrayList into an ArrayList of type String, from type Player.
-            {
-                multiPlayerResultsList.add(p.get_PlayerName() + "           " + Integer.toString(p.get_Score()));
-                resultsListView = (ListView) findViewById(R.id.resultsListView);
-            }
-
-            ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, multiPlayerResultsList);
-            resultsListView.setAdapter(adapter);
+            playerToStringArrayListConverter(multiPlayer);
         }
     }
 
@@ -137,6 +111,28 @@ public class Result extends SuperClass
 
         Intent HomeActivity = new Intent(this, HomeActivity.class);
         startActivity(HomeActivity);
+    }
+
+    public void highScoreChecker(String TableName)
+    {
+        int maxScore = db.selectMaxScore(TableName); //The maximum score achieved in a session, of type int.
+        int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
+        if (score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
+        {
+            Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void playerToStringArrayListConverter(ArrayList<Player> playerArrayListName)
+    {
+        for (Player p : playerArrayListName)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
+        {
+            resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
+            resultsListView = (ListView) findViewById(R.id.resultsListView);
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, resultsList);
+        resultsListView.setAdapter(adapter);
     }
 
     @Override
