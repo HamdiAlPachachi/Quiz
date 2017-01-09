@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-public class ResultsOrPlay extends SuperClass
+public class ResultsOrPlay extends Player
 {
     //This activity enables the player to view their previous scores in single player mode.
 
@@ -28,7 +28,7 @@ public class ResultsOrPlay extends SuperClass
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
         playerTurns = 0;
-        score = 0;
+        tempScore = 0;
 
         setQ1Active(true);
         setQ2Active(true);
@@ -41,6 +41,7 @@ public class ResultsOrPlay extends SuperClass
         Intent Result = new Intent(this, Result.class);
         startActivity(Result);
         playerTurns = 0;
+        setResultsIndicator(true);
     }
 }
 

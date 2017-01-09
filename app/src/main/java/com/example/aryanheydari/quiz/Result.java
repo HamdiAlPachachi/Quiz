@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import android.widget.Toast;
 
 
-public class Result extends SuperClass
+public class Result extends Player
 {
 
     public static final String TABLE_PLAYERS = "Players";
@@ -33,10 +33,19 @@ public class Result extends SuperClass
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        TextView ResultText = (TextView) findViewById(R.id.ResultText);
         TextView ScoreDisplay = (TextView) findViewById(R.id.ScoreDisplay);
-        ScoreDisplay.setText("" + SuperClass.getScore()); //Displays score achieved at the top of the page.
-
         TextView NameEntry = (TextView) findViewById(R.id.NameEntry);
+
+        if(resultsIndicator == true)
+        {
+            ResultText.setVisibility(View.INVISIBLE);
+            ScoreDisplay.setVisibility(View.INVISIBLE);
+            NameEntry.setVisibility(View.INVISIBLE);
+        }
+
+        ScoreDisplay.setText("" + Player.getTempScore()); //Displays tempScore achieved at the top of the page.
+
         Player player = new Player();
         NameEntry.setText(player.getPlayerName() + ": "); //Displays current username at the top of the page.
 
@@ -48,22 +57,28 @@ public class Result extends SuperClass
 
         if (multiPlayer == false)
         {
-            db.addPlayer(new Player(Player.getPlayerName(), SuperClass.getScore())); //Adds the current username and score combination to the single player table.
+            if(resultsIndicator == false)
+            {
+                db.addPlayer(new Player(Player.getPlayerName(), Player.getTempScore())); //Adds the current username and tempScore combination to the single player table.
+            }
 
             highScoreChecker(TABLE_PLAYERS);
 
             ArrayList<Player> singlePlayer = db.getSpecificPlayer();
-            playerToStringArrayListConverter(singlePlayer);
+            ArrayListConv(singlePlayer);
         }
         else
         {
-            db.addMultiplayer(new Player(SuperClass.getPlayerName(), SuperClass.getScore()));
+            if(resultsIndicator == false)
+            {
+                db.addMultiplayer(new Player(Player.getPlayerName(), Player.getTempScore()));
+            }
 
             //The following 3 methods call the following from DBHandler, which interacts with the database:
             highScoreChecker(TABLE_MULTIPLAYERS);
 
-            ArrayList<Player> multiPlayer = db.getAllMultiplayers(); //1. An ArrayList of type Player containing the username and score data of each attempt by all players in multiplayer mode.
-            playerToStringArrayListConverter(multiPlayer);
+            ArrayList<Player> multiPlayer = db.getAllMultiplayers(); //1. An ArrayList of type Player containing the username and tempScore data of each attempt by all players in multiplayer mode.
+            ArrayListConv(multiPlayer);
         }
     }
 
@@ -77,7 +92,7 @@ public class Result extends SuperClass
 
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
-        SuperClass.score = 0;
+        tempScore = 0;
         setQ1Active(true);
         setQ2Active(true);
         setQ3Active(true);
@@ -97,7 +112,7 @@ public class Result extends SuperClass
         {
             Intent SecondSignIN = new Intent(this, HomeActivity.class);
             startActivity(SecondSignIN);
-            SuperClass.playerTurns++; //resets the counter for the number of turns.
+            Player.playerTurns++; //resets the counter for the number of turns.
             indivTurnCounter = 0;
         }
     }
@@ -115,17 +130,17 @@ public class Result extends SuperClass
 
     public void highScoreChecker(String TableName)
     {
-        int maxScore = db.selectMaxScore(TableName); //The maximum score achieved in a session, of type int.
-        int relevantScoreCounter = db.numberOfRelevantScores(score); //The number of scores in multiplayer mode that are less than the current score.
-        if (score == maxScore && relevantScoreCounter == playerTurns) //High score indicator.
+        int maxScore = db.selectMaxScore(TableName); //The maximum tempScore achieved in a session, of type int.
+        int relevantScoreCounter = db.numberOfRelevantScores(tempScore); //The number of scores in multiplayer mode that are less than the current tempScore.
+        if (tempScore == maxScore && relevantScoreCounter == playerTurns) //High tempScore indicator.
         {
             Toast.makeText(Result.this, "Congratulations, new high score achieved!", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void playerToStringArrayListConverter(ArrayList<Player> playerArrayListName)
+    public void ArrayListConv(ArrayList<Player> ArrayListName)//Converts ArrayList of Type Player to one of type String.
     {
-        for (Player p : playerArrayListName)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
+        for (Player p : ArrayListName)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
         {
             resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
             resultsListView = (ListView) findViewById(R.id.resultsListView);

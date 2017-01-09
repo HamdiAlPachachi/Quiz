@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
-public class MultiPlayerActivity extends SuperClass
+public class MultiPlayerActivity extends Player
 {
     //This activity prompts the user as to whether they would like to enter single or multiplayer mode. In the former case, the results would be
     // displayed in Result activity, while in the latter case, the results would appear in the MultiResultPage activity.
@@ -13,7 +13,7 @@ public class MultiPlayerActivity extends SuperClass
     //all entries in this table when a new multiplayer game is started. This prevents the single player table ("Players") from being cleared upon starting
     //a new multiplayer session. This enables a given player, in single player mode, to see their previous results from previous sessions in single player mode.
 
-    //The choice of mode alters the boolean mutliPlayer variable, which is declared and stored in SuperClass.
+    //The choice of mode alters the boolean mutliPlayer variable, which is declared and stored in Player.
 
     DBHandler db;
 

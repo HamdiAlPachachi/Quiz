@@ -11,7 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class HomeActivity extends SuperClass
+public class HomeActivity extends Player
 {
     Button btnSignIn,btnSignUp;
     DBHandler db;
@@ -100,6 +100,7 @@ public class HomeActivity extends SuperClass
 
                 // fetch the Password form database for respective user name
                 String storedPassword = db.getSingleEntry(userName);
+
                 // check if the Stored password matches with Password entered by user
                 boolean entryExists = db.checkStoredName(TABLE_MULTIPLAYERS, KEY_PLAYERNAME, userName);//Scanning multiplayer table for identical username.
 
@@ -121,10 +122,10 @@ public class HomeActivity extends SuperClass
                         Toast.makeText(HomeActivity.this, "Login Successful", Toast.LENGTH_LONG).show();
                         dialog.dismiss();
 
-                        SuperClass superClass = new SuperClass();
-                        superClass.UserName = userName;
+                        Player player = new Player();
+                        player.UserName = userName;
 
-                        score = 0;
+                        tempScore = 0;
                         setQ1Active(true);
                         setQ2Active(true);
                         setQ3Active(true);

@@ -107,7 +107,7 @@ public class DBHandler extends SQLiteOpenHelper
         db.insert(TABLE_PLAYERS, null, newValues);
     }
 
-    //The following 2 methods insert new quiz attempts (username and score) into respective tables by calling the values stored in the Player class.
+    //The following 2 methods insert new quiz attempts (username and tempScore) into respective tables by calling the values stored in the Player class.
 
     public void addPlayer (Player player)//For single player mode.
     {
@@ -188,7 +188,7 @@ public class DBHandler extends SQLiteOpenHelper
         return playerListMulti;
     }
 
-    //This method returns the highest achieved score in a multiplayer session.
+    //This method returns the highest achieved tempScore in a multiplayer session.
     public int selectMaxScore(String TableName)
     {
         int highestScore;
@@ -203,7 +203,7 @@ public class DBHandler extends SQLiteOpenHelper
         return highestScore;
     }
 
-    //This method returns the number of scores that are strictly less than the current score.
+    //This method returns the number of scores that are strictly less than the current tempScore.
     public int numberOfRelevantScores(int score)
     {
         int relevantPlayerCounter = 0;

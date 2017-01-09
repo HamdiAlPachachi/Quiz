@@ -15,7 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Q4 extends SuperClass implements NavigationView.OnNavigationItemSelectedListener
+public class Q4 extends Player implements NavigationView.OnNavigationItemSelectedListener
 {
 
     boolean doubleBackPressed = false;
@@ -36,7 +36,7 @@ public class Q4 extends SuperClass implements NavigationView.OnNavigationItemSel
         navigationView.setNavigationItemSelectedListener(this);
 
         final TextView ScoreCount = (TextView)findViewById(R.id.Score);
-        ScoreCount.setText("Score: " + SuperClass.getScore());
+        ScoreCount.setText("Score: " + Player.getTempScore());
 
         RadioGroup Q4RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
@@ -50,7 +50,7 @@ public class Q4 extends SuperClass implements NavigationView.OnNavigationItemSel
 
             if (CQ4.isChecked())
             {
-                SuperClass.score++;
+                Player.tempScore++;
                 Toast.makeText(Q4.this, "Well done, 7 is the correct answer!", Toast.LENGTH_SHORT).show();
 
             }
@@ -59,7 +59,7 @@ public class Q4 extends SuperClass implements NavigationView.OnNavigationItemSel
                 Toast.makeText(Q4.this, "Wrong answer!", Toast.LENGTH_SHORT).show();
             }
             setQ4Active(false); //This is an indicator that all radio buttons in Q4 are inactive.
-            ScoreCount.setText("Score: " + SuperClass.getScore());
+            ScoreCount.setText("Score: " + Player.getTempScore());
 
             for (int i = 0; i < Q4RadioGroup.getChildCount(); i++)//Deactivates all radio buttons.
             {
@@ -68,7 +68,7 @@ public class Q4 extends SuperClass implements NavigationView.OnNavigationItemSel
 
             }
         });
-        if (SuperClass.getQ4Active() == false)//Ensures that all radio buttons are deactivated if they should be.
+        if (Player.getQ4Active() == false)//Ensures that all radio buttons are deactivated if they should be.
         {
             for (int i = 0; i < Q4RadioGroup.getChildCount(); i++)
             {

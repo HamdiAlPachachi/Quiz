@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Q2 extends SuperClass implements NavigationView.OnNavigationItemSelectedListener
+public class Q2 extends Player implements NavigationView.OnNavigationItemSelectedListener
 {
 
     @Override
@@ -33,7 +33,7 @@ public class Q2 extends SuperClass implements NavigationView.OnNavigationItemSel
         navigationView.setNavigationItemSelectedListener(this);
 
         final TextView ScoreCount = (TextView)findViewById(R.id.Score);
-        ScoreCount.setText("Score: " + SuperClass.getScore());
+        ScoreCount.setText("Score: " + Player.getTempScore());
 
         RadioGroup Q2RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
@@ -46,7 +46,7 @@ public class Q2 extends SuperClass implements NavigationView.OnNavigationItemSel
 
                 if (BQ2.isChecked())
                 {
-                    SuperClass.score++;
+                    Player.tempScore++;
                     Toast.makeText(Q2.this, "Well done, 84% is the correct answer!", Toast.LENGTH_SHORT).show();
 
                 }
@@ -56,7 +56,7 @@ public class Q2 extends SuperClass implements NavigationView.OnNavigationItemSel
                 }
 
                 setQ2Active(false); //This is an indicator that all radio buttons in Q2 are inactive.
-                ScoreCount.setText("Score: " + SuperClass.getScore());
+                ScoreCount.setText("Score: " + Player.getTempScore());
 
                 for (int i = 0; i < Q2RadioGroup.getChildCount(); i++) //Deactivates all radio buttons.
                 {
@@ -64,7 +64,7 @@ public class Q2 extends SuperClass implements NavigationView.OnNavigationItemSel
                 }
             }
         });
-        if (SuperClass.getQ2Active() == false) //Ensures that all radio buttons are deactivated if they should be.
+        if (Player.getQ2Active() == false) //Ensures that all radio buttons are deactivated if they should be.
         {
             for (int i = 0; i < Q2RadioGroup.getChildCount(); i++)
             {

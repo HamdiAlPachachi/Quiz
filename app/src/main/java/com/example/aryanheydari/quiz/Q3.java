@@ -14,7 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class Q3 extends SuperClass implements NavigationView.OnNavigationItemSelectedListener
+public class Q3 extends Player implements NavigationView.OnNavigationItemSelectedListener
 {
 
     @Override
@@ -33,7 +33,7 @@ public class Q3 extends SuperClass implements NavigationView.OnNavigationItemSel
         navigationView.setNavigationItemSelectedListener(this);
 
         final TextView ScoreCount = (TextView)findViewById(R.id.Score);
-        ScoreCount.setText("Score: " + SuperClass.getScore());
+        ScoreCount.setText("Score: " + Player.getTempScore());
 
         RadioGroup Q3RadioGroup = (RadioGroup) findViewById(R.id.radioGroup);
 
@@ -47,7 +47,7 @@ public class Q3 extends SuperClass implements NavigationView.OnNavigationItemSel
 
                 if (DQ3.isChecked())
                 {
-                    SuperClass.score++;
+                    Player.tempScore++;
                     Toast.makeText(Q3.this, "Well done, 2 is the correct answer!", Toast.LENGTH_SHORT).show();
 
                 }
@@ -57,7 +57,7 @@ public class Q3 extends SuperClass implements NavigationView.OnNavigationItemSel
                 }
 
                 setQ3Active(false);//This is an indicator that all radio buttons in Q3 are inactive.
-                ScoreCount.setText("Score: " + SuperClass.getScore());
+                ScoreCount.setText("Score: " + Player.getTempScore());
 
                 for (int i = 0; i < Q3RadioGroup.getChildCount(); i++) //Deactivates all radio buttons.
                 {
@@ -66,7 +66,7 @@ public class Q3 extends SuperClass implements NavigationView.OnNavigationItemSel
 
             }
         });
-        if (SuperClass.getQ3Active() == false) //Ensures that all radio buttons are deactivated if they should be.
+        if (Player.getQ3Active() == false) //Ensures that all radio buttons are deactivated if they should be.
         {
             for (int i = 0; i < Q3RadioGroup.getChildCount(); i++)
             {
