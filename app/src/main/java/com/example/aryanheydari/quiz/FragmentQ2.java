@@ -54,6 +54,14 @@ public class FragmentQ2 extends Fragment
 
         is.setImageResource((imageIds[0])); //to begin with first picture.
 
+        switcher();
+
+        return view;
+
+    }
+
+    public void switcher()
+    {
         nextButton.setOnClickListener(new View.OnClickListener()
         {
 
@@ -64,8 +72,6 @@ public class FragmentQ2 extends Fragment
                 {                              //index in the imageIds array, which changes the image displayed by is.
                     currentIndex = 0;
                 }
-                String log = Integer.toString(currentIndex);
-                Log.d("Current currentIndex: ", log);
                 is.setImageResource(imageIds[currentIndex]);
             }
 
@@ -85,7 +91,7 @@ public class FragmentQ2 extends Fragment
             }
         });
 
-        return view;
 
     }
+
 }

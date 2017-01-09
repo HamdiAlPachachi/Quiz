@@ -33,7 +33,7 @@ public class MultiPlayerActivity extends Player
         db.deleteTable(TABLE_MULTIPLAYERS); //This deletes the table from the previous muliplayer session.
 
         playerCounter = 1; //Clicking yes does the following: 1. it resets the playerCounter to 1, which implies that the first player (in multiplayer mode) is currently playing.
-        individualTurnCounter = 0; //And 2. It resets indivTurnCounter to 0, implying that no attempts have yet been made in the current session.
+//        individualTurnCounter = 0; //And 2. It resets indivTurnCounter to 0, implying that no attempts have yet been made in the current session.
 
         Intent ResultsOrPlay = new Intent(this, ResultsOrPlay.class);
         startActivity(ResultsOrPlay);

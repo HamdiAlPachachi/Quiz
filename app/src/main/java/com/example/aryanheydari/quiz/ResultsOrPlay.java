@@ -15,11 +15,11 @@ public class ResultsOrPlay extends Player
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_results_or_play);
 
-        Button viewPreviousResultsButton = (Button) findViewById(R.id.viewPreviousResultsButton);
+        Button PrevResults = (Button) findViewById(R.id.PrevResults);
 
         if(multiPlayer == true)
         {
-            viewPreviousResultsButton.setVisibility(View.INVISIBLE);
+            PrevResults.setVisibility(View.INVISIBLE);
         }
     }
 
@@ -36,7 +36,7 @@ public class ResultsOrPlay extends Player
         setQ4Active(true);
     }
 
-    public void viewPreviousResultsButton(View view)
+    public void PrevResults(View view)
     {
         Intent Result = new Intent(this, Result.class);
         startActivity(Result);

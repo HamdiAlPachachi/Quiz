@@ -64,16 +64,16 @@ public class DBHandler extends SQLiteOpenHelper
     }
 
     //This method scans a given table to ensure that the entered username has not already been entered.
-    public boolean checkStoredName(String TableName, String fieldName, String enteredName)//Use this method in class
+    public boolean checkName(String table, String field, String name)//Use this method in class
     {
         db = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + TableName + " WHERE " + fieldName + " ='" + enteredName + "'";
+        String selectQuery = "SELECT * FROM " + table + " WHERE " + field + " ='" + name + "'";
         Cursor cursor = db.rawQuery(selectQuery, null);
         cursor.moveToFirst();
         if(cursor.getCount() <= 0)
         {
             cursor.close();
-            return false;//returns false if enteredName (ie. UserName) does not exist in the database.
+            return false;//returns false if name (ie. UserName) does not exist in the database.
         }
         else
         {
@@ -113,8 +113,8 @@ public class DBHandler extends SQLiteOpenHelper
     {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_PLAYERNAME, player.get_PlayerName());
-        values.put(KEY_PLAYERSCORE, player.get_Score());
+        values.put(KEY_PLAYERNAME, player.getPlayerName());
+        values.put(KEY_PLAYERSCORE, player.getListScore());
         db.insert(TABLE_PLAYERS, null, values);
         db.close();
 
@@ -124,8 +124,8 @@ public class DBHandler extends SQLiteOpenHelper
     {
         db = this.getWritableDatabase();
         ContentValues values = new ContentValues();
-        values.put(KEY_PLAYERNAME, player.get_PlayerName());
-        values.put(KEY_PLAYERSCORE, player.get_Score());
+        values.put(KEY_PLAYERNAME, player.getPlayerName());
+        values.put(KEY_PLAYERSCORE, player.getListScore());
         db.insert(TABLE_MULTIPLAYERS, null, values);
         db.close();
 
@@ -138,7 +138,7 @@ public class DBHandler extends SQLiteOpenHelper
 
         Player p = new Player();
 
-        String Query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + KEY_PLAYERNAME + " ='" + p.getPlayerName() + "'" + " ORDER BY " + KEY_PLAYERSCORE+ " DESC LIMIT 6";
+        String Query = "SELECT * FROM " + TABLE_PLAYERS + " WHERE " + KEY_PLAYERNAME + " ='" + p.getUserName() + "'" + " ORDER BY " + KEY_PLAYERSCORE+ " DESC LIMIT 6";
         // In Multiplayer mode (with 2 players), a maximum of 3 attempts per player can be displayed.
         db = this.getWritableDatabase();
         Cursor cursor = db.rawQuery(Query, null);
@@ -149,7 +149,7 @@ public class DBHandler extends SQLiteOpenHelper
             {
                 Player player = new Player();
                 player.setPlayerName(cursor.getString(1));
-                player.setScore(cursor.getInt(2));// Adding player to list
+                player.setListScore(cursor.getInt(2));// Adding player to list
                 playerList.add(player);
             }
 
@@ -176,7 +176,7 @@ public class DBHandler extends SQLiteOpenHelper
             {
                 Player player = new Player();
                 player.setPlayerName(cursor.getString(1));
-                player.setScore(cursor.getInt(2));          // Adding player to list
+                player.setListScore(cursor.getInt(2));          // Adding player to list
                 playerListMulti.add(player);
             }
 
@@ -195,7 +195,7 @@ public class DBHandler extends SQLiteOpenHelper
         Player p = new Player();
 
         db = this.getReadableDatabase();
-        String selectQuery = "SELECT * FROM " + TableName + " WHERE " + KEY_PLAYERNAME + " ='" + p.getPlayerName() + "'" + " ORDER BY " + KEY_PLAYERSCORE+ " DESC LIMIT 1";
+        String selectQuery = "SELECT * FROM " + TableName + " WHERE " + KEY_PLAYERNAME + " ='" + p.getUserName() + "'" + " ORDER BY " + KEY_PLAYERSCORE+ " DESC LIMIT 1";
         Cursor cursor = db.rawQuery(selectQuery, null);
         cursor.moveToFirst(); // looping through all rows and adding to list
         highestScore = cursor.getInt(2);

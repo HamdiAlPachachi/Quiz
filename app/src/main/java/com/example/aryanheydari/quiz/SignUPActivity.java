@@ -1,7 +1,6 @@
 package com.example.aryanheydari.quiz;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,40 +35,44 @@ public class SignUPActivity extends Activity
         {
             public void onClick(View v)
             {
-                String userName = editTextUserName.getText().toString();
-                String password = editTextPassword.getText().toString();
-                String confirmPassword = editTextConfirmPassword.getText().toString();
-
-                boolean checkUserExists = db.checkStoredName(TABLE_PLAYERS, KEY_PLAYERNAME, userName);
-
-                // checks if any of the fields are empty - INPUT VALIDATION
-                if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
-                {
-                    Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_LONG).show();
-                    return;
-                }
-
-                // check if both passwords match - INPUT VALIDATION
-                if(checkUserExists == false)
-                {
-                    if (!password.equals(confirmPassword))
-                    {
-                        Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
-                        return;
-                    }
-                    else
-                    {
-                        // Save the Data in Database
-                        db.insertEntry(userName, password);
-                        Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
-                    }
-                }
-                else
-                {
-                    Toast.makeText(getApplicationContext(), "Account already exists", Toast.LENGTH_LONG).show();
-                }
+                signUp();
             }
         });
+    }
+
+    public void signUp()
+    {
+        String userName = editTextUserName.getText().toString();
+        String password = editTextPassword.getText().toString();
+        String confirmPassword = editTextConfirmPassword.getText().toString();
+        boolean checkUserExists = db.checkName(TABLE_PLAYERS, KEY_PLAYERNAME, userName);
+
+        // checks if any of the fields are empty - INPUT VALIDATION
+        if(userName.equals("")||password.equals("")||confirmPassword.equals(""))
+        {
+            Toast.makeText(getApplicationContext(), "Field Vaccant", Toast.LENGTH_LONG).show();
+            return;
+        }
+
+        if(checkUserExists == false)
+        {
+            // check if both passwords match - INPUT VALIDATION
+            if (!password.equals(confirmPassword))
+            {
+                Toast.makeText(getApplicationContext(), "Password does not match", Toast.LENGTH_LONG).show();
+                return;
+            }
+            else
+            {
+                // Save the Data in Database
+                db.insertEntry(userName, password);
+                Toast.makeText(getApplicationContext(), "Account Successfully Created ", Toast.LENGTH_LONG).show();
+            }
+        }
+        else
+        {
+            Toast.makeText(getApplicationContext(), "Account already exists", Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -77,11 +80,5 @@ public class SignUPActivity extends Activity
     {
         super.onDestroy();
         db.close();
-    }
-
-    public void CreateAccount(View view)
-    {
-        Intent HomeActivity = new Intent(this, HomeActivity.class);
-        startActivity(HomeActivity);
     }
 }

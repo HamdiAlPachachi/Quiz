@@ -102,7 +102,7 @@ public class HomeActivity extends Player
                 String storedPassword = db.getSingleEntry(userName);
 
                 // check if the Stored password matches with Password entered by user
-                boolean entryExists = db.checkStoredName(TABLE_MULTIPLAYERS, KEY_PLAYERNAME, userName);//Scanning multiplayer table for identical username.
+                boolean entryExists = db.checkName(TABLE_MULTIPLAYERS, KEY_PLAYERNAME, userName);//Scanning multiplayer table for identical username.
 
                 if (saveLoginCheckBox.isChecked())//saving details upon clicking "Remember Me" button.
                 {

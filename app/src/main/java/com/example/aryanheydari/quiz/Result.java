@@ -24,7 +24,7 @@ public class Result extends Player
 
     DBHandler db;
 
-    public static int indivTurnCounter = 0;
+//    public static int indivTurnCounter = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,7 @@ public class Result extends Player
         ScoreDisplay.setText("" + Player.getTempScore()); //Displays tempScore achieved at the top of the page.
 
         Player player = new Player();
-        NameEntry.setText(player.getPlayerName() + ": "); //Displays current username at the top of the page.
+        NameEntry.setText(player.getUserName() + ": "); //Displays current username at the top of the page.
 
         Button NextPlayerButton = (Button) findViewById(R.id.NextPlayer);
         if(multiPlayer == false)
@@ -59,7 +59,7 @@ public class Result extends Player
         {
             if(resultsIndicator == false)
             {
-                db.addPlayer(new Player(Player.getPlayerName(), Player.getTempScore())); //Adds the current username and tempScore combination to the single player table.
+                db.addPlayer(new Player(Player.getUserName(), Player.getTempScore())); //Adds the current username and tempScore combination to the single player table.
             }
 
             highScoreChecker(TABLE_PLAYERS);
@@ -71,7 +71,7 @@ public class Result extends Player
         {
             if(resultsIndicator == false)
             {
-                db.addMultiplayer(new Player(Player.getPlayerName(), Player.getTempScore()));
+                db.addMultiplayer(new Player(Player.getUserName(), Player.getTempScore()));
             }
 
             //The following 3 methods call the following from DBHandler, which interacts with the database:
@@ -85,10 +85,10 @@ public class Result extends Player
     public void StartAgain(View view)
     {
         Player player = new Player();
-        player.setPlayerName(player.get_PlayerName());
+        player.setPlayerName(player.getPlayerName());
 
         playerTurns++;
-        indivTurnCounter++;
+//        indivTurnCounter++;
 
         Intent Q1 = new Intent(this, Q1.class);
         startActivity(Q1);
@@ -113,7 +113,6 @@ public class Result extends Player
             Intent SecondSignIN = new Intent(this, HomeActivity.class);
             startActivity(SecondSignIN);
             Player.playerTurns++; //resets the counter for the number of turns.
-            indivTurnCounter = 0;
         }
     }
 
@@ -122,7 +121,6 @@ public class Result extends Player
         playerCounter = 1;
 
         db.clearMultiDataBase();
-        //db.clearMultiDataBase(TABLE_PLAYERS);
 
         Intent HomeActivity = new Intent(this, HomeActivity.class);
         startActivity(HomeActivity);
@@ -142,7 +140,7 @@ public class Result extends Player
     {
         for (Player p : Name)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
         {
-            resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
+            resultsList.add(p.getUserName() + "              " + Integer.toString(p.getListScore()));
             resultsListView = (ListView) findViewById(R.id.resultsListView);
         }
 

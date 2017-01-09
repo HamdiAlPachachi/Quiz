@@ -13,7 +13,6 @@ public class Player extends AppCompatActivity
     public static String UserName; //This variable temporarily stores the username of the player in the current session.
 
     public static int playerTurns = 1;//This counter measures the TOTAL numbers of quizzes attempted by (both) player(s).
-    public static int individualTurnCounter = 0;//This counter measures the number of quizzes attempted by EACH player.
     public static int playerCounter = 1;//This counter measures the number of players.
 
 
@@ -44,12 +43,12 @@ public class Player extends AppCompatActivity
         this.PlayerName = PlayerName;
     }
 
-    public String get_PlayerName()
+    public String getPlayerName()
     {
         return PlayerName;
     }
 
-    public void setScore(int score)
+    public void setListScore(int score)
     {
         this.listScore = score;
     }
@@ -59,9 +58,18 @@ public class Player extends AppCompatActivity
         return id;
     }
 
-    public int get_Score()
+    public int getListScore()
     {
         return listScore;
+    }
+
+    public static int getTempScore()
+    {
+        return tempScore;
+    }
+
+    public static String getUserName(){
+        return UserName;
     }
 
     public void setMultiPlayer(boolean mode)
@@ -115,12 +123,4 @@ public class Player extends AppCompatActivity
         return Q4Active;
     }
 
-    public static int getTempScore()
-    {
-        return tempScore;
-    }
-
-    public static String getPlayerName(){
-        return UserName;
-    }
 }

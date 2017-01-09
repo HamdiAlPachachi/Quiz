@@ -53,6 +53,43 @@ public class FragmentQ1 extends Fragment
 
         is.setImageResource((imageIds[0])); //to begin with first picture.
 
+        switcher();
+
+//        nextButton.setOnClickListener(new View.OnClickListener()
+//        {
+//
+//            public void onClick(View view)
+//            {
+//                currentIndex++;                //currentIndex is the counter used to switch between pictures in the fragment.
+//                if (currentIndex == count)     //When "Next Picture" is clicked, currentIndex rises by 1, thereby raising the
+//                {                              //index in the imageIds array, which changes the image displayed by is.
+//                    currentIndex = 0;
+//                }
+//                is.setImageResource(imageIds[currentIndex]);
+//            }
+//
+//        });
+
+//        previousButton.setOnClickListener(new View.OnClickListener()
+//        {
+//
+//            public void onClick(View view)
+//            {
+//                currentIndex--;
+//                if (currentIndex == -1)
+//                {
+//                    currentIndex = count - 1;
+//                }
+//                is.setImageResource(imageIds[currentIndex]);
+//            }
+//        });
+
+        return view;
+
+    }
+
+    public void switcher()
+    {
         nextButton.setOnClickListener(new View.OnClickListener()
         {
 
@@ -82,7 +119,7 @@ public class FragmentQ1 extends Fragment
             }
         });
 
-        return view;
 
     }
+
 }
