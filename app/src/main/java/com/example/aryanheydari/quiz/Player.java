@@ -7,16 +7,15 @@ public class Player extends AppCompatActivity
 {
 
     private int id;
-    public String PlayerName;
-    private int listScore;
-
+    public String PlayerName;//This variable is used to create ArrayLists of type Player.
+    private int listScore;//This variable is used to create ArrayLists of type Player.
     public static int tempScore = 0; //This variable records the dynamic tempScore acvhieved by a player during a game.
+    public static String UserName; //This variable temporarily stores the username of the player in the current session.
 
     public static int playerTurns = 1;//This counter measures the TOTAL numbers of quizzes attempted by (both) player(s).
     public static int individualTurnCounter = 0;//This counter measures the number of quizzes attempted by EACH player.
     public static int playerCounter = 1;//This counter measures the number of players.
 
-    public static String UserName; //This variable temporarily stores the username of the player in the current session.
 
     public static boolean multiPlayer; //This variable is true if the game is in mutiplayer mode, true otherwise.
     public static boolean resultsIndicator; //This variable indicates to the system whether the user is playing or simply viewing past results.

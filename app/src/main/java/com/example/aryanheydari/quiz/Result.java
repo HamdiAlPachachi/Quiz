@@ -138,9 +138,9 @@ public class Result extends Player
         }
     }
 
-    public void ArrayListConv(ArrayList<Player> ArrayListName)//Converts ArrayList of Type Player to one of type String.
+    public void ArrayListConv(ArrayList<Player> Name)//Converts ArrayList of Type Player to one of type String.
     {
-        for (Player p : ArrayListName)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
+        for (Player p : Name)//This converts the ArrayList singlePlayer of type Player, to the ArrayList resultsList of type String.
         {
             resultsList.add(p.getPlayerName() + "              " + Integer.toString(p.get_Score()));
             resultsListView = (ListView) findViewById(R.id.resultsListView);
